@@ -1,0 +1,477 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f7fa;
+  text-align: center;
+}
+
+
+/* EXCEPCIONES IMPORTANTES */
+.vision-bg {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+}
+
+.logo-contacto {
+  height: 100px;
+  width: auto;
+}
+/* SCROLL SUAVE */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ========================= */
+/* NAVBAR */
+/* ========================= */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 0 80px;
+  box-sizing: border-box;
+  z-index: 1000;
+}
+
+.dropdown-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-menu li {
+  list-style: none;
+}
+
+.nav-left {
+  position: absolute;
+  left: 60px;
+}
+
+.nav-center > ul {
+  list-style: none;
+  display: flex;
+  gap: 50px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar a {
+  color: #0B3C5D;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.navbar a:hover {
+  color: #328CC1;
+}
+
+.active {
+  color: #328CC1;
+}
+
+/* 🔥 LOGO CONTROLADO */
+.logo {
+  height: 60px;
+  width: auto;
+}
+
+/* ========================= */
+/* HERO (ARREGLADO) */
+/* ========================= */
+
+.hero {
+  margin-top: 100px;
+  height: 400px;
+
+  background-image: url("../img/banner.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* ========================= */
+/* LAYOUT */
+/* ========================= */
+
+.layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 40px;
+  overflow: visible;
+}
+
+/* SIDEBAR */
+.sidebar-cursos {
+  width: 220px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 120px;
+  overflow: visible;
+}
+
+.sidebar-cursos .dropdown {
+  position: relative;
+}
+
+.sidebar-cursos .dropdown-menu {
+  position: absolute;
+  top: 0;          
+  left: 100%;
+  z-index: 2000;   
+}
+
+/* ========================= */
+/* COMUNICADOS */
+/* ========================= */
+
+/* CONTENIDO */
+.contenido-principal {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 🔥 ESTO CENTRA TODO */
+}
+
+.comunicados {
+  text-align: left;
+  margin-left: -200px; 
+}
+
+#comunicados {
+  scroll-margin-top: 120px;
+}
+
+.comunicados h2 {
+  text-align: center;
+  width: 100%;
+  color: #0B3C5D;
+}
+
+.cards {
+  display: flex;
+  justify-content: center; /* 🔥 centrado real */
+  gap: 30px;
+  flex-wrap: wrap;
+  max-width: 900px;
+}
+
+.card {
+  background: white;
+  flex: 1 1 350px; /* 🔥 SOLO ESTO */
+  max-width: 350px;
+
+  padding: 25px;
+  border-radius: 15px;
+  text-align: left;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+/* ========================= */
+/* DROPDOWN */
+/* ========================= */
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  background: white;
+  list-style: none;
+  width: 220px;
+  border: 1px solid #999;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: 0.3s;
+}
+
+.dropdown-menu li {
+  border-bottom: 1px solid #999;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 12px;
+  color: #000;
+}
+
+.dropdown-menu a:hover {
+  background: #eaeaea;
+}
+
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* SUBMENÚ */
+.dropdown-sub {
+  position: relative;
+}
+
+.dropdown-sub .submenu {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background: white;
+  width: 260px;
+  border: 1px solid #999;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.dropdown-sub:hover > .submenu {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ========================= */
+/* FOOTER */
+/* ========================= */
+
+.footer {
+  margin-left: -450px; /* ajusta este valor */
+} 
+
+.footer-logos {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.footer-logos img {
+  height: 60px;
+}
+
+.footer-info img {
+  height: 80px;
+}
+
+.footer-logos img:hover,
+.footer-info img:hover {
+  transform: scale(1.08);
+  opacity: 0.85;
+  transition: 0.3s;
+}
+
+/* ========================= */
+/* HERO ADMISION (ARREGLADO) */
+/* ========================= */
+
+.hero-admision {
+  margin-top: 100px;
+  height: 60vh;
+  min-height: 350px;
+
+  background-image: url("../img/fondoliceo.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  position: relative;
+}
+
+/* OSCURECER FONDO */
+.hero-admision::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+}
+
+/* LOGO */
+.logo-overlay {
+  position: absolute;
+  top: 30px;
+  left: 40px;
+  height: 120px; /* 🔥 BAJAMOS tamaño */
+  z-index: 2;
+}
+
+/* TEXTO CENTRO */
+.titulo-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* TITULO */
+.titulo-overlay {
+  height: 250px; /* 🔥 ANTES era 600 → por eso explotaba */
+  width: auto;
+  filter: drop-shadow(0 5px 15px rgba(0,0,0,0.7));
+}
+
+/* ========================= */
+/* CONTACTO (ORIGINAL RESTAURADO) */
+/* ========================= */
+
+.contacto-section {
+  padding: 80px 20px;
+}
+
+.contacto-section h2 {
+  color: #0B3C5D;
+  margin-bottom: 40px;
+}
+
+.contacto-container {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.mapa {
+  width: 500px;
+}
+
+.info {
+  max-width: 400px;
+  text-align: left;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.logo-contacto {
+  margin-top: 30px;
+  height: 100px;
+}
+/* ========================= */
+/*            VISIÓN         */
+/* ========================= */
+
+.vision-section {
+  padding: 80px 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.vision-box {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.vision-bg {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+  display: block;
+}
+
+.badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: #00bcd4;
+  color: white;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 5px;
+  z-index: 2;
+}
+
+.vision-overlay {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  max-width: 800px;
+  background: rgba(255,255,255,0.92);
+  padding: 18px 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.vision-overlay h3 {
+  font-size: 15px;
+  margin: 8px 0;
+}
+
+.vision-overlay p {
+  font-size: 15px;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+/* ========================= */
+/* CURSOS TIPO DROPDOWN */
+/* ========================= */
+
+.menu-cursos {
+  list-style: none;
+  padding: 0;
+}
+
+.menu-cursos a {
+  display: block;
+  padding: 10px;
+  background: #f0f0f0;
+  border: 1px solid #999;
+  color: black;
+  text-decoration: none;
+  text-align: left;
+}
+
+.menu-cursos a:hover {
+  background: #e0e0e0;
+}
+
+/* dropdown base */
+.menu-cursos .dropdown {
+  position: relative;
+}
+
+.menu-cursos .dropdown-menu {
+  position: static;
+  display: none;
+}
+
+/* submenus */
+.menu-cursos .submenu {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  display: none;
+  background: white;
+  min-width: 150px;
+  border: 1px solid #999;
+}
+
+/* mostrar */
+.menu-cursos .dropdown:hover > .dropdown-menu {
+  display: block;
+}
+
+.menu-cursos .dropdown-sub:hover > .submenu {
+  display: block;
+}
