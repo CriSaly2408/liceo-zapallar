@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: CriSaly2408/liceo-zapallar
+  name: git-gateway
   branch: main
 
 media_folder: "img/uploads"
