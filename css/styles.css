@@ -132,6 +132,24 @@ html {
   z-index: 2000;   
 }
 
+.btn-calendario {
+  display: block;
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 12px;
+  background: #0B3C5D;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.btn-calendario:hover {
+  background: #145a86;
+}
+
 /* ========================= */
 /* COMUNICADOS */
 /* ========================= */
@@ -173,16 +191,15 @@ html {
   justify-content: center;
   gap: 30px;
   flex-wrap: wrap;
-  max-width: 900px;
-  margin: auto;               /* 🔥 centra correctamente */
+  max-width: 1000px;   /* 🔥 un poco más ancho */
+  margin: auto;
 }
 
 .card {
   background: white;
-  flex: 1 1 350px;
-  max-width: 400px;           /* 🔥 limita tamaño */
-  margin: 20px;
-  overflow: hidden;           /* 🔥 evita que la imagen se salga */
+  width: 300px;              /* 🔥 tamaño fijo */
+  margin: 10px;              /* 🔥 NO auto */
+  overflow: hidden;
   padding: 25px;
   border-radius: 15px;
   text-align: left;
