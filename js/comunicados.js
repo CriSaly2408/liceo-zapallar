@@ -1,36 +1,26 @@
-document.addEventListener("DOMContentLoaded", () => {
+const sheetID = "1Vxi4iI97BvRL4F4I7Qs7bi0ePx-NCMsW2-k6vb7K0kE";
+const url = `https://opensheet.elk.sh/${sheetID}/Sheet1`;
 
-  const comunicados = [
-    {
-      titulo: "Inicio Año Escolar 2026",
-      texto: "Las clases comienzan el 5 de marzo. Se solicita puntualidad y uniforme completo.",
-      fecha: "20 Feb 2026"
-    },
-    {
-      titulo: "Reunión de Apoderados",
-      texto: "Se realizará el día 10 de marzo a las 18:00 hrs en el salón principal.",
-      fecha: "18 Feb 2026"
-    },
-    {
-      titulo: "Proceso de Admisión",
-      texto: "Ya se encuentra disponible el proceso de postulación para nuevos estudiantes.",
-      fecha: "15 Feb 2026"
-    }
-  ];
+fetch(url)
+  .then(res => res.json())
+  .then(data => {
+    const contenedor = document.getElementById("contenedor-comunicados");
 
-  const contenedor = document.getElementById("contenedor-comunicados");
+    contenedor.innerHTML = "";
 
-  comunicados.forEach(c => {
-    const card = document.createElement("div");
-    card.classList.add("card");
+    data.reverse().forEach(item => {
+      const card = document.createElement("div");
+      card.className = "card";
 
-    card.innerHTML = `
-      <h3>${c.titulo}</h3>
-      <p>${c.texto}</p>
-      <span>Publicado: ${c.fecha}</span>
-    `;
+      card.innerHTML = `
+        <h3>${item.titulo}</h3>
+        <p><strong>${item.fecha}</strong></p>
+        <p>${item.contenido}</p>
+      `;
 
-    contenedor.appendChild(card);
+      contenedor.appendChild(card);
+    });
+  })
+  .catch(error => {
+    console.error("Error cargando datos:", error);
   });
-
-});
