@@ -162,25 +162,27 @@ html {
 
 .card-img {
   width: 100%;
-  aspect-ratio: 16 / 9;   /* puedes cambiar a 19/9 si quieres ultra panorámico */
-  object-fit: cover;      /* recorta sin deformar */
+  height: 200px;              /* 🔥 reemplaza aspect-ratio */
+  object-fit: cover;          
   border-radius: 10px;
+  display: block;             /* 🔥 evita comportamientos raros */
 }
 
 .cards {
   display: flex;
-  justify-content: center; /* 🔥 centrado real */
+  justify-content: center;
   gap: 30px;
   flex-wrap: wrap;
   max-width: 900px;
+  margin: auto;               /* 🔥 centra correctamente */
 }
 
 .card {
   background: white;
-  flex: 1 1 350px; /* 🔥 SOLO ESTO */
-  max-width: 500px;
-  margin: 20px auto;
-  overflow: hidden;
+  flex: 1 1 350px;
+  max-width: 400px;           /* 🔥 limita tamaño */
+  margin: 20px;
+  overflow: hidden;           /* 🔥 evita que la imagen se salga */
   padding: 25px;
   border-radius: 15px;
   text-align: left;
