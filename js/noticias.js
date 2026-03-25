@@ -18,9 +18,8 @@ fetch(url)
         <p>${item.resumen}</p>
       `;
 
-      // 👉 CLICK en la tarjeta
       card.onclick = () => {
-        window.location.href = `noticia.html?id=${item.pagina}`;
+        window.open(`noticia.html?id=${item.pagina}`, "_blank");
       };
 
       contenedor.appendChild(card);
