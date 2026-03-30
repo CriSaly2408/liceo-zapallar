@@ -842,3 +842,39 @@ img {
   }
 
 }
+
+@media (max-width: 768px) {
+
+  /* 🔥 TODOS LOS MENÚS DEL NAVBAR */
+  .navbar .dropdown-menu,
+  .navbar .submenu {
+    position: static !important;
+    width: 100%;
+    left: 0 !important;
+    top: 0 !important;
+  }
+
+  /* 🔥 EVITA QUE SE SALGAN */
+  .navbar li {
+    width: 100%;
+  }
+
+  /* 🔥 LINKS OCUPAN TODO */
+  .navbar a {
+    display: block;
+    width: 100%;
+  }
+
+  /* 🔥 OCULTOS POR DEFECTO */
+  .navbar .dropdown-menu,
+  .navbar .submenu {
+    display: none;
+  }
+
+  /* 🔥 SE ABREN EN VERTICAL */
+  .navbar .dropdown-menu.activo,
+  .navbar .submenu.activo {
+    display: block;
+  }
+
+}

@@ -106,12 +106,16 @@ document.querySelectorAll(".toggle").forEach(btn => {
 // 🔥 LICEO MOBILE
 document.querySelectorAll(".toggle-liceo").forEach(btn => {
   btn.addEventListener("click", function(e) {
-    e.preventDefault();
 
-    const submenu = this.nextElementSibling;
+    if (window.innerWidth <= 768) {
+      e.preventDefault(); // 🔥 evita que suba arriba
 
-    if (submenu) {
-      submenu.classList.toggle("activo");
+      const submenu = this.nextElementSibling;
+
+      if (submenu) {
+        submenu.classList.toggle("activo");
+      }
     }
+
   });
 });
