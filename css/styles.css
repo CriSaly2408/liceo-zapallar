@@ -552,46 +552,63 @@ html {
 /* RESPONSIVE MOBILE */
 /* ========================= */
 
+/* ========================= */
+/* FIX MOBILE COMPLETO */
+/* ========================= */
+
 @media (max-width: 768px) {
 
+  /* Layout general */
   .layout {
     flex-direction: column;
-    padding: 15px;
+    padding: 10px;
+    gap: 10px;
   }
 
+  /* Sidebar */
   .sidebar-cursos {
     width: 100%;
     position: relative;
     top: 0;
   }
 
+  /* BOTÓN calendario */
+  .btn-calendario {
+    width: 100%;
+    font-size: 13px;
+  }
+
+  /* Menú cursos */
+  .menu-cursos {
+    width: 100%;
+  }
+
+  /* CONTENIDO */
   .contenido-principal {
     width: 100%;
   }
 
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-@media (max-width: 768px) {
-
-  .nav-center ul {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-}
-
-@media (max-width: 768px) {
-
+  /* CARDS */
   .cards {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    align-items: center;
   }
+
+  .card {
+    width: 90%;
+    max-width: 350px;
+  }
+
+  /* IMÁGENES */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .cards {
+    grid-template-columns: 1fr !important;
+  }
+}
 
 }
