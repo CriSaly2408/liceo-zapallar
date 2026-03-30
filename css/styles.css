@@ -547,3 +547,51 @@ html {
 
 .menu-cursos .dropdown-sub:hover > .submenu {
   display: block;
+
+  /* ========================= */
+/* RESPONSIVE MOBILE */
+/* ========================= */
+
+@media (max-width: 768px) {
+
+  .layout {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .sidebar-cursos {
+    width: 100%;
+    position: relative;
+    top: 0;
+  }
+
+  .contenido-principal {
+    width: 100%;
+  }
+
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 768px) {
+
+  .nav-center ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .cards {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+}
