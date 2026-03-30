@@ -845,36 +845,45 @@ img {
 
 @media (max-width: 768px) {
 
-  /* 🔥 TODOS LOS MENÚS DEL NAVBAR */
+  /* 🔥 CRÍTICO: evita que los submenús se vayan a la derecha */
+  .navbar .dropdown-sub {
+    position: relative !important;
+  }
+
+  /* 🔥 RESET TOTAL */
   .navbar .dropdown-menu,
   .navbar .submenu {
     position: static !important;
-    width: 100%;
     left: 0 !important;
     top: 0 !important;
+    transform: none !important;
+    width: 100% !important;
   }
 
-  /* 🔥 EVITA QUE SE SALGAN */
+  /* 🔥 ESTRUCTURA VERTICAL */
+  .navbar ul {
+    position: static !important;
+  }
+
   .navbar li {
+    display: block;
     width: 100%;
   }
 
-  /* 🔥 LINKS OCUPAN TODO */
   .navbar a {
     display: block;
     width: 100%;
   }
 
-  /* 🔥 OCULTOS POR DEFECTO */
+  /* 🔥 VISIBILIDAD */
   .navbar .dropdown-menu,
   .navbar .submenu {
-    display: none;
+    display: none !important;
   }
 
-  /* 🔥 SE ABREN EN VERTICAL */
   .navbar .dropdown-menu.activo,
   .navbar .submenu.activo {
-    display: block;
+    display: block !important;
   }
 
 }
