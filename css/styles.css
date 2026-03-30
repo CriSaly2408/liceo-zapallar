@@ -34,12 +34,14 @@ html {
   background: white;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   border-bottom: 1px solid #e5e5e5;
-  padding: 0 80px;
+  padding: 0 40px;
   box-sizing: border-box;
   z-index: 1000;
 }
+
+/* DROPDOWN */
 
 .dropdown-menu {
   list-style: none;
@@ -51,23 +53,37 @@ html {
   list-style: none;
 }
 
+/* ================= LOGO ================= */
+
 .nav-left {
-  position: absolute;
-  left: 60px;
+  flex: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* ================= MENÚ ================= */
+
+.nav-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
 .nav-center > ul {
   list-style: none;
   display: flex;
-  gap: 50px;
+  gap: 20px;
   margin: 0;
   padding: 0;
+  flex-wrap: nowrap;
 }
+
+/* LINKS */
 
 .navbar a {
   color: #0B3C5D;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   transition: 0.2s;
 }
@@ -80,9 +96,10 @@ html {
   color: #328CC1;
 }
 
-/* 🔥 LOGO CONTROLADO */
+/* LOGO IMG */
+
 .logo {
-  height: 60px;
+  height: 50px;
   width: auto;
 }
 
@@ -326,22 +343,27 @@ html {
 /* ========================= */
 
 .footer {
-  margin-left: -450px; /* ajusta este valor */
-} 
+  width: 100%;
+  margin-left: 0; /* 🔥 elimina el bug */
+  text-align: center;
+}
 
 .footer-logos {
   display: flex;
   justify-content: center;
-  gap: 30px;
+  align-items: center;
+  gap: 20px;
   flex-wrap: wrap;
 }
 
 .footer-logos img {
   height: 60px;
+  max-width: 100%;
 }
 
 .footer-info img {
   height: 80px;
+  max-width: 100%;
 }
 
 .footer-logos img:hover,
@@ -350,7 +372,6 @@ html {
   opacity: 0.85;
   transition: 0.3s;
 }
-
 /* ========================= */
 /* HERO ADMISION (ARREGLADO) */
 /* ========================= */
@@ -547,59 +568,204 @@ html {
 
 .menu-cursos .dropdown-sub:hover > .submenu {
   display: block;
-
-  /* ========================= */
-/* RESPONSIVE MOBILE */
-/* ========================= */
-
+}
 /* ========================= */
 /* FIX MOBILE COMPLETO */
 /* ========================= */
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+}
 
 @media (max-width: 768px) {
 
   /* Layout general */
   .layout {
-    flex-direction: column;
+    display: flex !important;
+    flex-direction: column !important;
     padding: 10px;
     gap: 10px;
   }
 
-  /* Sidebar */
+  /* HERO */
+  .hero {
+    width: 100%;
+    height: auto;
+  }
+
+/* ================= MOBILE ================= */
+
+/* ================= MENÚ ================= */
+
+.nav-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-center > ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+/* LINKS */
+
+.navbar a {
+  color: #0B3C5D;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.navbar a:hover {
+  color: #328CC1;
+}
+
+.active {
+  color: #328CC1;
+}
+
+/* LOGO IMG */
+
+.logo {
+  height: 50px;
+  width: auto;
+}
+
+/* ================= MOBILE ================= */
+
+body {
+  padding-top: 100px;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .navbar {
+    position: relative;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px 0;
+  }
+
+  .nav-left {
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .nav-left img {
+    max-width: 140px;
+    height: auto;
+  }
+
+  .nav-center {
+    width: 100%;
+  }
+
+  .nav-center > ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .nav-center li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-center a {
+    display: block;
+    width: 100%;
+  }
+
+}
+
+  /* ================= SIDEBAR ================= */
+
+  .sidebar-cursos {
+    position: relative !important;
+    width: 100% !important;
+    top: 0;
+  }
+
   .sidebar-cursos ul {
     background: white;
     border-radius: 8px;
     padding: 10px;
   }
 
-@media (max-width: 768px) {
-
-  .sidebar-cursos .dropdown-menu {
-    position: relative !important;
-    left: 0 !important;
-    top: 0 !important;
-  }
-
+  /* MENÚ */
+  .sidebar-cursos .dropdown-menu,
   .sidebar-cursos .submenu {
-    position: relative !important;
+    position: static !important;
+    width: 100%;
   }
 
-}
+  .sidebar-cursos li {
+    width: 100%;
+  }
 
-  /* BOTÓN calendario */
+  .sidebar-cursos a {
+    display: block;
+    width: 100%;
+  }
+
+  /* ACORDEÓN */
+  .submenu,
+  .dropdown-menu {
+    display: none;
+  }
+
+  .submenu.activo,
+  .dropdown-menu.activo {
+    display: block;
+  }
+
+  /* BOTÓN */
   .btn-calendario {
     width: 100%;
     font-size: 13px;
   }
 
-  /* Menú cursos */
-  .menu-cursos {
-    width: 100%;
+  /* ================= PC (hover menú) ================= */
+@media (min-width: 769px) {
+
+  .sidebar-cursos .dropdown-menu {
+    display: block;
   }
 
-  /* CONTENIDO */
+  .sidebar-cursos .submenu {
+    display: none;
+  }
+
+  .sidebar-cursos .dropdown-sub:hover > .submenu {
+    display: block;
+  }
+
+}
+
+  /* ================= CONTENIDO ================= */
+
   .contenido-principal {
-    width: 100%;
+    width: 100% !important;
   }
 
   /* CARDS */
@@ -620,9 +786,29 @@ html {
     height: auto;
   }
 
+  /* GRID fallback */
   .cards {
     grid-template-columns: 1fr !important;
   }
-}
+
+  /* ================= FOOTER ================= */
+
+  .footer {
+    text-align: center;
+  }
+
+  .footer-logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    gap: 10px;
+  }
+
+  .footer-logos img {
+    max-width: 80px;
+    height: auto;
+  }
 
 }

@@ -41,43 +41,62 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  const contenedor = document.querySelector(".menu-cursos");
 
-  let html = `
-  <li class="dropdown">
-    <a href="#">Cursos ▾</a>
-    <ul class="dropdown-menu">
+const contenedor = document.querySelector(".menu-cursos");
+
+let html = `
+<li class="dropdown">
+  <a href="#" onclick="return false;" class="toggle">Cursos ▾</a>
+  <ul class="dropdown-menu">  <!-- 🔥 ESTO FALTABA -->
+`;
+
+for (let curso in cursos) {
+
+  html += `
+  <li class="dropdown-sub">
+    <a href="#" onclick="return false;" class="toggle">${curso} ▸</a>
+    <ul class="submenu">
   `;
 
-  for (let curso in cursos) {
+  for (let letra in cursos[curso]) {
+
+    const datos = cursos[curso][letra];
+    const nombre = curso.split(" ")[0];
 
     html += `
     <li class="dropdown-sub">
-      <a href="#">${curso} ▸</a>
+      <a href="#" onclick="return false;" class="toggle">${nombre}${letra} ▸</a>
       <ul class="submenu">
+        <li><a href="${datos.lista}" target="_blank">Lista</a></li>
+        <li><a href="${datos.horario}" target="_blank">Horario</a></li>
+      </ul>
+    </li>
     `;
-
-    for (let letra in cursos[curso]) {
-
-      const datos = cursos[curso][letra];
-      const nombre = curso.split(" ")[0];
-
-      html += `
-      <li class="dropdown-sub">
-        <a href="#">${nombre}${letra} ▸</a>
-        <ul class="submenu">
-          <li><a href="${datos.lista}" target="_blank">Lista</a></li>
-          <li><a href="${datos.horario}" target="_blank">Horario</a></li>
-        </ul>
-      </li>
-      `;
-    }
-
-    html += `</ul></li>`;
   }
 
   html += `</ul></li>`;
+}
 
-  contenedor.innerHTML = html;
+html += `</ul></li>`;
 
+contenedor.innerHTML = html;
+
+contenedor.innerHTML = html;
+
+/* 🔥 COMPORTAMIENTO INTELIGENTE (MÓVIL SOLAMENTE) */
+document.querySelectorAll(".toggle").forEach(btn => {
+  btn.addEventListener("click", function(e) {
+
+    e.preventDefault();       // evita navegación
+    e.stopPropagation();      // 🔥 evita comportamientos raros
+
+    const submenu = this.nextElementSibling;
+
+    if (submenu) {
+      submenu.classList.toggle("activo");
+    }
+
+  });
 });
+
+}); 
