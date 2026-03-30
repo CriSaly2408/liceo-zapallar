@@ -177,12 +177,16 @@ html {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  align-items: center; /* 🔥 ESTO CENTRA TODO */
+  align-items: center;
+  padding: 0 10px; /* 🔥 evita que toque los bordes en móvil */
 }
 
+/* SECCIÓN */
 .comunicados {
   text-align: left;
-  margin-left: -200px; 
+  width: 100%;
+  max-width: 1000px; /* 🔥 centra y limita ancho */
+  margin: 0 auto; /* 🔥 centra correctamente */
 }
 
 #comunicados {
@@ -195,27 +199,20 @@ html {
   color: #0B3C5D;
 }
 
-.card-img {
-  width: 100%;
-  height: 200px;              /* 🔥 reemplaza aspect-ratio */
-  object-fit: cover;          
-  border-radius: 10px;
-  display: block;             /* 🔥 evita comportamientos raros */
-}
-
+/* CARDS CONTENEDOR */
 .cards {
   display: flex;
   justify-content: center;
   gap: 30px;
   flex-wrap: wrap;
-  max-width: 1000px;   /* 🔥 un poco más ancho */
-  margin: auto;
+  width: 100%;
 }
 
+/* CARD */
 .card {
   background: white;
-  width: 300px;              /* 🔥 tamaño fijo */
-  margin: 10px;              /* 🔥 NO auto */
+  width: 300px;
+  margin: 10px;
   overflow: hidden;
   padding: 25px;
   border-radius: 15px;
@@ -224,7 +221,13 @@ html {
   transition: 0.3s;
 }
 
+/* IMAGEN */
 .card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
   transition: transform 0.3s ease;
 }
 
