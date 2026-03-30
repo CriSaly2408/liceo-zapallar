@@ -572,16 +572,19 @@ html {
     padding: 10px;
   }
 
-    .sidebar-cursos .dropdown-menu {
-    position: static;   /* 🔥 clave */
-    left: 0;
-    top: 0;
-    z-index: auto;
+@media (max-width: 768px) {
+
+  .sidebar-cursos .dropdown-menu {
+    position: relative !important;
+    left: 0 !important;
+    top: 0 !important;
   }
 
   .sidebar-cursos .submenu {
-    position: static;   /* 🔥 también importante */
+    position: relative !important;
   }
+
+}
 
   /* BOTÓN calendario */
   .btn-calendario {
