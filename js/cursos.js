@@ -100,3 +100,18 @@ document.querySelectorAll(".toggle").forEach(btn => {
 });
 
 }); 
+
+// 🔥 CURSOS (ya lo tienes arriba)
+
+// 🔥 LICEO MOBILE
+document.querySelectorAll(".toggle-liceo").forEach(btn => {
+  btn.addEventListener("click", function(e) {
+    e.preventDefault();
+
+    const submenu = this.nextElementSibling;
+
+    if (submenu) {
+      submenu.classList.toggle("activo");
+    }
+  });
+});

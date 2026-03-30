@@ -828,3 +828,17 @@ img {
   }
 
 }
+
+@media (max-width: 768px) {
+
+  .navbar .dropdown-menu,
+  .navbar .submenu {
+    display: none;
+  }
+
+  .navbar .dropdown-menu.activo,
+  .navbar .submenu.activo {
+    display: block;
+  }
+
+}
