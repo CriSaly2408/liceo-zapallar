@@ -845,37 +845,18 @@ img {
 
 @media (max-width: 768px) {
 
-  /* 🔥 CRÍTICO: evita que los submenús se vayan a la derecha */
-  .navbar .dropdown-sub {
-    position: relative !important;
-  }
-
-  /* 🔥 RESET TOTAL */
-  .navbar .dropdown-menu,
-  .navbar .submenu {
+  /* 🔥 SOBREESCRIBE EL PROBLEMA */
+  .navbar .dropdown-sub .submenu {
     position: static !important;
     left: 0 !important;
     top: 0 !important;
-    transform: none !important;
     width: 100% !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    border: none !important;
   }
 
   /* 🔥 ESTRUCTURA VERTICAL */
-  .navbar ul {
-    position: static !important;
-  }
-
-  .navbar li {
-    display: block;
-    width: 100%;
-  }
-
-  .navbar a {
-    display: block;
-    width: 100%;
-  }
-
-  /* 🔥 VISIBILIDAD */
   .navbar .dropdown-menu,
   .navbar .submenu {
     display: none !important;
@@ -884,6 +865,16 @@ img {
   .navbar .dropdown-menu.activo,
   .navbar .submenu.activo {
     display: block !important;
+  }
+
+  /* 🔥 TODO EN BLOQUE */
+  .navbar li {
+    width: 100%;
+  }
+
+  .navbar a {
+    display: block;
+    width: 100%;
   }
 
 }
