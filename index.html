@@ -2,6 +2,10 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+
+  <!-- 🔥 ESTO ES LO QUE FALTABA -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Liceo Zapallar Curicó</title>
   <link rel="stylesheet" href="css/styles.css?v=2">
 </head>
@@ -82,35 +86,29 @@
 <div class="layout">
 
   <!-- SIDEBAR -->
-<div class="sidebar-cursos">
+  <div class="sidebar-cursos">
 
-  <!-- BOTÓN CALENDARIO -->
-  <a href="https://drive.google.com/file/d/1yqQWoi9SfGhLsy1tWZlc36Wnkid0ozly/view?usp=drive_link" 
-     target="_blank" 
-     class="btn-calendario">
-    📅 Calendario anual de actividades 2026
-  </a>
+    <a href="https://drive.google.com/file/d/1yqQWoi9SfGhLsy1tWZlc36Wnkid0ozly/view?usp=drive_link" 
+       target="_blank" 
+       class="btn-calendario">
+      📅 Calendario anual de actividades 2026
+    </a>
 
-  <ul class="menu-cursos"></ul>
+    <ul class="menu-cursos"></ul>
 
-</div>
+  </div>
 
   <!-- CONTENIDO -->
-<div class="contenido-principal">
+  <div class="contenido-principal">
 
-  <!-- NOTICIAS -->
-<div class="contenido-principal">
+    <section id="noticias" class="comunicados">
+      <h2>Noticias</h2>
+      <div class="cards" id="contenedor-noticias"></div>
+    </section>
 
-  <section id="noticias" class="comunicados">
-    <h2>Noticias</h2>
-    <div class="cards" id="contenedor-noticias"></div>
-  </section>
+  </div>
 
 </div>
-
-<!-- SCRIPTS -->
-<script src="js/noticias.js"></script>
-<script src="js/cursos.js"></script>
 
 <!-- SCRIPTS -->
 <script src="js/noticias.js"></script>
