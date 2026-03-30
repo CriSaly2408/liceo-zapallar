@@ -765,35 +765,48 @@ body {
 
 }
 
-  /* ================= CONTENIDO ================= */
+/* ================= CONTENIDO ================= */
 
-  .contenido-principal {
-    width: 100% !important;
+@media (max-width: 768px) {
+
+  .layout {
+    padding: 0 !important;
+    margin: 0 auto !important;
   }
 
-  /* CARDS */
-  .cards {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+}
 
-  .card {
-    width: 90%;
-    max-width: 350px;
-  }
+.contenido-principal {
+  width: 100% !important;
+  margin: 0 auto; /* 🔥 centra */
+  padding: 0 10px; /* 🔥 evita que quede pegado a los bordes */
+}
 
-  /* IMÁGENES */
-  img {
-    max-width: 100%;
-    height: auto;
-  }
+/* CARDS */
+.cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%; /* 🔥 importante */
+}
 
-  /* GRID fallback */
-  .cards {
-    grid-template-columns: 1fr !important;
-  }
+/* CARD individual */
+.card {
+  width: 90%;
+  max-width: 350px;
+  margin: 0 auto; /* 🔥 centra cada card */
+}
 
+/* IMÁGENES */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* GRID fallback */
+.cards {
+  grid-template-columns: 1fr !important;
+}
   /* ================= FOOTER ================= */
 
   .footer {
