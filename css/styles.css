@@ -104,6 +104,35 @@ html {
 }
 
 /* ========================= */
+/* ADMICION */
+/* ========================= */
+
+.admision-info {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.mensaje-admision {
+  font-size: 18px;
+  color: #0B3C5D;
+  background: #e6f0f7;
+  padding: 15px;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+.alerta-admision {
+  background: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+/* ========================= */
 /* HERO (ARREGLADO) */
 /* ========================= */
 
