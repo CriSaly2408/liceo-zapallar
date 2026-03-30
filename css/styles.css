@@ -566,10 +566,21 @@ html {
   }
 
   /* Sidebar */
-  .sidebar-cursos {
-    width: 100%;
-    position: relative;
+  .sidebar-cursos ul {
+    background: white;
+    border-radius: 8px;
+    padding: 10px;
+  }
+
+    .sidebar-cursos .dropdown-menu {
+    position: static;   /* 🔥 clave */
+    left: 0;
     top: 0;
+    z-index: auto;
+  }
+
+  .sidebar-cursos .submenu {
+    position: static;   /* 🔥 también importante */
   }
 
   /* BOTÓN calendario */
