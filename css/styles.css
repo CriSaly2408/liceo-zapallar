@@ -701,7 +701,7 @@ html {
   .card-info.full {
     grid-column: span 1;
   }
-}
+
 
 .secretaria {
   grid-column: span 2; /* 🔥 ocupa todo el ancho */
