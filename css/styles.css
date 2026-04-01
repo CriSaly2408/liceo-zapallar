@@ -13,10 +13,17 @@ body {
   object-fit: cover;
 }
 
-.logo-contacto {
-  height: 100px;
-  width: auto;
+.logo-overlay {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  width: 120px; /* puedes ajustar */
+  height: auto;
+  overflow: visible !important; /* 🔥 clave */
+  border-radius: 0 !important;
+  z-index: 3;
 }
+
 /* SCROLL SUAVE */
 html {
   scroll-behavior: smooth;
@@ -165,6 +172,39 @@ html {
   position: sticky;
   top: 120px;
   overflow: visible;
+}
+
+/* BOTONES CURSOS PRO */
+.sidebar-cursos a {
+  display: block;
+  padding: 10px 14px;
+  margin: 5px 0;
+  border-radius: 10px;
+  background: #f0f4f8;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  color: #0B3C5D;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.sidebar-cursos .submenu a {
+  background: #ffffff;
+  border-left: 3px solid #328CC1;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+.sidebar-cursos a.activo {
+  background: #0B3C5D;
+  color: white;
+}
+
+.sidebar-cursos a:hover {
+  background: #328CC1;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  color: white;
+  transform: translateX(5px);
 }
 
 .sidebar-cursos .dropdown {
@@ -405,7 +445,7 @@ html {
   transition: 0.3s;
 }
 /* ========================= */
-/* HERO ADMISION (ARREGLADO) */
+/*       HERO ADMISIÓN       */
 /* ========================= */
 
 .hero-admision {
@@ -432,10 +472,18 @@ html {
 /* LOGO */
 .logo-overlay {
   position: absolute;
-  top: 30px;
-  left: 40px;
-  height: 120px; /* 🔥 BAJAMOS tamaño */
-  z-index: 2;
+  top: 15px;
+  left: 20px;
+  width: 100px;
+  height: auto; /* 🔥 clave */
+  border-radius: 0 !important;
+  z-index: 3;
+}
+
+.logo-overlay img {
+  border-radius: 0 !important;
+  width: 100%;
+  height: auto;
 }
 
 /* TEXTO CENTRO */
@@ -444,21 +492,54 @@ html {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
 }
 
-/* TITULO */
 .titulo-overlay {
-  height: 250px; /* 🔥 ANTES era 600 → por eso explotaba */
-  width: auto;
-  filter: drop-shadow(0 5px 15px rgba(0,0,0,0.7));
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  max-width: none; /* 🔥 ESTO ES LA CLAVE */
+  height: auto;
 }
 
 /* ========================= */
-/* CONTACTO (ORIGINAL RESTAURADO) */
+/*         CONTACTO          */
 /* ========================= */
+
+/* HERO CONTACTO */
+.hero-contacto {
+  width: 100%;
+  height: 35vw;          
+  min-height: 200px;     
+  max-height: 500px;     
+  background: url("../img/fondoliceo2.png") center/cover no-repeat;
+  position: relative;
+}
+
+/* LOGO EN LA SECCIÓN CONTACTO (ABAJO) */
+.logo-contacto {
+  margin-top: 30px;
+  width: 120px;
+  height: auto;
+}
+
+/* SOLO EN CONTACTO */
+.hero-contacto .logo-overlay {
+  width: 120px;
+  height: auto;
+  top: 100px;
+}
 
 .contacto-section {
   padding: 80px 20px;
+}
+
+.titulo-contacto {
+  top: 55%;
 }
 
 .contacto-section h2 {
@@ -466,28 +547,120 @@ html {
   margin-bottom: 40px;
 }
 
+/* 🔥 CONTENEDOR PRINCIPAL */
 .contacto-container {
   display: flex;
-  gap: 40px;
-  justify-content: center;
+  gap: 25px;
   align-items: flex-start;
-  flex-wrap: wrap;
+  max-width: 1200px;  /* 🔥 controla el ancho total */
+  margin: 0 auto;     /* 🔥 centra */
 }
 
+/* 🔥 MAPA */
 .mapa {
-  width: 500px;
+  width: 500px;       /* tamaño controlado */
+  flex-shrink: 0;     /* 🔥 evita que se deforme */
 }
 
+.mapa-iframe {
+  width: 100%;
+  height: 700px;      /* 🔥 aquí crece hacia abajo */
+  border: 0;
+  border-radius: 12px;
+}
+
+/* 🔥 INFO */
 .info {
   max-width: 400px;
   text-align: left;
   font-size: 16px;
   line-height: 1.6;
+  flex: 1;
 }
 
+.info h3 {
+  color: #1e3a5f;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.info p {
+  line-height: 1.6;
+}
+
+/* 🔥 GRID TARJETAS */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.card-info {
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease;
+}
+
+.card-info:hover {
+  transform: translateY(-3px);
+}
+
+.card-info h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #0B3C5D;
+  margin-bottom: 12px;
+}
+
+.card-info p {
+  font-size: 15px;
+  color: #333;
+  line-height: 1.6;
+}
+
+.card-info strong {
+  display: block;
+  margin-top: 10px;
+  color: #0B3C5D;
+}
+
+/* 📱 móvil */
+@media (max-width: 768px) {
+  .contacto-container {
+    flex-direction: column;
+  }
+
+  .mapa {
+    width: 100%;
+  }
+
+  .mapa-iframe {
+    height: 400px;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-info.full {
+    grid-column: span 1;
+  }
+}
+
+.secretaria {
+  grid-column: span 2; /* 🔥 ocupa todo el ancho */
+  text-align: center;
+}
+
+/* 🔥 LOGO (SIN deformación) */
 .logo-contacto {
   margin-top: 30px;
-  height: 100px;
+  width: 120px;
+  height: auto;
+  object-fit: contain; /* 🔥 clave */
 }
 /* ========================= */
 /*            VISIÓN         */
@@ -611,6 +784,7 @@ html {
 
 body {
   overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
 }
 
 @media (max-width: 768px) {
