@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: "Roboto", sans-serif;
   background: #f5f7fa;
   text-align: center;
 }
@@ -793,7 +793,7 @@ html {
 
 body {
   overflow-x: hidden;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 @media (max-width: 768px) {
@@ -1070,25 +1070,32 @@ img {
 
   /* 🔥 ESTRUCTURA VERTICAL */
   .navbar .dropdown-menu,
-  .navbar .submenu {
-    display: none !important;
-  }
+  .navbar /* oculto por defecto */
+.submenu {
+  display: none;
+}
 
-  .navbar .dropdown-menu.activo,
-  .navbar .submenu.activo {
-    display: block !important;
-  }
+/* cuando está activo */
+.dropdown.activo .submenu {
+  display: block;
+}
 
   /* 🔥 TODO EN BLOQUE */
   .navbar li {
     width: 100%;
   }
 
-  .navbar a {
-    display: block;
-    width: 100%;
+.navbar a {
+  display: block;
+  width: 100%;
+  font-size: 17px !important;
   }
 
+}
+
+#menu-nav li a {
+  font-size: 17px;
+  font-weight: 500;
 }
 
 /* ========================= */

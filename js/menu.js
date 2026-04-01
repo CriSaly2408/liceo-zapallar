@@ -70,3 +70,15 @@ nav.innerHTML = `
 
 <li><a href="contacto.html">Contacto</a></li>
 `;
+document.addEventListener("DOMContentLoaded", () => {
+
+  const dropdown = document.querySelector(".dropdown");
+
+  if (dropdown) {
+    dropdown.addEventListener("click", (e) => {
+      e.preventDefault();
+      dropdown.classList.toggle("activo");
+    });
+  }
+
+});
