@@ -1181,8 +1181,7 @@ img {
   .hero,
   .hero-admision,
   .hero-contacto {
-    height: 150px;
-    background-size: cover;
+    display: none !important;
   }
 
 }
