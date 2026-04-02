@@ -17,9 +17,9 @@ body {
   position: absolute;
   top: 15px;
   left: 20px;
-  width: 120px; /* puedes ajustar */
+  width: 120px; 
   height: auto;
-  overflow: visible !important; /* 🔥 clave */
+  overflow: visible !important; 
   border-radius: 0 !important;
   z-index: 3;
 }
@@ -247,15 +247,15 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 10px; /* 🔥 evita que toque los bordes en móvil */
+  padding: 0 10px; 
 }
 
 /* SECCIÓN */
 .comunicados {
   text-align: left;
   width: 100%;
-  max-width: 1000px; /* 🔥 centra y limita ancho */
-  margin: 0 auto; /* 🔥 centra correctamente */
+  max-width: 1000px; 
+  margin: 0 auto; 
 }
 
 #comunicados {
@@ -335,20 +335,20 @@ html {
 
 .img-galeria {
   width: 100%;
-  height: 180px; /* 🔥 clave para evitar imágenes gigantes */
+  height: 180px; 
   object-fit: cover;
   border-radius: 10px;
   cursor: pointer;
   transition: transform 0.3s ease;
 }
 
-/* efecto hover (opcional pero pro 🔥) */
+/* efecto hover) */
 .img-galeria:hover {
   transform: scale(1.05);
 }
 
 /* ========================= */
-/* DROPDOWN */
+/*          DROPDOWN         */
 /* ========================= */
 
 .dropdown {
@@ -416,7 +416,7 @@ html {
 
 .footer {
   width: 100%;
-  margin-left: 0; /* 🔥 elimina el bug */
+  margin-left: 0; 
   text-align: center;
 }
 
@@ -475,7 +475,7 @@ html {
   top: 15px;
   left: 20px;
   width: 100px;
-  height: auto; /* 🔥 clave */
+  height: auto; 
   border-radius: 0 !important;
   z-index: 3;
 }
@@ -502,7 +502,7 @@ html {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 700px;
-  max-width: none; /* 🔥 ESTO ES LA CLAVE */
+  max-width: none; 
   height: auto;
 }
 
@@ -552,19 +552,19 @@ html {
   display: flex;
   gap: 25px;
   align-items: flex-start;
-  max-width: 1200px;  /* 🔥 controla el ancho total */
-  margin: 0 auto;     /* 🔥 centra */
+  max-width: 1200px;  
+  margin: 0 auto;     
 }
 
 /* 🔥 MAPA */
 .mapa {
-  width: 500px;       /* tamaño controlado */
-  flex-shrink: 0;     /* 🔥 evita que se deforme */
+  width: 500px;       
+  flex-shrink: 0;     
 }
 
 .mapa-iframe {
   width: 100%;
-  height: 700px;      /* 🔥 aquí crece hacia abajo */
+  height: 700px;      
   border: 0;
   border-radius: 12px;
 }
@@ -783,9 +783,7 @@ html {
 .menu-cursos .dropdown-sub:hover > .submenu {
   display: block;
 }
-/* ========================= */
-/* FIX MOBILE COMPLETO */
-/* ========================= */
+
 
 html {
   overflow-x: hidden;
@@ -1057,7 +1055,7 @@ img {
 
 @media (max-width: 768px) {
 
-  /* 🔥 SUBMENÚS EN VERTICAL */
+  /*  SUBMENÚS EN VERTICAL */
   .navbar .dropdown-sub .submenu {
     position: static !important;
     width: 100% !important;
@@ -1066,13 +1064,13 @@ img {
     border: none !important;
   }
 
-  /* 🔥 OCULTAR TODO POR DEFECTO */
+  /*  OCULTAR TODO POR DEFECTO */
   .navbar .dropdown-menu,
   .navbar .submenu {
     display: none;
   }
 
-  /* 🔥 MOSTRAR CUANDO ESTÁ ACTIVO */
+  /*  MOSTRAR CUANDO ESTÁ ACTIVO */
   .dropdown.activo > .dropdown-menu {
     display: block;
   }
@@ -1083,7 +1081,7 @@ img {
 
 }
 
-  /* 🔥 TODO EN BLOQUE */
+  /*  TODO EN BLOQUE */
   .navbar li {
     width: 100%;
   }
@@ -1102,19 +1100,19 @@ img {
 }
 
 /* ========================= */
-/*   📱 MOBILE CONTACTO      */
+/*    MOBILE CONTACTO      */
 /* ========================= */
 
 @media (max-width: 768px) {
 
-  /* 🔹 CONTENEDOR PRINCIPAL */
+  /*  CONTENEDOR PRINCIPAL */
   .contacto-container {
     flex-direction: column;
     align-items: stretch;
     gap: 20px;
   }
 
-  /* 🔹 MAPA */
+  /*  MAPA */
   .mapa {
     width: 100%;
   }
@@ -1125,31 +1123,31 @@ img {
     border-radius: 12px;
   }
 
-  /* 🔹 INFO (MUY IMPORTANTE) */
+  /*  INFO (MUY IMPORTANTE) */
   .info {
     width: 100%;
     max-width: 100%;
   }
 
-  /* 🔹 GRID DE TARJETAS */
+  /*  GRID DE TARJETAS */
   .info-grid {
     grid-template-columns: 1fr; 
     width: 100%;
   }
 
-  /* 🔹 SECRETARÍA    */
+  /*  SECRETARÍA    */
   .secretaria {
     grid-column: span 1;
   }
 
-  /* 🔹 TARJETAS */
+  /*  TARJETAS */
   .card-info {
     width: 100%;
     padding: 18px;
     border-radius: 12px;
   }
 
-  /* 🔹 HERO */
+  /*  HERO */
   .hero-contacto {
     height: 200px;
   }
@@ -1159,14 +1157,14 @@ img {
     top: 60%;
   }
 
-  /* 🔹 LOGO HERO */
+  /*  LOGO HERO */
   .logo-overlay {
     width: 60px;
     top: 10px;
     left: 10px;
   }
 
-  /* 🔹 LOGO ABAJO */
+  /*  LOGO ABAJO */
   .logo-contacto {
     width: 80px;
     height: auto;
@@ -1176,12 +1174,47 @@ img {
 
 }
 
+ /*  MISC    */
 @media (max-width: 768px) {
 
   .hero,
   .hero-admision,
   .hero-contacto {
     display: none !important;
+  }
+
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+
+  .layout {
+    padding: 0 !important;
+  }
+
+  .contenido-principal {
+    padding: 0 10px !important;
+  }
+
+  .cards {
+    width: 100%;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
   }
 
 }
