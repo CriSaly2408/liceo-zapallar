@@ -158,11 +158,10 @@ html {
 /* ========================= */
 
 .layout {
-  display: flex;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 250px 1fr; 
   gap: 20px;
   padding: 40px;
-  overflow: visible;
 }
 
 /* SIDEBAR */
@@ -246,16 +245,14 @@ html {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   padding: 0 10px; 
 }
 
 /* SECCIÓN */
 .comunicados {
-  text-align: left;
   width: 100%;
-  max-width: 1000px; 
-  margin: 0 auto; 
+  margin: 0;
 }
 
 #comunicados {
@@ -269,19 +266,19 @@ html {
 }
 
 /* CARDS CONTENEDOR */
+
 .cards {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 350px)); /* 🔥 límite máximo */
+  justify-content: center; /* 🔥 centra las columnas */
   gap: 30px;
-  flex-wrap: wrap;
-  width: 100%;
 }
 
 /* CARD */
 .card {
   background: white;
-  width: 300px;
-  margin: 10px;
+  width: 100%;             
+  margin: 0;               
   overflow: hidden;
   padding: 25px;
   border-radius: 15px;
@@ -293,7 +290,7 @@ html {
 /* IMAGEN */
 .card-img {
   width: 100%;
-  height: 200px;
+  height: 180px;
   object-fit: cover;
   border-radius: 10px;
   display: block;
@@ -993,19 +990,19 @@ body {
 }
 
 /* CARDS */
-.cards {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%; 
-}
+
+  .cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
 
 /* CARD individual */
-.card {
-  width: 90%;
-  max-width: 350px;
-  margin: 0 auto; 
-}
+  .card {
+    grid-template-columns: 1fr;
+  }
+
 
 /* IMÁGENES */
 img {
@@ -1037,7 +1034,7 @@ img {
     height: auto;
   }
 
-}
+
 
 @media (max-width: 768px) {
 
