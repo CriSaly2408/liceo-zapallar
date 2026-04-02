@@ -1057,27 +1057,30 @@ img {
 
 @media (max-width: 768px) {
 
-  /* 🔥 SOBREESCRIBE EL PROBLEMA */
+  /* 🔥 SUBMENÚS EN VERTICAL */
   .navbar .dropdown-sub .submenu {
     position: static !important;
-    left: 0 !important;
-    top: 0 !important;
     width: 100% !important;
     opacity: 1 !important;
     visibility: visible !important;
     border: none !important;
   }
 
-  /* 🔥 ESTRUCTURA VERTICAL */
+  /* 🔥 OCULTAR TODO POR DEFECTO */
   .navbar .dropdown-menu,
-  .navbar /* oculto por defecto */
-.submenu {
-  display: none;
-}
+  .navbar .submenu {
+    display: none;
+  }
 
-/* cuando está activo */
-.dropdown.activo .submenu {
-  display: block;
+  /* 🔥 MOSTRAR CUANDO ESTÁ ACTIVO */
+  .dropdown.activo > .dropdown-menu {
+    display: block;
+  }
+
+  .dropdown-sub.activo > .submenu {
+    display: block;
+  }
+
 }
 
   /* 🔥 TODO EN BLOQUE */
