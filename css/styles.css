@@ -147,8 +147,8 @@ html {
   margin-top: 100px;
   height: 400px;
 
-  background-image: url("../img/banner.jpeg");
-  background-size: cover;
+  background-image: url("../img/banner.png");
+  background-size: contain; 
   background-position: center;
   background-repeat: no-repeat;
 }
