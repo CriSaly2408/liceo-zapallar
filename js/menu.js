@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     </ul>
   </li>
 
-  <li><a href="index.html#comunicados">Comunicados</a></li>
+  <li><a href="index.html#noticias">Noticias</a></li>
   <li><a href="admision.html">Admisión</a></li>
 
   <li>
