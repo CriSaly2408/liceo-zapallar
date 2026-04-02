@@ -628,13 +628,13 @@ html {
   color: #0B3C5D;
 }
 
-/* 🔥 convivencia ocupa todo */
+/* convivencia */
 .card-info.full {
   grid-column: span 2;
 }
 
 .convivencia {
-  grid-column: span 1; /* 🔥 ya no rompe el layout */
+  grid-column: span 1; 
   min-height: 100%;
 }
 /* 📱 móvil */
@@ -664,15 +664,15 @@ html {
   text-align: center;
 }
 
-/* 🔥 LOGO (SIN deformación) */
+/*   LOGO     */
 .logo-contacto {
   margin-top: 30px;
   width: 120px;
   height: auto;
-  object-fit: contain; /* 🔥 clave */
+  object-fit: contain; 
 }
 /* ========================= */
-/*            VISIÓN         */
+/*          VISIÓN           */
 /* ========================= */
 
 .vision-section {
@@ -990,8 +990,8 @@ body {
 
 .contenido-principal {
   width: 100% !important;
-  margin: 0 auto; /* 🔥 centra */
-  padding: 0 10px; /* 🔥 evita que quede pegado a los bordes */
+  margin: 0 auto; 
+  padding: 0 10px; 
 }
 
 /* CARDS */
@@ -999,14 +999,14 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%; /* 🔥 importante */
+  width: 100%; 
 }
 
 /* CARD individual */
 .card {
   width: 90%;
   max-width: 350px;
-  margin: 0 auto; /* 🔥 centra cada card */
+  margin: 0 auto; 
 }
 
 /* IMÁGENES */
@@ -1121,7 +1121,7 @@ img {
 
   .mapa iframe {
     width: 100%;
-    height: 250px; /* 🔥 tamaño correcto en móvil */
+    height: 250px; 
     border-radius: 12px;
   }
 
@@ -1133,11 +1133,11 @@ img {
 
   /* 🔹 GRID DE TARJETAS */
   .info-grid {
-    grid-template-columns: 1fr; /* 🔥 una sola columna */
+    grid-template-columns: 1fr; 
     width: 100%;
   }
 
-  /* 🔹 SECRETARÍA vuelve normal en móvil */
+  /* 🔹 SECRETARÍA    */
   .secretaria {
     grid-column: span 1;
   }
@@ -1172,6 +1172,17 @@ img {
     height: auto;
     display: block;
     margin: 20px auto;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .hero,
+  .hero-admision,
+  .hero-contacto {
+    height: 150px;
+    background-size: cover;
   }
 
 }
