@@ -15,8 +15,8 @@ body{
 }
 
 .container{
-  width:1000px;
-  background:white;
+  width:1100px;
+  background:#f2f2f2;
   border-radius:20px;
   padding:20px;
   box-shadow:0 0 20px rgba(0,0,0,0.3);
@@ -31,14 +31,44 @@ h1{
 table{
   width:100%;
   border-collapse:collapse;
+  overflow:hidden;
+  border-radius:15px;
 }
 
-td, th{
+/* HEADER */
+th{
+  background:#0b2c6b;
+  color:white;
+  padding:10px;
+}
+
+/* CELDAS */
+td{
   border:1px solid #ccc;
   padding:8px;
   text-align:center;
-  font-size:14px;
+  font-size:13px;
 }
+
+/* BLOQUE */
+.bloque{
+  background:#a8d63b;
+  font-weight:bold;
+  width:60px;
+}
+
+/* HORA */
+.hora{
+  font-weight:bold;
+  width:120px;
+}
+
+/* RECREO */
+.recreo{
+  background:#dfead7;
+  font-weight:bold;
+}
+
 </style>
 </head>
 
@@ -46,21 +76,32 @@ td, th{
 
 <div class="container">
   <h1 id="titulo">Horario</h1>
-  <table id="tabla"></table>
+
+  <table id="tabla">
+    <thead>
+      <tr>
+        <th>Bloque</th>
+        <th>Hora</th>
+        <th>Lunes</th>
+        <th>Martes</th>
+        <th>Miércoles</th>
+        <th>Jueves</th>
+        <th>Viernes</th>
+      </tr>
+    </thead>
+    <tbody id="body"></tbody>
+  </table>
 </div>
 
 <script>
 
-// 🔥 PARÁMETROS URL
+// PARAMS
 const params = new URLSearchParams(window.location.search);
 const curso = params.get("curso");
 const letra = params.get("letra");
 
-// 👉 TÍTULO
 document.getElementById("titulo").innerText = curso + " " + letra;
 
-
-// 🔥 TODOS LOS LINKS CSV (PEGA LOS TUYOS AQUÍ)
 const horariosCSV = {
 
   "7° Básico": {
@@ -110,39 +151,44 @@ const horariosCSV = {
 };
 
 
-// 🔥 OBTENER LINK CORRECTO
+// URL
 const url = horariosCSV[curso]?.[letra];
 
-if(!url || url.includes("PEGAR")){
-  alert("⚠️ Falta configurar este horario");
-}
-
-
-// 🔥 CARGAR CSV
 fetch(url)
   .then(res => res.text())
   .then(data => {
 
     const filas = data.split("\n");
-    const tabla = document.getElementById("tabla");
+    const body = document.getElementById("body");
 
-    filas.forEach(fila => {
+    filas.forEach((fila, index) => {
+
+      const columnas = fila.split(",");
+
+      // saltar filas vacías
+      if(columnas.length < 2) return;
 
       const tr = document.createElement("tr");
 
-      fila.split(",").forEach(col => {
+      columnas.forEach((col, i) => {
+
         const td = document.createElement("td");
-        td.textContent = col.replace(/"/g, "").trim();
+        td.innerHTML = col.replace(/"/g, "").replace(/\n/g, "<br>");
+
+        // estilos especiales
+        if(i === 0) td.classList.add("bloque");
+        if(i === 1) td.classList.add("hora");
+
         tr.appendChild(td);
+
       });
 
-      tabla.appendChild(tr);
+      body.appendChild(tr);
+
     });
 
   })
-  .catch(err => {
-    console.error("Error:", err);
-  });
+  .catch(err => console.error(err));
 
 </script>
 
