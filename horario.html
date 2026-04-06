@@ -89,7 +89,43 @@ td{
         <th>Viernes</th>
       </tr>
     </thead>
-    <tbody id="body"></tbody>
+<tbody>
+
+<tr>
+  <td class="bloque">1</td>
+  <td class="hora">08:00-08:45</td>
+  <td id="l1"></td>
+  <td id="m1"></td>
+  <td id="mi1"></td>
+  <td id="j1"></td>
+  <td id="v1"></td>
+</tr>
+
+<tr>
+  <td class="bloque">2</td>
+  <td class="hora">08:45-09:30</td>
+  <td id="l2"></td>
+  <td id="m2"></td>
+  <td id="mi2"></td>
+  <td id="j2"></td>
+  <td id="v2"></td>
+</tr>
+
+<tr class="recreo">
+  <td colspan="7">09:30 - 09:50</td>
+</tr>
+
+<tr>
+  <td class="bloque">3</td>
+  <td class="hora">09:50-10:35</td>
+  <td id="l3"></td>
+  <td id="m3"></td>
+  <td id="mi3"></td>
+  <td id="j3"></td>
+  <td id="v3"></td>
+</tr>
+
+</tbody>
   </table>
 </div>
 
@@ -152,6 +188,7 @@ const horariosCSV = {
 
 
 // URL
+// URL
 const url = horariosCSV[curso]?.[letra];
 
 fetch(url)
@@ -159,36 +196,34 @@ fetch(url)
   .then(data => {
 
     const filas = data.split("\n");
-    const body = document.getElementById("body");
 
-    filas.forEach((fila, index) => {
+    // 🔥 saltar encabezado
+    filas.slice(1).forEach((fila, i) => {
 
-      const columnas = fila.split(",");
+      const col = fila.split(",");
 
-      // saltar filas vacías
-      if(columnas.length < 2) return;
+      if(col.length < 7) return;
 
-      const tr = document.createElement("tr");
+      // limpiar texto
+      const limpiar = txt => txt.replace(/"/g, "").trim();
 
-      columnas.forEach((col, i) => {
+      // 🔥 rellenar tabla existente (IMPORTANTE)
+      const l = document.getElementById("l" + (i+1));
+      const m = document.getElementById("m" + (i+1));
+      const mi = document.getElementById("mi" + (i+1));
+      const j = document.getElementById("j" + (i+1));
+      const v = document.getElementById("v" + (i+1));
 
-        const td = document.createElement("td");
-        td.innerHTML = col.replace(/"/g, "").replace(/\n/g, "<br>");
-
-        // estilos especiales
-        if(i === 0) td.classList.add("bloque");
-        if(i === 1) td.classList.add("hora");
-
-        tr.appendChild(td);
-
-      });
-
-      body.appendChild(tr);
+      if(l) l.innerHTML = limpiar(col[2]);
+      if(m) m.innerHTML = limpiar(col[3]);
+      if(mi) mi.innerHTML = limpiar(col[4]);
+      if(j) j.innerHTML = limpiar(col[5]);
+      if(v) v.innerHTML = limpiar(col[6]);
 
     });
 
   })
-  .catch(err => console.error(err));
+  .catch(err => console.error("Error:", err));
 
 </script>
 
