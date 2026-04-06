@@ -1,169 +1,3 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>Horario</title>
-
-<style>
-body{
-  margin:0;
-  font-family: Arial;
-  background: linear-gradient(135deg, #0b2c6b, #0e4ea8);
-  display:flex;
-  justify-content:center;
-  padding:20px;
-}
-
-.container{
-  width:1100px;
-  background:#f2f2f2;
-  border-radius:20px;
-  padding:20px;
-  box-shadow:0 0 20px rgba(0,0,0,0.3);
-}
-
-h1{
-  text-align:center;
-  color:#0b2c6b;
-  margin-bottom:20px;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  overflow:hidden;
-  border-radius:15px;
-}
-
-/* HEADER */
-th{
-  background:#0b2c6b;
-  color:white;
-  padding:10px;
-}
-
-/* CELDAS */
-td{
-  border:1px solid #ccc;
-  padding:8px;
-  text-align:center;
-  font-size:13px;
-}
-
-/* BLOQUE */
-.bloque{
-  background:#a8d63b;
-  font-weight:bold;
-  width:60px;
-}
-
-/* HORA */
-.hora{
-  font-weight:bold;
-  width:120px;
-}
-
-/* RECREO */
-.recreo{
-  background:#dfead7;
-  font-weight:bold;
-}
-
-</style>
-</head>
-
-<body>
-
-<div class="container">
-  <h1 id="titulo">Horario</h1>
-
-  <table id="tabla">
-    <thead>
-      <tr>
-        <th>Bloque</th>
-        <th>Hora</th>
-        <th>Lunes</th>
-        <th>Martes</th>
-        <th>Miércoles</th>
-        <th>Jueves</th>
-        <th>Viernes</th>
-      </tr>
-    </thead>
-<tbody>
-
-<tr>
-  <td class="bloque">1</td>
-  <td class="hora">08:00-08:45</td>
-  <td id="l1"></td><td id="m1"></td><td id="mi1"></td><td id="j1"></td><td id="v1"></td>
-</tr>
-
-<tr>
-  <td class="bloque">2</td>
-  <td class="hora">08:45-09:30</td>
-  <td id="l2"></td><td id="m2"></td><td id="mi2"></td><td id="j2"></td><td id="v2"></td>
-</tr>
-
-<tr class="recreo">
-  <td colspan="7">09:30 - 09:50</td>
-</tr>
-
-<tr>
-  <td class="bloque">3</td>
-  <td class="hora">09:50-10:35</td>
-  <td id="l3"></td><td id="m3"></td><td id="mi3"></td><td id="j3"></td><td id="v3"></td>
-</tr>
-
-<tr>
-  <td class="bloque">4</td>
-  <td class="hora">10:35-11:20</td>
-  <td id="l4"></td><td id="m4"></td><td id="mi4"></td><td id="j4"></td><td id="v4"></td>
-</tr>
-
-<tr class="recreo">
-  <td colspan="7">11:20 - 11:35</td>
-</tr>
-
-<tr>
-  <td class="bloque">5</td>
-  <td class="hora">11:35-12:20</td>
-  <td id="l5"></td><td id="m5"></td><td id="mi5"></td><td id="j5"></td><td id="v5"></td>
-</tr>
-
-<tr>
-  <td class="bloque">6</td>
-  <td class="hora">12:20-13:05</td>
-  <td id="l6"></td><td id="m6"></td><td id="mi6"></td><td id="j6"></td><td id="v6"></td>
-</tr>
-
-<tr class="recreo">
-  <td colspan="7">13:05 - 14:05</td>
-</tr>
-
-<tr>
-  <td class="bloque">7</td>
-  <td class="hora">14:05-14:50</td>
-  <td id="l7"></td><td id="m7"></td><td id="mi7"></td><td id="j7"></td><td id="v7"></td>
-</tr>
-
-<tr>
-  <td class="bloque">8</td>
-  <td class="hora">14:50-15:35</td>
-  <td id="l8"></td><td id="m8"></td><td id="mi8"></td><td id="j8"></td><td id="v8"></td>
-</tr>
-
-<tr class="recreo">
-  <td colspan="7">15:35 - 15:45</td>
-</tr>
-
-<tr>
-  <td class="bloque">9</td>
-  <td class="hora">15:45-16:25</td>
-  <td id="l9"></td><td id="m9"></td><td id="mi9"></td><td id="j9"></td><td id="v9"></td>
-</tr>
-</tbody>
-  </table>
-</div>
-
 <script>
 
 // PARAMS
@@ -171,64 +5,86 @@ const params = new URLSearchParams(window.location.search);
 const curso = params.get("curso");
 const letra = params.get("letra");
 
+console.log("curso:", curso);
+console.log("letra:", letra);
+
+// VALIDAR PARAMS
+if(!curso || !letra){
+  document.getElementById("titulo").innerText = "Error: falta curso o letra";
+  console.error("Faltan parámetros en la URL");
+  throw new Error("Parámetros inválidos");
+}
+
 document.getElementById("titulo").innerText = curso + " " + letra;
 
-const horariosCSV = {
 
+// 🔥 LINKS CSV
+const horariosCSV = {
   "7° Básico": {
-    "A": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=396301792&single=true&output=csv",
-    "B": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1577387544&single=true&output=csv",
-    "C": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1491071114&single=true&output=csv"
+    "A": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=396301792&output=csv",
+    "B": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1577387544&output=csv",
+    "C": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1491071114&output=csv"
   },
 
   "8° Básico": {
-    "A": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1000929798&single=true&output=csv",
-    "B": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=383593915&single=true&output=csv",
-    "C": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1691923268&single=true&output=csv"
+    "A": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1000929798&output=csv",
+    "B": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=383593915&output=csv",
+    "C": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1691923268&output=csv"
   },
 
   "1° Medio": {
-    "A": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=189774496&single=true&output=csv",
-    "B": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1261140492&single=true&output=csv",
-    "C": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=2021200247&single=true&output=csv",
-    "D": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1077720755&single=true&output=csv",
-    "E": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1996071175&single=true&output=csv"
+    "A": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=189774496&output=csv",
+    "B": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1261140492&output=csv",
+    "C": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=2021200247&output=csv",
+    "D": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1077720755&output=csv",
+    "E": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1996071175&output=csv"
   },
 
   "2° Medio": {
-    "A": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1602237278&single=true&output=csv",
-    "B": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1932571857&single=true&output=csv",
-    "C": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1649641245&single=true&output=csv",
-    "D": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=223180690&single=true&output=csv",
-    "E": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=635575135&single=true&output=csv"
+    "A": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1602237278&output=csv",
+    "B": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1932571857&output=csv",
+    "C": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1649641245&output=csv",
+    "D": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=223180690&output=csv",
+    "E": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=635575135&output=csv"
   },
 
   "3° Medio": {
-    "A": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1322309767&single=true&output=csv",
-    "B": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=823549894&single=true&output=csv",
-    "C": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1429877151&single=true&output=csv",
-    "D": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1084873530&single=true&output=csv",
-    "E": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1611968817&single=true&output=csv"
+    "A": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1322309767&output=csv",
+    "B": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=823549894&output=csv",
+    "C": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1429877151&output=csv",
+    "D": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1084873530&output=csv",
+    "E": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1611968817&output=csv"
   },
 
   "4° Medio": {
-    "A": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1770975291&single=true&output=csv",
-    "B": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1991879615&single=true&output=csv",
-    "C": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1368015605&single=true&output=csv",
-    "D": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=805049469&single=true&output=csv",
-    "E": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=2013189264&single=true&output=csv"
+    "A": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1770975291&output=csv",
+    "B": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1991879615&output=csv",
+    "C": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1368015605&output=csv",
+    "D": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=805049469&output=csv",
+    "E": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=2013189264&output=csv"
   }
-
 };
 
 
-
-// URL
+// 🔥 OBTENER URL
 const url = horariosCSV[curso]?.[letra];
 
+console.log("URL:", url);
+
+// VALIDAR URL
+if(!url){
+  console.error("No se encontró el horario");
+  alert("Horario no disponible");
+  throw new Error("URL inválida");
+}
+
+
+// 🔥 FETCH
 fetch(url)
   .then(res => res.text())
   .then(data => {
+
+    console.log("CSV cargado");
 
     const filas = data.split("\n");
 
@@ -245,11 +101,7 @@ fetch(url)
 
       if(col.length < 7) return;
 
-      // 🚨 ignorar recreo COMPLETAMENTE
       if(col[2]?.toUpperCase().includes("RECREO")) return;
-
-      // 🔥 DEBUG (muy importante)
-      console.log("Fila:", filaReal, col);
 
       const l = document.getElementById("l" + filaReal);
       const m = document.getElementById("m" + filaReal);
@@ -271,6 +123,3 @@ fetch(url)
   .catch(err => console.error("Error:", err));
 
 </script>
-
-</body>
-</html>
