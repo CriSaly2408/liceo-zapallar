@@ -263,7 +263,7 @@ fetch(url)
 
     filas.slice(1).forEach(fila => {
 
-      const col = fila.split(",");
+      const col = fila.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
 
       if(col.length < 7) return;
 
