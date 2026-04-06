@@ -250,6 +250,9 @@ fetch(url)
   .then(res => res.text())
   .then(data => {
 
+    // 🔥 arreglar saltos de línea internos
+    data = data.replace(/\n(?=\()/g, " ");
+
     const filas = data.split("\n");
 
     let filaReal = 1;
@@ -262,15 +265,13 @@ fetch(url)
 
     filas.slice(1).forEach(fila => {
 
-const separador = fila.includes(";") ? ";" : ",";
+      const col = fila
+        .split(/;(?=(?:(?:[^"]*"){2})*[^"]*$)/)
+        .map(c => c.trim());
 
-const col = fila
-  .split(new RegExp(`${separador}(?=(?:(?:[^"]*"){2})*[^"]*$)`))
-  .map(c => c.trim());
+      console.log("DEBUG:", col);
 
-      console.log("DEBUG:", col); // 👈 CLAVE
-
-      if(col.length < 5) return;
+      if(col.length < 7) return;
 
       if(col[2]?.toUpperCase().includes("RECREO")) return;
 
