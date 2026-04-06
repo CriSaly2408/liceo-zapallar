@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Lista Curso</title>
+
+<style>
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0b2c6b, #0e4ea8);
+  display:flex;
+  justify-content:center;
+  padding:20px;
+}
+.container{
+  width:900px;
+  background:#f2f2f2;
+  border-radius:20px;
+  padding:20px;
+  box-shadow:0 0 20px rgba(0,0,0,0.3);
+}
+.header{text-align:center;margin-bottom:15px;}
+.header h1{color:#0b2c6b;margin:0;}
+.header h2{color:#7ec242;margin:5px 0;}
+
+.info{
+  background:#0b2c6b;
+  border-radius:30px;
+  padding:10px;
+  display:flex;
+  gap:10px;
+  margin-bottom:15px;
+}
+.info input{
+  flex:1;
+  border:none;
+  border-radius:20px;
+  padding:8px;
+  text-align:center;
+  font-weight:bold;
+  background:#fff;
+}
+
+/* TABLA */
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+th{
+  background:#0b2c6b;
+  color:white;
+  padding:10px;
+}
+td{
+  padding:6px;
+  border-bottom:1px solid #ccc;
+}
+.numero{
+  background:#a8d63b;
+  width:50px;
+  text-align:center;
+  font-weight:bold;
+}
+tr:nth-child(even){background:#e9e9e9;}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <h1>Liceo Bicentenario Zapallar</h1>
+    <h2>2026</h2>
+  </div>
+
+  <!-- 🔒 SOLO LECTURA -->
+  <div class="info">
+    <input id="curso" placeholder="Curso" readonly>
+    <input id="profe" placeholder="Profesor Jefe" readonly>
+  </div>
+
+  <table id="tabla">
+    <tr>
+      <th>N°</th>
+      <th>Nombre</th>
+    </tr>
+  </table>
+
+</div>
+
+<script>
+
+// 🔥 CREAR FILAS (SIN document.write)
+const tabla = document.getElementById("tabla");
+
+for(let i=1;i<=45;i++){
+  const fila = document.createElement("tr");
+
+  fila.innerHTML = `
+    <td class="numero">${i}</td>
+    <td class="nombre"></td>
+  `;
+
+  tabla.appendChild(fila);
+}
+
+// ✅ PARAMETROS
+const params = new URLSearchParams(window.location.search);
+const curso = params.get("curso");
+const letra = params.get("letra");
+
+// 🔥 AQUÍ VAN TUS 26 LINKS CSV
+const linksCSV = {
+
+  "7° Básico": {
+    "A": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTlJS88mYp0Ylp1saznHVQcBl2nrY-ll58jxIle0A8oIiybCN5D2dxaIJ1hOTznyg/pub?gid=186798906&single=true&output=csv",
+    "B": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTlJS88mYp0Ylp1saznHVQcBl2nrY-ll58jxIle0A8oIiybCN5D2dxaIJ1hOTznyg/pub?gid=485114793&single=true&output=csv",
+    "C": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTlJS88mYp0Ylp1saznHVQcBl2nrY-ll58jxIle0A8oIiybCN5D2dxaIJ1hOTznyg/pub?gid=1565918232&single=true&output=csv"
+  },
+
+  "8° Básico": {
+    "A": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTlJS88mYp0Ylp1saznHVQcBl2nrY-ll58jxIle0A8oIiybCN5D2dxaIJ1hOTznyg/pub?gid=1906961161&single=true&output=csv",
+    "B": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTlJS88mYp0Ylp1saznHVQcBl2nrY-ll58jxIle0A8oIiybCN5D2dxaIJ1hOTznyg/pub?gid=178890777&single=true&output=csv",
+    "C": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTlJS88mYp0Ylp1saznHVQcBl2nrY-ll58jxIle0A8oIiybCN5D2dxaIJ1hOTznyg/pub?gid=2078904901&single=true&output=csv"
+  },
+
+  "1° Medio": {
+    "A": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTlJS88mYp0Ylp1saznHVQcBl2nrY-ll58jxIle0A8oIiybCN5D2dxaIJ1hOTznyg/pub?gid=329655092&single=true&output=csv",
+    "B": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTlJS88mYp0Ylp1saznHVQcBl2nrY-ll58jxIle0A8oIiybCN5D2dxaIJ1hOTznyg/pub?gid=1556409311&single=true&output=csv",
+    "C": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTlJS88mYp0Ylp1saznHVQcBl2nrY-ll58jxIle0A8oIiybCN5D2dxaIJ1hOTznyg/pub?gid=1435794723&single=true&output=csv",
+    "D": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTlJS88mYp0Ylp1saznHVQcBl2nrY-ll58jxIle0A8oIiybCN5D2dxaIJ1hOTznyg/pub?gid=449422411&single=true&output=csv",
+    "E": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTlJS88mYp0Ylp1saznHVQcBl2nrY-ll58jxIle0A8oIiybCN5D2dxaIJ1hOTznyg/pub?gid=786460649&single=true&output=csv"
+  },
+
+  "2° Medio": {
+    "A": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTlJS88mYp0Ylp1saznHVQcBl2nrY-ll58jxIle0A8oIiybCN5D2dxaIJ1hOTznyg/pub?gid=1068586493&single=true&output=csv",
+    "B": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTlJS88mYp0Ylp1saznHVQcBl2nrY-ll58jxIle0A8oIiybCN5D2dxaIJ1hOTznyg/pub?gid=1906142774&single=true&output=csv",
+    "C": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTlJS88mYp0Ylp1saznHVQcBl2nrY-ll58jxIle0A8oIiybCN5D2dxaIJ1hOTznyg/pub?gid=385168638&single=true&output=csv",
+    "D": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTlJS88mYp0Ylp1saznHVQcBl2nrY-ll58jxIle0A8oIiybCN5D2dxaIJ1hOTznyg/pub?gid=1821969649&single=true&output=csv",
+    "E": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTlJS88mYp0Ylp1saznHVQcBl2nrY-ll58jxIle0A8oIiybCN5D2dxaIJ1hOTznyg/pub?gid=775516442&single=true&output=csv"
+  },
+
+  "3° Medio": {
+    "A": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTlJS88mYp0Ylp1saznHVQcBl2nrY-ll58jxIle0A8oIiybCN5D2dxaIJ1hOTznyg/pub?gid=1055545704&single=true&output=csv",
+    "B": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTlJS88mYp0Ylp1saznHVQcBl2nrY-ll58jxIle0A8oIiybCN5D2dxaIJ1hOTznyg/pub?gid=3400300&single=true&output=csv",
+    "C": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTlJS88mYp0Ylp1saznHVQcBl2nrY-ll58jxIle0A8oIiybCN5D2dxaIJ1hOTznyg/pub?gid=85739083&single=true&output=csv",
+    "D": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTlJS88mYp0Ylp1saznHVQcBl2nrY-ll58jxIle0A8oIiybCN5D2dxaIJ1hOTznyg/pub?gid=1796292643&single=true&output=csv",
+    "E": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTlJS88mYp0Ylp1saznHVQcBl2nrY-ll58jxIle0A8oIiybCN5D2dxaIJ1hOTznyg/pub?gid=1250555897&single=true&output=csv"
+  },
+
+  "4° Medio": {
+    "A": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTlJS88mYp0Ylp1saznHVQcBl2nrY-ll58jxIle0A8oIiybCN5D2dxaIJ1hOTznyg/pub?gid=1310046058&single=true&output=csv",
+    "B": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTlJS88mYp0Ylp1saznHVQcBl2nrY-ll58jxIle0A8oIiybCN5D2dxaIJ1hOTznyg/pub?gid=2145803599&single=true&output=csv",
+    "C": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTlJS88mYp0Ylp1saznHVQcBl2nrY-ll58jxIle0A8oIiybCN5D2dxaIJ1hOTznyg/pub?gid=1927896588&single=true&output=csv",
+    "D": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTlJS88mYp0Ylp1saznHVQcBl2nrY-ll58jxIle0A8oIiybCN5D2dxaIJ1hOTznyg/pub?gid=232070120&single=true&output=csv",
+    "E": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTlJS88mYp0Ylp1saznHVQcBl2nrY-ll58jxIle0A8oIiybCN5D2dxaIJ1hOTznyg/pub?gid=1666096124&single=true&output=csv"
+  }
+
+};
+
+// 🔥 URL
+const url = linksCSV[curso]?.[letra];
+
+console.log("curso:", curso);
+console.log("letra:", letra);
+console.log("url:", url);
+
+if(!url){
+  alert("⚠️ Curso no configurado");
+}
+
+fetch(url)
+  .then(res => res.text())
+  .then(data => {
+
+    const filas = data.split("\n");
+
+    const inputCurso = document.querySelector("#curso");
+    const inputProfe = document.querySelector("#profe");
+
+    let alumnos = [];
+
+    let leyendoAlumnos = false;
+    let contador = 1;
+
+    filas.forEach((fila, index) => {
+
+      const columnas = fila.split(",");
+
+      // LIMPIAR columnas
+      const limpias = columnas.map(c => c.replace(/"/g, "").trim());
+
+      // 🔍 Detectar curso
+      if(limpias.includes("Curso:")){
+        inputCurso.value = limpias.find(c => c.includes("°")) || "";
+      }
+
+      // 🔍 Detectar profe
+      if(limpias.includes("Prof. Jefe:")){
+        inputProfe.value = limpias[limpias.length - 1];
+      }
+
+      // 🔥 Detectar inicio tabla
+      if(limpias.includes("Nombre")){
+        leyendoAlumnos = true;
+        return;
+      }
+
+      // 🔥 Leer alumnos
+      if(leyendoAlumnos){
+
+        // buscar número (1,2,3...)
+        const numero = limpias.find(c => /^\d+$/.test(c));
+
+        // buscar nombre (texto largo)
+        const nombre = limpias.find(c => c.length > 5 && isNaN(c));
+
+        if(numero && nombre){
+
+          alumnos.push({
+            num: contador,
+            nombre: nombre
+          });
+
+          contador++;
+        }
+      }
+
+    });
+
+    console.log("ALUMNOS:", alumnos);
+
+    // 👉 pintar tabla
+    alumnos.forEach(alumno => {
+
+      const fila = tabla.rows[alumno.num];
+
+      if(fila){
+        fila.cells[1].textContent = alumno.nombre;
+      }
+
+    });
+
+  })
+  .catch(err => console.error(err));
+
+</script>
+
+</body>
+</html>

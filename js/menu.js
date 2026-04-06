@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
   </li>
 
   <li><a href="index.html#noticias">Noticias</a></li>
-  <li><a href="admision.html">Admisión</a></li>
+  <li><a href="https://www.sistemadeadmisionescolar.cl/">Admisión</a></li>
 
   <li>
     <a href="${linksDrive.correos}" target="_blank">
