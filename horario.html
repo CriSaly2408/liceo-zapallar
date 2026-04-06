@@ -245,12 +245,13 @@ if(!url){
 }
 
 
-// 🔥 FETCH
+
+// FETCH
 fetch(url)
   .then(res => res.text())
   .then(data => {
 
-    // 🔥 arreglar saltos de línea internos
+    // 🔥 ARREGLAR SALTOS DE LÍNEA DENTRO DE CELDAS
     data = data.replace(/\n(?=\()/g, " ");
 
     const filas = data.split("\n");
@@ -265,14 +266,19 @@ fetch(url)
 
     filas.slice(1).forEach(fila => {
 
+      // 🔥 detectar separador automáticamente
+      const separador = fila.includes(";") ? ";" : ",";
+
       const col = fila
-        .split(/;(?=(?:(?:[^"]*"){2})*[^"]*$)/)
+        .split(new RegExp(`${separador}(?=(?:(?:[^"]*"){2})*[^"]*$)`))
         .map(c => c.trim());
 
       console.log("DEBUG:", col);
 
+      // 🔥 ignorar filas basura
       if(col.length < 7) return;
 
+      // 🔥 ignorar recreos (ya están en HTML)
       if(col[2]?.toUpperCase().includes("RECREO")) return;
 
       const l = document.getElementById("l" + filaReal);
