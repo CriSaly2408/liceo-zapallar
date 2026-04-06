@@ -1,3 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Horario</title>
+
+<style>
+body{
+  margin:0;
+  font-family: Arial;
+  background: linear-gradient(135deg, #0b2c6b, #0e4ea8);
+  display:flex;
+  justify-content:center;
+  padding:20px;
+}
+
+.container{
+  width:1100px;
+  background:#f2f2f2;
+  border-radius:20px;
+  padding:20px;
+  box-shadow:0 0 20px rgba(0,0,0,0.3);
+}
+
+h1{
+  text-align:center;
+  color:#0b2c6b;
+  margin-bottom:20px;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  overflow:hidden;
+  border-radius:15px;
+}
+
+/* HEADER */
+th{
+  background:#0b2c6b;
+  color:white;
+  padding:10px;
+}
+
+/* CELDAS */
+td{
+  border:1px solid #ccc;
+  padding:8px;
+  text-align:center;
+  font-size:13px;
+}
+
+/* BLOQUE */
+.bloque{
+  background:#a8d63b;
+  font-weight:bold;
+  width:60px;
+}
+
+/* HORA */
+.hora{
+  font-weight:bold;
+  width:120px;
+}
+
+/* RECREO */
+.recreo{
+  background:#dfead7;
+  font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1 id="titulo">Horario</h1>
+
+  <table id="tabla">
+    <thead>
+      <tr>
+        <th>Bloque</th>
+        <th>Hora</th>
+        <th>Lunes</th>
+        <th>Martes</th>
+        <th>Miércoles</th>
+        <th>Jueves</th>
+        <th>Viernes</th>
+      </tr>
+    </thead>
+<tbody>
+
+<tr>
+  <td class="bloque">1</td>
+  <td class="hora">08:00-08:45</td>
+  <td id="l1"></td><td id="m1"></td><td id="mi1"></td><td id="j1"></td><td id="v1"></td>
+</tr>
+
+<tr>
+  <td class="bloque">2</td>
+  <td class="hora">08:45-09:30</td>
+  <td id="l2"></td><td id="m2"></td><td id="mi2"></td><td id="j2"></td><td id="v2"></td>
+</tr>
+
+<tr class="recreo">
+  <td colspan="7">09:30 - 09:50</td>
+</tr>
+
+<tr>
+  <td class="bloque">3</td>
+  <td class="hora">09:50-10:35</td>
+  <td id="l3"></td><td id="m3"></td><td id="mi3"></td><td id="j3"></td><td id="v3"></td>
+</tr>
+
+<tr>
+  <td class="bloque">4</td>
+  <td class="hora">10:35-11:20</td>
+  <td id="l4"></td><td id="m4"></td><td id="mi4"></td><td id="j4"></td><td id="v4"></td>
+</tr>
+
+<tr class="recreo">
+  <td colspan="7">11:20 - 11:35</td>
+</tr>
+
+<tr>
+  <td class="bloque">5</td>
+  <td class="hora">11:35-12:20</td>
+  <td id="l5"></td><td id="m5"></td><td id="mi5"></td><td id="j5"></td><td id="v5"></td>
+</tr>
+
+<tr>
+  <td class="bloque">6</td>
+  <td class="hora">12:20-13:05</td>
+  <td id="l6"></td><td id="m6"></td><td id="mi6"></td><td id="j6"></td><td id="v6"></td>
+</tr>
+
+<tr class="recreo">
+  <td colspan="7">13:05 - 14:05</td>
+</tr>
+
+<tr>
+  <td class="bloque">7</td>
+  <td class="hora">14:05-14:50</td>
+  <td id="l7"></td><td id="m7"></td><td id="mi7"></td><td id="j7"></td><td id="v7"></td>
+</tr>
+
+<tr>
+  <td class="bloque">8</td>
+  <td class="hora">14:50-15:35</td>
+  <td id="l8"></td><td id="m8"></td><td id="mi8"></td><td id="j8"></td><td id="v8"></td>
+</tr>
+
+<tr class="recreo">
+  <td colspan="7">15:35 - 15:45</td>
+</tr>
+
+<tr>
+  <td class="bloque">9</td>
+  <td class="hora">15:45-16:25</td>
+  <td id="l9"></td><td id="m9"></td><td id="mi9"></td><td id="j9"></td><td id="v9"></td>
+</tr>
+</tbody>
+  </table>
+</div>
+
 <script>
 
 // PARAMS
@@ -123,3 +289,6 @@ fetch(url)
   .catch(err => console.error("Error:", err));
 
 </script>
+
+</body>
+</html>
