@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Horario</title>
+
+<style>
+body{
+  margin:0;
+  font-family: Arial;
+  background: linear-gradient(135deg, #0b2c6b, #0e4ea8);
+  display:flex;
+  justify-content:center;
+  padding:20px;
+}
+
+.container{
+  width:1000px;
+  background:white;
+  border-radius:20px;
+  padding:20px;
+  box-shadow:0 0 20px rgba(0,0,0,0.3);
+}
+
+h1{
+  text-align:center;
+  color:#0b2c6b;
+  margin-bottom:20px;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+td, th{
+  border:1px solid #ccc;
+  padding:8px;
+  text-align:center;
+  font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1 id="titulo">Horario</h1>
+  <table id="tabla"></table>
+</div>
+
+<script>
+
+// 🔥 PARÁMETROS URL
+const params = new URLSearchParams(window.location.search);
+const curso = params.get("curso");
+const letra = params.get("letra");
+
+// 👉 TÍTULO
+document.getElementById("titulo").innerText = curso + " " + letra;
+
+
+// 🔥 TODOS LOS LINKS CSV (PEGA LOS TUYOS AQUÍ)
+const horariosCSV = {
+
+  "7° Básico": {
+    "A": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=396301792&single=true&output=csv",
+    "B": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1577387544&single=true&output=csv",
+    "C": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1491071114&single=true&output=csv"
+  },
+
+  "8° Básico": {
+    "A": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1000929798&single=true&output=csv",
+    "B": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=383593915&single=true&output=csv",
+    "C": "Phttps://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1691923268&single=true&output=csv"
+  },
+
+  "1° Medio": {
+    "A": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=189774496&single=true&output=csv",
+    "B": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1261140492&single=true&output=csv",
+    "C": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=2021200247&single=true&output=csv",
+    "D": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1077720755&single=true&output=csv",
+    "E": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1996071175&single=true&output=csv"
+  },
+
+  "2° Medio": {
+    "A": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1602237278&single=true&output=csv",
+    "B": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1932571857&single=true&output=csv",
+    "C": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1649641245&single=true&output=csv",
+    "D": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=223180690&single=true&output=csv",
+    "E": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=635575135&single=true&output=csv"
+  },
+
+  "3° Medio": {
+    "A": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1322309767&single=true&output=csv",
+    "B": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=823549894&single=true&output=csv",
+    "C": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1429877151&single=true&output=csv",
+    "D": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1084873530&single=true&output=csv",
+    "E": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1611968817&single=true&output=csv"
+  },
+
+  "4° Medio": {
+    "A": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1770975291&single=true&output=csv",
+    "B": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1991879615&single=true&output=csv",
+    "C": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1368015605&single=true&output=csv",
+    "D": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=805049469&single=true&output=csv",
+    "E": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=2013189264&single=true&output=csv"
+  }
+
+};
+
+
+// 🔥 OBTENER LINK CORRECTO
+const url = horariosCSV[curso]?.[letra];
+
+if(!url || url.includes("PEGAR")){
+  alert("⚠️ Falta configurar este horario");
+}
+
+
+// 🔥 CARGAR CSV
+fetch(url)
+  .then(res => res.text())
+  .then(data => {
+
+    const filas = data.split("\n");
+    const tabla = document.getElementById("tabla");
+
+    filas.forEach(fila => {
+
+      const tr = document.createElement("tr");
+
+      fila.split(",").forEach(col => {
+        const td = document.createElement("td");
+        td.textContent = col.replace(/"/g, "").trim();
+        tr.appendChild(td);
+      });
+
+      tabla.appendChild(tr);
+    });
+
+  })
+  .catch(err => {
+    console.error("Error:", err);
+  });
+
+</script>
+
+</body>
+</html>
