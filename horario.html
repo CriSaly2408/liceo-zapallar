@@ -262,9 +262,11 @@ fetch(url)
 
     filas.slice(1).forEach(fila => {
 
-      const col = fila
-        .split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
-        .map(c => c.trim());
+const separador = fila.includes(";") ? ";" : ",";
+
+const col = fila
+  .split(new RegExp(`${separador}(?=(?:(?:[^"]*"){2})*[^"]*$)`))
+  .map(c => c.trim());
 
       console.log("DEBUG:", col); // 👈 CLAVE
 
