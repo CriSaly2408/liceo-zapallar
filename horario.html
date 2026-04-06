@@ -184,7 +184,7 @@ const horariosCSV = {
   "8° Básico": {
     "A": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1000929798&single=true&output=csv",
     "B": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=383593915&single=true&output=csv",
-    "C": "Phttps://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1691923268&single=true&output=csv"
+    "C": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=1691923268&single=true&output=csv"
   },
 
   "1° Medio": {
@@ -244,35 +244,40 @@ fetch(url)
     };
 
     // 🔥 recorrer filas
-    filas.slice(1).forEach((fila, i) => {
+let filaReal = 1;
 
-      const col = fila.split(",");
+filas.slice(1).forEach((fila) => {
 
-      if(col.length < 7) return;
+  const col = fila.split(",");
 
-      // 🔥 detectar recreo
-      const esRecreo = col[2]?.toUpperCase().includes("RECREO");
+  if(col.length < 7) return;
 
-      const filaHTML = document.querySelectorAll("#tabla tbody tr")[i];
+  // detectar recreo
+  const esRecreo = col[2]?.toUpperCase().includes("RECREO");
 
-      if(filaHTML && esRecreo){
-        filaHTML.classList.add("recreo");
-      }
+  if(esRecreo) return; // 🚀 SALTAR recreos
 
-      // 🔥 rellenar celdas
-      const l = document.getElementById("l" + (i+1));
-      const m = document.getElementById("m" + (i+1));
-      const mi = document.getElementById("mi" + (i+1));
-      const j = document.getElementById("j" + (i+1));
-      const v = document.getElementById("v" + (i+1));
+  const limpiar = txt => {
+    txt = txt.replace(/"/g, "").trim();
+    return txt.replace(/\(/g, "<br>(");
+  };
 
-      if(l) l.innerHTML = limpiar(col[2]);
-      if(m) m.innerHTML = limpiar(col[3]);
-      if(mi) mi.innerHTML = limpiar(col[4]);
-      if(j) j.innerHTML = limpiar(col[5]);
-      if(v) v.innerHTML = limpiar(col[6]);
+  // rellenar usando fila REAL
+  const l = document.getElementById("l" + filaReal);
+  const m = document.getElementById("m" + filaReal);
+  const mi = document.getElementById("mi" + filaReal);
+  const j = document.getElementById("j" + filaReal);
+  const v = document.getElementById("v" + filaReal);
 
-    });
+  if(l) l.innerHTML = limpiar(col[2]);
+  if(m) m.innerHTML = limpiar(col[3]);
+  if(mi) mi.innerHTML = limpiar(col[4]);
+  if(j) j.innerHTML = limpiar(col[5]);
+  if(v) v.innerHTML = limpiar(col[6]);
+
+  filaReal++; // 🔥 SOLO aumenta cuando no es recreo
+
+});
 
   })
   .catch(err => console.error("Error:", err));
