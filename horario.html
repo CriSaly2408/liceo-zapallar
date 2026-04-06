@@ -232,52 +232,40 @@ fetch(url)
 
     const filas = data.split("\n");
 
-    // 🔥 función limpiar
+    let filaReal = 1;
+
     const limpiar = txt => {
       txt = txt.replace(/"/g, "").trim();
-
-      if(txt.toUpperCase().includes("RECREO")){
-        return "RECREO";
-      }
-
       return txt.replace(/\(/g, "<br>(");
     };
 
-    // 🔥 recorrer filas
-let filaReal = 1;
+    filas.slice(1).forEach(fila => {
 
-filas.slice(1).forEach((fila) => {
+      const col = fila.split(",");
 
-  const col = fila.split(",");
+      if(col.length < 7) return;
 
-  if(col.length < 7) return;
+      // 🚨 ignorar recreo COMPLETAMENTE
+      if(col[2]?.toUpperCase().includes("RECREO")) return;
 
-  // detectar recreo
-  const esRecreo = col[2]?.toUpperCase().includes("RECREO");
+      // 🔥 DEBUG (muy importante)
+      console.log("Fila:", filaReal, col);
 
-  if(esRecreo) return; // 🚀 SALTAR recreos
+      const l = document.getElementById("l" + filaReal);
+      const m = document.getElementById("m" + filaReal);
+      const mi = document.getElementById("mi" + filaReal);
+      const j = document.getElementById("j" + filaReal);
+      const v = document.getElementById("v" + filaReal);
 
-  const limpiar = txt => {
-    txt = txt.replace(/"/g, "").trim();
-    return txt.replace(/\(/g, "<br>(");
-  };
+      if(l) l.innerHTML = limpiar(col[2]);
+      if(m) m.innerHTML = limpiar(col[3]);
+      if(mi) mi.innerHTML = limpiar(col[4]);
+      if(j) j.innerHTML = limpiar(col[5]);
+      if(v) v.innerHTML = limpiar(col[6]);
 
-  // rellenar usando fila REAL
-  const l = document.getElementById("l" + filaReal);
-  const m = document.getElementById("m" + filaReal);
-  const mi = document.getElementById("mi" + filaReal);
-  const j = document.getElementById("j" + filaReal);
-  const v = document.getElementById("v" + filaReal);
+      filaReal++;
 
-  if(l) l.innerHTML = limpiar(col[2]);
-  if(m) m.innerHTML = limpiar(col[3]);
-  if(mi) mi.innerHTML = limpiar(col[4]);
-  if(j) j.innerHTML = limpiar(col[5]);
-  if(v) v.innerHTML = limpiar(col[6]);
-
-  filaReal++; // 🔥 SOLO aumenta cuando no es recreo
-
-});
+    });
 
   })
   .catch(err => console.error("Error:", err));
