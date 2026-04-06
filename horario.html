@@ -250,22 +250,25 @@ fetch(url)
   .then(res => res.text())
   .then(data => {
 
-    console.log("CSV cargado");
-
     const filas = data.split("\n");
 
     let filaReal = 1;
 
     const limpiar = txt => {
+      if(!txt) return "";
       txt = txt.replace(/"/g, "").trim();
       return txt.replace(/\(/g, "<br>(");
     };
 
     filas.slice(1).forEach(fila => {
 
-      const col = fila.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+      const col = fila
+        .split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
+        .map(c => c.trim());
 
-      if(col.length < 7) return;
+      console.log("DEBUG:", col); // 👈 CLAVE
+
+      if(col.length < 5) return;
 
       if(col[2]?.toUpperCase().includes("RECREO")) return;
 
