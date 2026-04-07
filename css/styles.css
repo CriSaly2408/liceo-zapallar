@@ -1220,3 +1220,8 @@ html, body {
   background:#dfead7;
   font-weight:bold;
 }
+
+.retirado{
+  color: red;
+  font-weight: bold;
+}
