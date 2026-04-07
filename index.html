@@ -149,7 +149,10 @@ window.onload = () => {
   const cerrar = document.querySelector(".cerrar");
   const btn = document.getElementById("btnCerrar");
 
-  // 🔹 BOTONES (esto arregla tu problema)
+  // 🔴 IMPORTANTE: asegurarlo oculto
+  modal.style.display = "none";
+
+  // BOTONES
   cerrar.onclick = () => modal.style.display = "none";
   btn.onclick = () => modal.style.display = "none";
 
@@ -157,22 +160,26 @@ window.onload = () => {
     if (e.target === modal) modal.style.display = "none";
   };
 
-  // 🔹 FETCH GOOGLE SHEETS
-fetch(URL + "&t=" + new Date().getTime())
-  .then(res => res.text())
-  .then(data => {
-    const filas = data.trim().split("\n");
-    if (filas.length < 2) return;
+  // FETCH
+  fetch(URL + "&t=" + new Date().getTime())
+    .then(res => res.text())
+    .then(data => {
+      const filas = data.trim().split("\n");
+      if (filas.length < 2) return;
 
-    const valores = filas[1].split(",");
-    const activo = valores[0].trim();
-    const mensaje = valores.slice(1).join(",");
+      const valores = filas[1].split(",");
+      const activo = valores[0].trim();
+      const mensaje = valores.slice(1).join(",");
 
-    if (activo === "1") {
-      texto.textContent = mensaje;
-      modal.style.display = "block";
-    }
-  })
+      console.log("Activo:", activo);
+
+      if (activo === "1") {
+        texto.textContent = mensaje;
+        modal.style.display = "block";
+      } else {
+        modal.style.display = "none"; // 🔥 asegurado
+      }
+    })
     .catch(err => console.error("ERROR:", err));
 
 };
