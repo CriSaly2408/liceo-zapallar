@@ -158,21 +158,21 @@ window.onload = () => {
   };
 
   // 🔹 FETCH GOOGLE SHEETS
-  fetch(URL)
-    .then(res => res.text())
-    .then(data => {
-      const filas = data.trim().split("\n");
-      if (filas.length < 2) return;
+fetch(URL + "&t=" + new Date().getTime())
+  .then(res => res.text())
+  .then(data => {
+    const filas = data.trim().split("\n");
+    if (filas.length < 2) return;
 
-      const valores = filas[1].split(",");
-      const activo = valores[0].trim();
-      const mensaje = valores.slice(1).join(",");
+    const valores = filas[1].split(",");
+    const activo = valores[0].trim();
+    const mensaje = valores.slice(1).join(",");
 
-      if (activo === "1") {
-        texto.textContent = mensaje;
-        modal.style.display = "block";
-      }
-    })
+    if (activo === "1") {
+      texto.textContent = mensaje;
+      modal.style.display = "block";
+    }
+  })
     .catch(err => console.error("ERROR:", err));
 
 };
