@@ -235,6 +235,45 @@ html {
   background: #145a86;
 }
 
+/* Botón tipo sidebar (LIRMI) */
+.sidebar-btn {
+  display: block;
+  width: 100%;
+  max-width: 220px;
+  margin-top: 10px;
+  padding: 10px;
+  background: linear-gradient(135deg, #0b2c6b, #0e4ea8);
+  border-radius: 12px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  font-size: 14px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  transition: all 0.25s ease;
+}
+
+.sidebar-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+}
+
+/* Imagen de Admisión */
+.admision-img {
+  display: block;
+  margin-top: 10px;
+}
+
+.admision-img img {
+  width: 100%;
+  border-radius: 12px;
+  border: 2px solid #ffffff;
+}
+
+.admision-img img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
 /* ========================= */
 /* COMUNICADOS */
 /* ========================= */
