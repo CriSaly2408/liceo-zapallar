@@ -1,10 +1,15 @@
 body {
   margin: 0;
   font-family: "Roboto", sans-serif;
-  background: #f5f7fa;
+
+  background-image: url("../img/fondo.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+
   text-align: center;
 }
-
 
 /* EXCEPCIONES IMPORTANTES */
 .vision-bg {
@@ -1266,4 +1271,50 @@ html, body {
   background: rgba(255,0,0,0.08);
   padding: 2px 6px;
   border-radius: 6px;
+}
+
+
+/* ========================= */
+/*    aviso urgente          */
+/* ========================= */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background: white;
+  margin: 10% auto;
+  padding: 25px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+  position: relative;
+}
+
+.cerrar {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+#btnCerrar {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background: #0e4ea8;
+  color: white;
+  cursor: pointer;
 }
