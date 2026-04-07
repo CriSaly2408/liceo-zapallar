@@ -140,9 +140,34 @@
 <script src="js/cursos.js"></script>
 <script src="js/menu.js" defer></script>
 <script>
-window.onload = () => {
-  document.getElementById("modalUrgente").style.display = "block";
-};
+const URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTQUrU67cTk056Ep5g-mGjHJ17lwbwCg5NgBiV12reLzFX90QdLHhrIKzBJZ8ZVEv_TJlmFA_hEGUQB/pub?gid=0&single=true&output=csv";
+
+fetch(URL)
+  .then(res => res.text())
+  .then(data => {
+    console.log("DATA:", data); // 🔥 DEBUG
+
+    const filas = data.trim().split("\n");
+
+    if (filas.length < 2) return;
+
+    const valores = filas[1].split(",");
+
+    const activo = valores[0].trim();
+    const mensaje = valores.slice(1).join(","); // 👈 soporta comas
+
+    console.log("Activo:", activo);
+    console.log("Mensaje:", mensaje);
+
+    if (activo === "1") {
+      const modal = document.getElementById("modalUrgente");
+      const texto = document.getElementById("mensajeUrgente");
+
+      texto.textContent = mensaje;
+      modal.style.display = "block";
+    }
+  })
+  .catch(err => console.error("ERROR:", err));
 </script>
 
 <!-- FOOTER -->
