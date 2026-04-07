@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Correos Docentes</title>
+
+<style>
+body{
+  margin:0;
+  font-family: Arial;
+  background: linear-gradient(135deg, #0b2c6b, #0e4ea8);
+  display:flex;
+  justify-content:center;
+  padding:20px;
+}
+
+.container{
+  width:800px;
+  background:#f2f2f2;
+  border-radius:20px;
+  padding:20px;
+  box-shadow:0 0 20px rgba(0,0,0,0.3);
+}
+
+h1{
+  text-align:center;
+  color:#0b2c6b;
+  margin-bottom:20px;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  overflow:hidden;
+  border-radius:15px;
+}
+
+th{
+  background:#0b2c6b;
+  color:white;
+  padding:10px;
+}
+
+td{
+  border:1px solid #ccc;
+  padding:10px;
+  text-align:left;
+}
+
+tr:hover{
+  background:#e6eefc;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Correos Docentes</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Correo</th>
+      </tr>
+    </thead>
+    <tbody id="tabla"></tbody>
+  </table>
+</div>
+
+<script>
+
+// 🔥 TU CSV
+const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTXkTkS4ZNn3s2wvUyT8SFpr1pW0AdD91Vgfr54ug-_nYpQxQ1zX5c41SQgqpIs2A/pub?gid=1346561782&single=true&output=csv";
+
+fetch(url)
+  .then(res => res.text())
+  .then(data => {
+
+    const filas = data.split("\n");
+    const tabla = document.getElementById("tabla");
+
+    filas.slice(1).forEach(fila => {
+
+      const separador = fila.includes(";") ? ";" : ",";
+
+      const col = fila
+        .split(new RegExp(`${separador}(?=(?:(?:[^"]*"){2})*[^"]*$)`))
+        .map(c => c.replace(/"/g, "").trim());
+
+      if(col.length < 2) return;
+
+      const tr = document.createElement("tr");
+
+      const tdNombre = document.createElement("td");
+      const tdCorreo = document.createElement("td");
+
+      tdNombre.textContent = col[0];
+      tdCorreo.innerHTML = `<a href="mailto:${col[1]}">${col[1]}</a>`;
+
+      tr.appendChild(tdNombre);
+      tr.appendChild(tdCorreo);
+
+      tabla.appendChild(tr);
+
+    });
+
+  })
+  .catch(err => console.error("Error:", err));
+
+</script>
+
+</body>
+</html>
