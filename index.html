@@ -142,32 +142,40 @@
 <script>
 const URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTQUrU67cTk056Ep5g-mGjHJ17lwbwCg5NgBiV12reLzFX90QdLHhrIKzBJZ8ZVEv_TJlmFA_hEGUQB/pub?gid=0&single=true&output=csv";
 
-fetch(URL)
-  .then(res => res.text())
-  .then(data => {
-    console.log("DATA:", data); // 🔥 DEBUG
+window.onload = () => {
 
-    const filas = data.trim().split("\n");
+  const modal = document.getElementById("modalUrgente");
+  const texto = document.getElementById("mensajeUrgente");
+  const cerrar = document.querySelector(".cerrar");
+  const btn = document.getElementById("btnCerrar");
 
-    if (filas.length < 2) return;
+  // 🔹 BOTONES (esto arregla tu problema)
+  cerrar.onclick = () => modal.style.display = "none";
+  btn.onclick = () => modal.style.display = "none";
 
-    const valores = filas[1].split(",");
+  window.onclick = (e) => {
+    if (e.target === modal) modal.style.display = "none";
+  };
 
-    const activo = valores[0].trim();
-    const mensaje = valores.slice(1).join(","); // 👈 soporta comas
+  // 🔹 FETCH GOOGLE SHEETS
+  fetch(URL)
+    .then(res => res.text())
+    .then(data => {
+      const filas = data.trim().split("\n");
+      if (filas.length < 2) return;
 
-    console.log("Activo:", activo);
-    console.log("Mensaje:", mensaje);
+      const valores = filas[1].split(",");
+      const activo = valores[0].trim();
+      const mensaje = valores.slice(1).join(",");
 
-    if (activo === "1") {
-      const modal = document.getElementById("modalUrgente");
-      const texto = document.getElementById("mensajeUrgente");
+      if (activo === "1") {
+        texto.textContent = mensaje;
+        modal.style.display = "block";
+      }
+    })
+    .catch(err => console.error("ERROR:", err));
 
-      texto.textContent = mensaje;
-      modal.style.display = "block";
-    }
-  })
-  .catch(err => console.error("ERROR:", err));
+};
 </script>
 
 <!-- FOOTER -->

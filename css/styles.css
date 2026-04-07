@@ -1288,6 +1288,7 @@ html, body {
   height: 100%;
   background: rgba(0,0,0,0.6);
   backdrop-filter: blur(4px);
+  transition: opacity 0.3s;
 }
 
 .modal-content {
@@ -1318,3 +1319,9 @@ html, body {
   color: white;
   cursor: pointer;
 }
+
+/* ================================================ */
+/*    Desarrollado por Cristóbal Aliaga Guerra      */
+/*        Liceo Zapallar Curicó                     */
+/*                2026                              */
+/* ================================================ */
