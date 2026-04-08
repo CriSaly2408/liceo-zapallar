@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </ul>
       </li>
 
-      <li><a href="cuenta.html">Cuenta Pública</a></li>
+      <li><a href="https://docs.google.com/presentation/d/1i0qIm3I1tdBBBIkb1spxyLk5oA6VNF02/edit?usp=sharing&ouid=104795349865058244418&rtpof=true&sd=true">Cuenta Pública</a></li>
 
     </ul>
   </li>
@@ -73,7 +73,9 @@ document.addEventListener("DOMContentLoaded", () => {
     <a href="https://www.lirmi.com/" target="_blank">LIRMI</a>
   </li>
 
-  <li><a href="contacto.html">Contacto</a></li>
+<li>
+      <a href="correosdocentes.html">Correos Docentes</a>
+    </li>
   `;
 
   // 🔥 EVENTOS PARA DROPDOWN (MULTINIVEL)
