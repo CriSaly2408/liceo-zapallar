@@ -5,13 +5,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
 
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Liceo Zapallar Curicó</title>
   <link rel="stylesheet" href="css/styles.css?v=14">
 </head>
-<body>
+<body class="pagina-index">
 
 <!-- NAVBAR -->
 <nav class="navbar">
@@ -21,63 +20,13 @@
   </div>
 
   <div class="nav-center">
-    <ul>
-      <li><a href="index.html" class="active">Inicio</a></li>
-
-      <!--  LICEO   -->
-      <li class="dropdown">
-        <a href="#" class="toggle-liceo">Liceo ▾</a>
-
-        <ul class="dropdown-menu">
-          <li><a href="vision.html">Visión y Misión</a></li>
-
-          <li>
-            <a href="https://drive.google.com/file/d/1Dp6snQTssBw5cdMC9PbzdR2x-MGSHpqM/view" target="_blank">
-              Proyecto Educativo 📄
-            </a>
-          </li>
-
-          <li class="dropdown-sub">
-            <a href="#" class="toggle-liceo">Reglamentos ▸</a>
- 
-            <ul class="submenu">
-              <li class="dropdown-sub">
-                <a href="#" class="toggle-liceo">Año 2025 ▸</a>
-
-                <ul class="submenu">
-                  <li>
-                    <a href="https://drive.google.com/file/d/1GogPZ5ZmeK7BjsxzZuYZY29TtGAgVmZY/view" target="_blank">
-                      Reglamento interno
-                    </a>
-                  </li>
-
-                  <li>
-                    <a href="https://drive.google.com/file/d/1ZAwVFXU6Lgr2pCNmS2kuqCfAK_MxhbwU/view" target="_blank">
-                      Reglamento de Evaluación
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-
-          <li><a href="https://docs.google.com/presentation/d/1i0qIm3I1tdBBBIkb1spxyLk5oA6VNF02/edit?usp=sharing&ouid=104795349865058244418&rtpof=true&sd=true">Cuenta Pública</a></li>
-        </ul>
-      </li>
-
-      <li><a href="#noticias">Noticias</a></li>
-
-<li>
-  <a href="correosdocentes.html">
-    Correos Docentes
-  </a>
-</li>
-
-      <li><a href="contacto.html">Contacto</a></li>
-    </ul>
+    
+    <ul id="menu-nav"></ul>
   </div>
 
 </nav>
+
+
 
 <!-- HERO -->
 <header class="hero"></header>
@@ -95,17 +44,17 @@
 
     <ul class="menu-cursos"></ul>
 
-  <!-- LIRMI -->
-  <a href="https://www.lirmi.com/" target="_blank" class="sidebar-item">
-    LIRMI
-  </a>
+    <!-- LIRMI -->
+    <a href="https://www.lirmi.com/" target="_blank" class="sidebar-item">
+      LIRMI
+    </a>
 
-  <!-- ADMISION -->
-  <a href="https://www.sistemadeadmisionescolar.cl/" target="_blank" class="admision-img">
-    <img src="img/admision.png" alt="Admisión Escolar">
-  </a>
+    <!-- ADMISION -->
+    <a href="https://www.sistemadeadmisionescolar.cl/" target="_blank" class="admision-img">
+      <img src="img/admision.png" alt="Admisión Escolar">
+    </a>
 
-</div>
+  </div>
 
   <!-- CONTENIDO -->
   <div class="contenido-principal">
@@ -139,6 +88,7 @@
 <script src="js/noticias.js"></script>
 <script src="js/cursos.js"></script>
 <script src="js/menu.js" defer></script>
+
 <script>
 const URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTQUrU67cTk056Ep5g-mGjHJ17lwbwCg5NgBiV12reLzFX90QdLHhrIKzBJZ8ZVEv_TJlmFA_hEGUQB/pub?gid=0&single=true&output=csv";
 
@@ -149,10 +99,8 @@ window.onload = () => {
   const cerrar = document.querySelector(".cerrar");
   const btn = document.getElementById("btnCerrar");
 
-  // 🔴 IMPORTANTE: asegurarlo oculto
   modal.style.display = "none";
 
-  // BOTONES
   cerrar.onclick = () => modal.style.display = "none";
   btn.onclick = () => modal.style.display = "none";
 
@@ -160,7 +108,6 @@ window.onload = () => {
     if (e.target === modal) modal.style.display = "none";
   };
 
-  // FETCH
   fetch(URL + "&t=" + new Date().getTime())
     .then(res => res.text())
     .then(data => {
@@ -171,13 +118,11 @@ window.onload = () => {
       const activo = valores[0].trim();
       const mensaje = valores.slice(1).join(",");
 
-      console.log("Activo:", activo);
-
       if (activo === "1") {
         texto.textContent = mensaje;
         modal.style.display = "block";
       } else {
-        modal.style.display = "none"; // 🔥 asegurado
+        modal.style.display = "none";
       }
     })
     .catch(err => console.error("ERROR:", err));
@@ -201,12 +146,6 @@ window.onload = () => {
   </div>
 
 </footer>
-
-<!--
-Desarrollado por Cristóbal Aliaga Guerra
-Liceo Zapallar Curicó
-2026
--->
 
 </body>
 </html>

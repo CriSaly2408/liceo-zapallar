@@ -12,10 +12,11 @@ document.addEventListener("DOMContentLoaded", () => {
   nav.innerHTML = `
     <li><a href="index.html">Inicio</a></li>
 
-    <li class="dropdown">
+    <!-- 🔵 LICEO -->
+    <li class="dropdown-liceo">
       <a href="#" class="toggle-liceo">Liceo ▾</a>
 
-      <ul class="dropdown-menu">
+      <ul class="dropdown-menu-liceo">
 
         <li><a href="vision.html">Visión y Misión</a></li>
 
@@ -25,15 +26,15 @@ document.addEventListener("DOMContentLoaded", () => {
           </a>
         </li>
 
-        <li class="dropdown-sub">
+        <li class="dropdown-sub-liceo">
           <a href="#" class="toggle-liceo">Reglamentos ▸</a>
 
-          <ul class="submenu">
+          <ul class="submenu-liceo">
 
-            <li class="dropdown-sub">
+            <li class="dropdown-sub-liceo">
               <a href="#" class="toggle-liceo">Año 2025 ▸</a>
 
-              <ul class="submenu">
+              <ul class="submenu-liceo">
 
                 <li>
                   <a href="${linksDrive.reglamentoInterno}" target="_blank">
@@ -85,15 +86,42 @@ document.addEventListener("DOMContentLoaded", () => {
     <li><a href="contacto.html">Contacto</a></li>
   `;
 
-  // 🔥 EVENTOS DROPDOWN (AHORA SÍ DENTRO)
-  const toggles = document.querySelectorAll(".toggle-liceo");
+  // 🔥 DROPDOWN LICEO FUNCIONAL
+// 🔥 DROPDOWN LICEO PRO (con submenus funcionando)
+const toggles = document.querySelectorAll(".toggle-liceo");
 
-  toggles.forEach(toggle => {
-    toggle.addEventListener("click", (e) => {
-      e.preventDefault();
+toggles.forEach(toggle => {
+  toggle.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation(); // 🔥 CLAVE
 
-      const parent = toggle.parentElement;
-      parent.classList.toggle("activo");
+    const parent = toggle.parentElement;
+
+    // 🔥 si es submenu, NO cerrar todo
+    const isSubmenu = parent.classList.contains("dropdown-sub-liceo");
+
+    if (!isSubmenu) {
+      // cerrar otros principales
+      document.querySelectorAll(".dropdown-liceo").forEach(el => {
+        if (el !== parent) el.classList.remove("activo");
+      });
+    }
+
+    parent.classList.toggle("activo");
+  });
+});
+
+// 🔒 cerrar SOLO si haces click fuera
+document.addEventListener("click", () => {
+  document.querySelectorAll(".dropdown-liceo, .dropdown-sub-liceo")
+    .forEach(el => el.classList.remove("activo"));
+});
+
+// 🔥 EVITAR que clicks dentro del menú lo cierren
+document.querySelectorAll(".dropdown-menu-liceo, .submenu-liceo")
+  .forEach(menu => {
+    menu.addEventListener("click", (e) => {
+      e.stopPropagation();
     });
   });
 

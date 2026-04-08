@@ -18,6 +18,13 @@ body {
   object-fit: cover;
 }
 
+/* 🔥 OCULTAR SOLO EN INDEX (forzado) */
+/* 🔥 OCULTAR SOLO EN NAVBAR (INDEX) */
+.pagina-index .navbar a[href*="lirmi.com"],
+.pagina-index .navbar a[href*="sistemadeadmisionescolar.cl"] {
+  display: none !important;
+}
+
 .logo-overlay {
   position: absolute;
   top: 15px;
@@ -53,16 +60,109 @@ html {
   z-index: 1000;
 }
 
-/* DROPDOWN */
+/* NAVBAR DROPDOWN */
 
-.dropdown-menu {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+/* ========================= */
+/* DROPDOWN NAVBAR */
+/* ========================= */
+
+.navbar .dropdown {
+  position: relative;
 }
 
-.dropdown-menu li {
+.navbar .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: block !important;
+  background: white;
+  min-width: 220px;
+
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+
+  transition: all 0.25s ease;
+  z-index: 9999;
+}
+
+/* cuando está activo */
+.navbar .dropdown.activo > .dropdown-menu {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+}
+
+.navbar .dropdown-menu li {
   list-style: none;
+}
+
+/* ========================= */
+/* DROPDOWN LICEO (AISLADO) */
+/* ========================= */
+
+.dropdown-liceo {
+  position: relative;
+}
+
+/* menú principal */
+.dropdown-menu-liceo {
+  position: absolute;
+  top: 100%;
+  left: 0;
+
+  background: white;
+  min-width: 220px;
+
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+
+  display: none;
+  z-index: 9999;
+}
+
+.dropdown-liceo.activo > .dropdown-menu-liceo {
+  display: block;
+}
+
+/* items */
+.dropdown-menu-liceo li {
+  list-style: none;
+}
+
+.dropdown-menu-liceo a {
+  display: block;
+  padding: 10px;
+  color: #000;
+}
+
+.dropdown-menu-liceo a:hover {
+  background: #eee;
+}
+
+/* SUBMENÚ */
+.dropdown-sub-liceo {
+  position: relative;
+}
+
+.submenu-liceo {
+  position: absolute;
+  top: 0;
+  left: 100%;
+
+  background: white;
+  min-width: 200px;
+
+  display: none;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.dropdown-sub-liceo.activo > .submenu-liceo {
+  display: block;
 }
 
 /* ================= LOGO ================= */
@@ -82,12 +182,10 @@ html {
 }
 
 .nav-center > ul {
-  list-style: none;
   display: flex;
   gap: 20px;
-  margin: 0;
-  padding: 0;
-  flex-wrap: nowrap;
+  justify-content: center;
+  flex-wrap: wrap; /* opcional para responsive */
 }
 
 /* LINKS */
@@ -108,40 +206,19 @@ html {
   color: #328CC1;
 }
 
+/* 🔥 quitar puntitos del navbar */
+.navbar ul,
+.navbar li {
+  list-style: none !important;
+  margin: 0;
+  padding: 0;
+}
+
 /* LOGO IMG */
 
 .logo {
   height: 50px;
   width: auto;
-}
-
-/* ========================= */
-/* ADMICION */
-/* ========================= */
-
-.admision-info {
-  text-align: center;
-  padding: 40px 20px;
-}
-
-.mensaje-admision {
-  font-size: 18px;
-  color: #0B3C5D;
-  background: #e6f0f7;
-  padding: 15px;
-  border-radius: 10px;
-  display: inline-block;
-}
-
-.alerta-admision {
-  background: #fff3cd;
-  color: #856404;
-  border: 1px solid #ffeeba;
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 500px;
-  margin: 20px auto;
-  text-align: center;
 }
 
 /* ========================= */
@@ -389,25 +466,15 @@ html {
 }
 
 /* ========================= */
-/*          DROPDOWN         */
+/*          DROPDOWN  Cursos */
 /* ========================= */
 
-.dropdown {
+.menu-cursos .dropdown {
   position: relative;
 }
 
-.dropdown-menu {
-  position: absolute;
-  top: 60px;
-  left: 0;
-  background: white;
-  list-style: none;
-  width: 220px;
-  border: 1px solid #999;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
-  transition: 0.3s;
+.menu-cursos .dropdown-menu {
+  display: none;
 }
 
 .dropdown-menu li {
@@ -430,14 +497,12 @@ html {
 }
 
 .menu-cursos .submenu {
-  position: static;
-  width: 100%;
-  margin-left: 10px;
+  display: none;
 }
 
-/* ✨ ANIMACIÓN APERTURA */
-.dropdown-menu,
-.submenu {
+/* SOLO PARA CURSOS */
+.menu-cursos .dropdown-menu,
+.menu-cursos .submenu {
   display: none;
 }
 
@@ -464,10 +529,10 @@ html {
   display: none;
 }
 
-/* 🔥 CUANDO ESTÁ ACTIVO */
+/* activar */
 .menu-cursos .dropdown-menu.activo,
 .menu-cursos .submenu.activo {
-  display: block !important;
+  display: block;
 }
 
 @keyframes fadeIn {
@@ -961,6 +1026,7 @@ body {
   margin: 0;
   padding: 0;
   flex-wrap: wrap;
+  transform: translateX(20px);
 }
 
 /* LINKS */
@@ -1217,10 +1283,9 @@ img {
 }
 
   /*  TODO EN BLOQUE */
-  .navbar li {
-    width: 100%;
-  }
-
+.navbar li {
+  width: auto;
+}
 .navbar a {
   display: block;
   width: 100%;
