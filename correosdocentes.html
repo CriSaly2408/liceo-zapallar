@@ -50,6 +50,127 @@ td{
 tr:hover{
   background:#e6eefc;
 }
+
+/* ===================================== */
+/* 📱 MODO MOBILE UNIVERSAL PRO          */
+/* ===================================== */
+
+@media (max-width: 768px){
+
+  body{
+    padding:10px;
+  }
+
+  .container{
+    width:100%;
+    padding:12px;
+  }
+
+  /* 🔥 TABLAS MÁS LIMPIAS */
+  table{
+    width:100%;
+    border-collapse:collapse;
+  }
+
+  /* 🔥 OCULTAR HEADER */
+  table tr:first-child{
+    display:none;
+  }
+
+  /* ===================================== */
+  /* 📋 LISTAS Y CORREOS → TARJETAS       */
+  /* ===================================== */
+
+  table tr{
+    display:block;
+    background:white;
+    margin-bottom:12px;
+    padding:12px;
+    border-radius:12px;
+    box-shadow:0 6px 15px rgba(0,0,0,0.1);
+    border-left:5px solid #0e4ea8;
+  }
+
+  table td{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border:none;
+    padding:6px 0;
+    font-size:14px;
+  }
+
+  /* 🔥 NUMERO BONITO */
+  .numero{
+    background:#0e4ea8;
+    color:white;
+    border-radius:6px;
+    padding:4px 8px;
+    font-size:13px;
+    width:auto;
+  }
+
+  /* ===================================== */
+  /* 🧠 AUTO-LABELS SEGÚN TABLA           */
+  /* ===================================== */
+
+  /* LISTA */
+  table td:nth-child(1)::before{
+    content:"N°";
+    font-weight:bold;
+    color:#0e4ea8;
+  }
+
+  table td:nth-child(2)::before{
+    content:"Nombre";
+    font-weight:bold;
+    color:#0e4ea8;
+  }
+
+  /* CORREOS */
+  table td:nth-child(2)::before{
+    content:"Correo";
+  }
+
+  /* ===================================== */
+  /* 🕒 HORARIOS → SCROLL HORIZONTAL      */
+  /* ===================================== */
+
+  .tabla-scroll{
+    overflow-x:auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius:10px;
+  }
+
+  .tabla-scroll table{
+    min-width:700px;
+  }
+
+  /* OPCIONAL: barra más bonita */
+  .tabla-scroll::-webkit-scrollbar{
+    height:6px;
+  }
+
+  .tabla-scroll::-webkit-scrollbar-thumb{
+    background:#0e4ea8;
+    border-radius:10px;
+  }
+
+  /* ===================================== */
+  /* 🔷 INPUTS ARRIBA                     */
+  /* ===================================== */
+
+  .info{
+    flex-direction:column;
+    border-radius:15px;
+    padding:10px;
+  }
+
+  .info input{
+    font-size:14px;
+  }
+
+}
 </style>
 </head>
 
