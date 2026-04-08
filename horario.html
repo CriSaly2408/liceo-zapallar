@@ -406,8 +406,10 @@ fetch(url)
       // 🔥 ignorar filas basura
       if(col.length < 7) return;
 
-      // 🔥 ignorar recreos (ya están en HTML)
-      if(col[2]?.toUpperCase().includes("RECREO")) return;
+// 🔥 detectar recreo en cualquier columna
+const esRecreo = col.some(c => c?.toUpperCase().includes("RECREO"));
+
+if(esRecreo) return;
 
       const l = document.getElementById("l" + filaReal);
       const m = document.getElementById("m" + filaReal);
