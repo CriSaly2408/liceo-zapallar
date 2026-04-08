@@ -58,14 +58,29 @@ document.addEventListener("DOMContentLoaded", () => {
   contenedor.innerHTML = html;
 
   // 🔥 TOGGLE MENÚ
-  document.querySelectorAll(".toggle").forEach(btn => {
-    btn.addEventListener("click", function(e) {
-      e.preventDefault();
-      e.stopPropagation();
+document.addEventListener("click", function(e) {
 
-      const submenu = this.nextElementSibling;
-      if (submenu) submenu.classList.toggle("activo");
-    });
-  });
+  if (!e.target.classList.contains("toggle")) return;
 
+  e.preventDefault();
+  e.stopPropagation();
+
+  const submenu = e.target.nextElementSibling;
+  if (!submenu) return;
+
+  const parent = e.target.parentElement;
+
+  // 🔥 SOLO cerrar hermanos (no todo)
+  const siblings = parent.parentElement.children;
+
+  for (let item of siblings) {
+    if (item !== parent) {
+      const open = item.querySelector(".activo");
+      if (open) open.classList.remove("activo");
+    }
+  }
+
+  submenu.classList.toggle("activo");
+
+});
 });

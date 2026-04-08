@@ -216,10 +216,8 @@ html {
 }
 
 .sidebar-cursos .dropdown-menu {
-  position: absolute;
-  top: 0;          
-  left: 100%;
-  z-index: 2000;   
+  position: static;   
+  width: 100%;
 }
 
 .btn-calendario {
@@ -278,6 +276,8 @@ html {
   transform: scale(1.03);
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
+
+
 
 /* ========================= */
 /* COMUNICADOS */
@@ -424,31 +424,61 @@ html {
   background: #eaeaea;
 }
 
-.dropdown:hover .dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
 /* SUBMENÚ */
 .dropdown-sub {
   position: relative;
 }
 
-.dropdown-sub .submenu {
-  position: absolute;
-  top: 0;
-  left: 100%;
-  background: white;
-  width: 260px;
-  border: 1px solid #999;
-  opacity: 0;
-  visibility: hidden;
+.menu-cursos .submenu {
+  position: static;
+  width: 100%;
+  margin-left: 10px;
 }
 
-.dropdown-sub:hover > .submenu {
-  opacity: 1;
-  visibility: visible;
+/* ✨ ANIMACIÓN APERTURA */
+.dropdown-menu,
+.submenu {
+  display: none;
+}
+
+.dropdown-menu.activo,
+.submenu.activo {
+  display: block;
+  animation: fadeIn 0.25s ease;
+}
+
+  .menu-cursos .dropdown-menu.activo {
+  display: block;
+}
+
+.menu-cursos .dropdown-menu,
+.menu-cursos .submenu {
+  display: none;
+}
+
+/* 🔥 ARREGLAR VISIBILIDAD SIDEBAR */
+.menu-cursos .dropdown-menu,
+.menu-cursos .submenu {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: none;
+}
+
+/* 🔥 CUANDO ESTÁ ACTIVO */
+.menu-cursos .dropdown-menu.activo,
+.menu-cursos .submenu.activo {
+  display: block !important;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ========================= */
@@ -807,24 +837,87 @@ html {
 
 /* submenus */
 .menu-cursos .submenu {
-  position: absolute;
+  position: static;
   left: 100%;
   top: 0;
   display: none;
+  margin-left: 10px;
   background: white;
   min-width: 150px;
   border: 1px solid #999;
 }
 
-/* mostrar */
-.menu-cursos .dropdown:hover > .dropdown-menu {
+/* 🔵 BOTÓN PRINCIPAL "CURSOS" */
+.menu-cursos > li > .toggle {
+  background: linear-gradient(135deg, #0e4ea8, #0b2c6b);
+  color: white;
+  font-weight: 600;
+  border-radius: 12px;
+  padding: 12px;
   display: block;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.menu-cursos .dropdown-sub:hover > .submenu {
-  display: block;
+.menu-cursos > li > .toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
 }
 
+
+/* 📘 NIVELES (7°, 8°, etc) */
+.menu-cursos .dropdown-menu > li > .toggle {
+  background: #e9eef6;
+  border-left: 4px solid #0e4ea8;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 6px;
+  display: block;
+  transition: all 0.25s ease;
+}
+
+.menu-cursos .dropdown-menu > li > .toggle:hover {
+  background: #dbe6f8;
+  transform: translateX(4px);
+}
+
+
+/* 📗 SUBNIVELES (8°A, etc) */
+.menu-cursos .submenu > li > .toggle {
+  background: #f4f7fb;
+  border-left: 4px solid #4aa3ff;
+  border-radius: 10px;
+  padding: 9px;
+  margin-top: 5px;
+  display: block;
+  font-size: 14px;
+  transition: all 0.25s ease;
+}
+
+.menu-cursos .submenu > li > .toggle:hover {
+  background: #e6f0ff;
+  transform: translateX(6px);
+}
+
+
+/* 📄 OPCIONES (Lista / Horario) */
+.menu-cursos .submenu a:not(.toggle) {
+  display: block;
+  padding: 8px;
+  margin-top: 4px;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid #dbe3ef;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.menu-cursos .submenu a:not(.toggle):hover {
+  background: #0e4ea8;
+  color: white;
+  border-color: #0e4ea8;
+  transform: scale(1.03);
+}
 
 html {
   overflow-x: hidden;
@@ -992,6 +1085,7 @@ body {
   .dropdown-menu.activo {
     display: block;
   }
+
 
   /* BOTÓN */
   .btn-calendario {
