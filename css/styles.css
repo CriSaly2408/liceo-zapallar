@@ -1501,6 +1501,41 @@ html, body {
   background: white;
 }
 
+/* PC por defecto */
+.mobile-doc {
+  display: none;
+}
+
+/* 📱 MOBILE */
+@media (max-width: 768px) {
+
+  .visor-pdf {
+    display: none;
+  }
+
+  .mobile-doc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .btn-doc {
+    background: #0B3C5D;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .btn-doc:hover {
+    background: #328CC1;
+  }
+}
 
 /* ================================================ */
 /*    Desarrollado por Cristóbal Aliaga Guerra      */
