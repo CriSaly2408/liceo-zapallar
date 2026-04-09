@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title id="titulo">Documento</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-left">
+    <img src="img/banner02.png" class="logo">
+  </div>
+
+  <div class="nav-center">
+    <ul id="menu-nav"></ul>
+  </div>
+</nav>
+
+<script src="js/menu.js" defer></script>
+
+<!-- HERO -->
+<header class="hero-contacto">
+  <h1 id="tituloHero" style="color:white; text-align:center;"></h1>
+</header>
+
+<!-- CONTENIDO -->
+<div class="contenido-principal" style="padding: 40px;">
+
+  <div class="visor-container">
+    <iframe id="visor" class="visor-pdf"></iframe>
+  </div>
+
+  <!-- SOLO MOBILE -->
+  <div class="mobile-doc">
+    <p>📄 Ver documento completo</p>
+    <a id="btnDoc" target="_blank" class="btn-doc">Abrir documento</a>
+  </div>
+
+</div>
+
+<script>
+
+// 🔥 PARAMETROS
+const params = new URLSearchParams(window.location.search);
+const tipo = params.get("tipo");   // pei | reglamento | cuenta
+const anio = params.get("anio");   // 2014 - 2025
+const doc  = params.get("doc");    // interno | eyp
+
+// 🔥 BASE DE DATOS (EDITA SOLO AQUÍ)
+const documentos = {
+
+  // 📘 PROYECTO EDUCATIVO
+  pei: {
+    "2014": "",
+    "2016": "",
+    "2017": "",
+    "2018": "",
+    "2019": "",
+    "2020": "",
+    "2021": "",
+    "2022": "",
+    "2023": "",
+    "2024": "",
+    "2025": "https://drive.google.com/file/d/1Dp6snQTssBw5cdMC9PbzdR2x-MGSHpqM/preview"
+  },
+
+  // 📄 REGLAMENTOS
+  reglamento: {
+    "2014": { interno: "", eyp: "" },
+    "2015": { interno: "", eyp: "" },
+    "2016": { interno: "", eyp: "" },
+    "2017": { interno: "", eyp: "" },
+    "2018": { interno: "", eyp: "" },
+    "2019": { interno: "", eyp: "" },
+    "2020": { interno: "", eyp: "" },
+    "2021": { interno: "", eyp: "" },
+    "2022": { interno: "", eyp: "" },
+    "2023": { interno: "", eyp: "" },
+    "2024": { interno: "", eyp: "" },
+    "2025": { 
+      interno: "https://drive.google.com/file/d/1GogPZ5ZmeK7BjsxzZuYZY29TtGAgVmZY/preview",
+      eyp: "https://drive.google.com/file/d/1ZAwVFXU6Lgr2pCNmS2kuqCfAK_MxhbwU/preview"
+    }
+  },
+
+  // 📊 CUENTA PUBLICA
+  cuenta: {
+    "2014": "",
+    "2015": "",
+    "2016": "",
+    "2017": "",
+    "2018": "",
+    "2019": "",
+    "2020": "",
+    "2021": "",
+    "2022": "",
+    "2023": "",
+    "2024": "",
+    "2025": "https://docs.google.com/presentation/d/13Zb640WWf_rTbxDkm4xVNaJo5J0CuF7H/embed?start=false&loop=false&delayms=3000"
+  }
+
+};
+
+// 🔥 OBTENER LINK
+let url = "";
+
+if(tipo === "pei"){
+  url = documentos.pei[anio];
+}
+
+if(tipo === "reglamento"){
+  url = documentos.reglamento[anio]?.[doc];
+}
+
+if(tipo === "cuenta"){
+  url = documentos.cuenta[anio];
+}
+
+// 🔴 SI NO HAY LINK
+if(!url){
+  document.getElementById("tituloHero").innerText = "Documento no disponible";
+  document.getElementById("visor").style.display = "none";
+  throw new Error("Documento no configurado");
+}
+
+// 🔥 APLICAR
+document.getElementById("visor").src = url;
+document.getElementById("btnDoc").href = url;
+
+// 🔥 TITULO BONITO
+let titulo = "";
+
+if(tipo === "pei") titulo = "Proyecto Educativo " + anio;
+if(tipo === "cuenta") titulo = "Cuenta Pública " + anio;
+
+if(tipo === "reglamento"){
+  titulo = "Reglamento " + anio + " - " + (doc === "interno" ? "Interno" : "Evaluación y Promoción");
+}
+
+document.getElementById("tituloHero").innerText = titulo;
+document.getElementById("titulo").innerText = titulo;
+
+</script>
+
+</body>
+</html>

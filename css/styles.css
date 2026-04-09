@@ -133,10 +133,10 @@ html {
   list-style: none;
 }
 
-.dropdown-menu-liceo a {
-  display: block;
-  padding: 10px;
-  color: #000;
+.dropdown-menu-liceo a,
+.submenu-liceo a {
+  padding: 6px 10px;   
+  font-size: 14px;    
 }
 
 .dropdown-menu-liceo a:hover {
@@ -149,11 +149,7 @@ html {
 }
 
 .submenu-liceo {
-  position: static; 
   display: none;
-  margin-top: 5px;
-  margin-left: 0;
-  width: 100%;
   background: #f5f5f5;
   border-radius: 8px;
   padding: 5px 0;
@@ -166,6 +162,48 @@ html {
 
 .dropdown-sub-liceo.activo > .submenu-liceo {
   display: block;
+}
+
+@media (min-width: 769px){
+
+  .dropdown-sub-liceo {
+    position: relative;
+  }
+
+  .dropdown-sub-liceo > .submenu-liceo {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    margin-left: 5px;
+    min-width: 220px;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-10px);
+    transition: 0.2s;
+  }
+
+  .dropdown-sub-liceo.activo > .submenu-liceo {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+  }
+
+}
+@media (max-width: 768px){
+
+  .dropdown-sub-liceo > .submenu-liceo {
+    position: static;
+    width: 100%;
+    margin-top: 5px;
+  }
+
+}
+
+.navbar,
+.dropdown-menu-liceo {
+  overflow: visible;
 }
 
 /* ================= LOGO ================= */
@@ -353,6 +391,17 @@ html {
 }
 
 .admision-img img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.biblioteca-img img{
+  width: 100%;
+  border-radius: 12px;
+  border: 2px solid #ffffff;
+}
+
+.biblioteca-img img:hover{
   transform: scale(1.03);
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }

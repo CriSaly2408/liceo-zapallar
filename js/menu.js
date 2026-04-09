@@ -3,10 +3,71 @@ document.addEventListener("DOMContentLoaded", () => {
   const nav = document.getElementById("menu-nav");
   if (!nav) return;
 
+  // 🔥 CONFIGURACIÓN DE AÑOS
+  const aniosPEI = [
+    2014, 2016, 2017, 2018, 2019,
+    2020, 2021, 2022, 2023, 2024, 2025
+  ];
+
+  const aniosCuenta = [
+    2014, 2015, 2016, 2017, 2018,
+    2019, 2020, 2021, 2022, 2023, 2024, 2025
+  ];
+
+  const aniosReglamento = [
+    2014, 2015, 2016, 2017, 2018,
+    2019, 2020, 2021, 2022, 2023, 2024, 2025
+  ];
+
+  // 🔥 GENERADORES
+const generarPEI = () => {
+  return aniosPEI.map(año => `
+    <li>
+      <a href="docs.html?tipo=pei&anio=${año}">
+        PEI ${año}
+      </a>
+    </li>
+  `).join("");
+};
+
+const generarCuenta = () => {
+  return aniosCuenta.map(año => `
+    <li>
+      <a href="docs.html?tipo=cuenta&anio=${año}">
+        Gestión ${año}
+      </a>
+    </li>
+  `).join("");
+};
+
+const generarReglamentos = () => {
+  return aniosReglamento.map(año => `
+    <li class="dropdown-sub-liceo">
+      <a href="#" class="toggle-liceo">Año ${año} ▸</a>
+
+      <ul class="submenu-liceo">
+
+        <li>
+          <a href="docs.html?tipo=reglamento&anio=${año}&doc=interno">
+            Reglamento interno
+          </a>
+        </li>
+
+        <li>
+          <a href="docs.html?tipo=reglamento&anio=${año}&doc=eyp">
+            Reglamento de Evaluación y Promoción
+          </a>
+        </li>
+
+      </ul>
+    </li>
+  `).join("");
+};
+
+  // 🔥 NAVBAR
   nav.innerHTML = `
     <li><a href="index.html">Inicio</a></li>
 
-    <!-- 🔵 LICEO -->
     <li class="dropdown-liceo">
       <a href="#" class="toggle-liceo">Liceo ▾</a>
 
@@ -14,44 +75,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
         <li><a href="vision.html">Visión y Misión</a></li>
 
-        <li>
-          <a href="proyectoeducativo.html">
-            Proyecto Educativo 📄
-          </a>
-        </li>
-
+        <!-- 🔵 PEI -->
         <li class="dropdown-sub-liceo">
-          <a href="#" class="toggle-liceo">Reglamentos ▸</a>
-
+          <a href="#" class="toggle-liceo">Proyecto Educativo Institucional ▸</a>
           <ul class="submenu-liceo">
-
-            <li class="dropdown-sub-liceo">
-              <a href="#" class="toggle-liceo">Año 2025 ▸</a>
-
-              <ul class="submenu-liceo">
-
-                <li>
-                  <a href="reglamentointerno.html">
-                    Reglamento interno
-                  </a>
-                </li>
-
-                <li>
-                  <a href="reglamentodeEyP.html">
-                    Reglamento de Evaluación y Promoción
-                  </a>
-                </li>
-
-              </ul>
-            </li>
-
+            ${generarPEI()}
           </ul>
         </li>
 
-        <li>
-          <a href="cuentapublica.html">
-            Cuenta Pública
-          </a>
+        <!-- 🔵 REGLAMENTOS -->
+        <li class="dropdown-sub-liceo">
+          <a href="#" class="toggle-liceo">Reglamentos ▸</a>
+          <ul class="submenu-liceo">
+            ${generarReglamentos()}
+          </ul>
+        </li>
+
+        <!-- 🔵 CUENTA PUBLICA -->
+        <li class="dropdown-sub-liceo">
+          <a href="#" class="toggle-liceo">Cuenta Pública ▸</a>
+          <ul class="submenu-liceo">
+            ${generarCuenta()}
+          </ul>
         </li>
 
       </ul>
