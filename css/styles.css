@@ -149,16 +149,19 @@ html {
 }
 
 .submenu-liceo {
-  position: absolute;
-  top: 0;
-  left: 100%;
-
-  background: white;
-  min-width: 200px;
-
+  position: static; 
   display: none;
-  border-radius: 10px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  margin-top: 5px;
+  margin-left: 0;
+  width: 100%;
+  background: #f5f5f5;
+  border-radius: 8px;
+  padding: 5px 0;
+}
+
+
+.submenu-liceo li {
+  padding-left: 15px; 
 }
 
 .dropdown-sub-liceo.activo > .submenu-liceo {
@@ -217,7 +220,7 @@ html {
 /* LOGO IMG */
 
 .logo {
-  height: 50px;
+  height: 100px;
   width: auto;
 }
 
@@ -1478,6 +1481,25 @@ html, body {
   cursor: pointer;
 }
 
+/* ========================= */
+/*    visor docs             */
+/* ========================= */
+
+.visor-container {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.visor-pdf {
+  width: 100%;
+  max-width: 1000px; 
+  height: 85vh;      
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  background: white;
+}
 
 
 /* ================================================ */

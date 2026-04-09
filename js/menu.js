@@ -1,9 +1,3 @@
-const linksDrive = {
-  proyecto: "https://drive.google.com/file/d/1Dp6snQTssBw5cdMC9PbzdR2x-MGSHpqM/view",
-  reglamentoInterno: "https://drive.google.com/file/d/1GogPZ5ZmeK7BjsxzZuYZY29TtGAgVmZY/view",
-  reglamentoEvaluacion: "https://drive.google.com/file/d/1ZAwVFXU6Lgr2pCNmS2kuqCfAK_MxhbwU/view"
-};
-
 document.addEventListener("DOMContentLoaded", () => {
 
   const nav = document.getElementById("menu-nav");
@@ -21,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <li><a href="vision.html">Visión y Misión</a></li>
 
         <li>
-          <a href="${linksDrive.proyecto}" target="_blank">
+          <a href="proyectoeducativo.html">
             Proyecto Educativo 📄
           </a>
         </li>
@@ -37,13 +31,13 @@ document.addEventListener("DOMContentLoaded", () => {
               <ul class="submenu-liceo">
 
                 <li>
-                  <a href="${linksDrive.reglamentoInterno}" target="_blank">
+                  <a href="reglamentointerno.html">
                     Reglamento interno
                   </a>
                 </li>
 
                 <li>
-                  <a href="${linksDrive.reglamentoEvaluacion}" target="_blank">
+                  <a href="reglamentodeEyP.html">
                     Reglamento de Evaluación y Promoción
                   </a>
                 </li>
@@ -55,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </li>
 
         <li>
-          <a href="https://docs.google.com/presentation/d/1i0qIm3I1tdBBBIkb1spxyLk5oA6VNF02/edit?usp=sharing" target="_blank">
+          <a href="cuentapublica.html">
             Cuenta Pública
           </a>
         </li>
