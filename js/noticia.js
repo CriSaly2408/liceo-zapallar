@@ -24,7 +24,7 @@ if (!id) {
 
       const galeria = document.getElementById("galeria");
 
-      for (let i = 2; i <= 9; i++) {
+      for (let i = 2; i <= 16; i++) {
         const key = "imagen" + i;
 
         if (noticia[key]) {
