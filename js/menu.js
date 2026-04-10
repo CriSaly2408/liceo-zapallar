@@ -41,27 +41,44 @@ const generarCuenta = () => {
 };
 
 const generarReglamentos = () => {
-  return aniosReglamento.map(año => `
-    <li class="dropdown-sub-liceo">
-      <a href="#" class="toggle-liceo">Año ${año} ▸</a>
+  return aniosReglamento.map(año => {
 
-      <ul class="submenu-liceo">
+    let anexo = "";
 
+    if (año === 2020) {
+      anexo = `
         <li>
-          <a href="docs.html?tipo=reglamento&anio=${año}&doc=interno">
-            Reglamento interno
+          <a href="docs.html?tipo=reglamento&anio=${año}&doc=anexo">
+            Anexo Reglamento de Evaluación
           </a>
         </li>
+      `;
+    }
 
-        <li>
-          <a href="docs.html?tipo=reglamento&anio=${año}&doc=eyp">
-            Reglamento de Evaluación y Promoción
-          </a>
-        </li>
+    return `
+      <li class="dropdown-sub-liceo">
+        <a href="#" class="toggle-liceo">Año ${año} ▸</a>
 
-      </ul>
-    </li>
-  `).join("");
+        <ul class="submenu-liceo">
+
+          <li>
+            <a href="docs.html?tipo=reglamento&anio=${año}&doc=interno">
+              Reglamento interno
+            </a>
+          </li>
+
+          <li>
+            <a href="docs.html?tipo=reglamento&anio=${año}&doc=eyp">
+              Reglamento de Evaluación y Promoción
+            </a>
+          </li>
+
+          ${anexo} <!-- 🔥 AQUÍ SE INSERTA SOLO EN 2020 -->
+
+        </ul>
+      </li>
+    `;
+  }).join("");
 };
 
   // 🔥 NAVBAR
@@ -125,27 +142,26 @@ const generarReglamentos = () => {
     <li><a href="contacto.html">Contacto</a></li>
   `;
 
-  // 🔥 DROPDOWN LICEO FUNCIONAL
-// 🔥 DROPDOWN LICEO PRO (con submenus funcionando)
+// DROPDOWN LICEO
 const toggles = document.querySelectorAll(".toggle-liceo");
 
 toggles.forEach(toggle => {
   toggle.addEventListener("click", (e) => {
     e.preventDefault();
-    e.stopPropagation(); // 🔥 CLAVE
+    e.stopPropagation();
 
     const parent = toggle.parentElement;
 
-    // 🔥 si es submenu, NO cerrar todo
-    const isSubmenu = parent.classList.contains("dropdown-sub-liceo");
+    // 🔥 cerrar hermanos del mismo nivel (CLAVE)
+    const siblings = parent.parentElement.children;
 
-    if (!isSubmenu) {
-      // cerrar otros principales
-      document.querySelectorAll(".dropdown-liceo").forEach(el => {
-        if (el !== parent) el.classList.remove("activo");
-      });
-    }
+    Array.from(siblings).forEach(el => {
+      if (el !== parent) {
+        el.classList.remove("activo");
+      }
+    });
 
+    // 🔥 toggle actual
     parent.classList.toggle("activo");
   });
 });
