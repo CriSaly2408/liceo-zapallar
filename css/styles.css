@@ -434,6 +434,32 @@ html {
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
+.lirmi-img {
+  display: block;
+  margin-top: 10px;
+}
+
+.lirmi-img img {
+  width: 100%;
+  border-radius: 12px;
+  border: 2px solid #ffffff;
+  transition: all 0.25s ease;
+}
+
+.lirmi-img img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.lirmi-img {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.lirmi-img img {
+  width: 85%; /* ajusta si quieres */
+}
 
 /* ========================= */
 /* COMUNICADOS */
@@ -1247,7 +1273,7 @@ body {
 
 @media (max-width: 768px) {
   .instagram-img img {
-    width: 400px; 
+    width: px; 
   }
 }
 
