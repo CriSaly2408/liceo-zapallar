@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
 //CuentaPueblica
-  const disponibilidadDocs = {
+ const disponibilidadDocs = {
 
   cuenta: {
     "2014": true,
@@ -33,19 +33,36 @@ document.addEventListener("DOMContentLoaded", () => {
     "2023": false,
     "2024": false,
     "2025": true
+  },
+
+  pei: {
+    "2014": true,
+    "2016": true,
+    "2017": true,
+    "2018": true,
+    "2019": true,
+    "2020": true,
+    "2021": true,
+    "2022": true,
+    "2023": true,
+    "2025": true
   }
 
 };
 
   // 🔥 GENERADORES
 const generarPEI = () => {
-  return aniosPEI.map(año => `
-    <li>
-      <a href="docs.html?tipo=pei&anio=${año}">
-        PEI ${año}
-      </a>
-    </li>
-  `).join("");
+  return Object.entries(disponibilidadDocs.pei)
+    .filter(([anio, disponible]) => disponible)
+    .sort((a, b) => a[0] - b[0])
+    .map(([anio]) => `
+      <li>
+        <a href="docs.html?tipo=pei&anio=${anio}">
+          PEI ${anio}
+        </a>
+      </li>
+    `)
+    .join("");
 };
 
 const generarCuenta = () => {
