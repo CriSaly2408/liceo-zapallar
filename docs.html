@@ -110,11 +110,11 @@ const documentos = {
   // 📊 CUENTA PUBLICA
   cuenta: {
     "2014": "https://docs.google.com/presentation/d/1Kdn7c4PTVKmj9OsP0GREMEDxVIJJ4Q75/embed?start=false&loop=false&delayms=3000",
-    "2015": "https://docs.google.com/presentation/d/1hbWcnhqTp1QWGXqMZlU6vgIfSFBtlJtK/embed?start=false&loop=false&delayms=3000",
-    "2016": "https://docs.google.com/presentation/d/1LFSvifS9_lVDfQiDQpo-ZJekkWGx9K7M/embed?start=false&loop=false&delayms=3000",
-    "2017": "https://docs.google.com/presentation/d/1yO5ZQcKV4474exfKrQH-S3aJdQA5khrF/embed?start=false&loop=false&delayms=3000",
-    "2018": "https://docs.google.com/presentation/d/1PrGYbklsTGzEL01GVnYouAyCCXU7Fq0n/embed?start=false&loop=false&delayms=3000",
-    "2019": "https://docs.google.com/presentation/d/1LGe4N6YhhJRRizJdJJtndXza0-CTJTnn/embed?start=false&loop=false&delayms=3000",
+    "2015": "https://drive.google.com/file/d/1Kdn7c4PTVKmj9OsP0GREMEDxVIJJ4Q75/view",
+    "2016": "https://drive.google.com/file/d/1LFSvifS9_lVDfQiDQpo-ZJekkWGx9K7M/view",
+    "2017": "https://drive.google.com/file/d/1yO5ZQcKV4474exfKrQH-S3aJdQA5khrF/view",
+    "2018": "https://drive.google.com/file/d/1PrGYbklsTGzEL01GVnYouAyCCXU7Fq0n/view",
+    "2019": "https://drive.google.com/file/d/1LGe4N6YhhJRRizJdJJtndXza0-CTJTnn/view",
     "2020": "https://docs.google.com/presentation/d/1LITyOpQZGxefdt27BuiNyVsSIMK4wQq0/embed?start=false&loop=false&delayms=3000",
     "2021": "",
     "2022": "https://docs.google.com/presentation/d/11FOZaNHs0RBVb-zi0h2QP-DOf29ocM6l/embed?start=false&loop=false&delayms=3000",
@@ -140,18 +140,16 @@ if(tipo === "cuenta"){
   url = documentos.cuenta[anio];
 }
 
-// 🔴 SI NO HAY LINK
 if(!url){
   document.getElementById("tituloHero").innerText = "Documento no disponible";
   document.getElementById("visor").style.display = "none";
   throw new Error("Documento no configurado");
 }
 
-// 🔥 APLICAR
+
 document.getElementById("visor").src = url;
 document.getElementById("btnDoc").href = url;
 
-// 🔥 TITULO BONITO
 let titulo = "";
 
 if(tipo === "pei") titulo = "Proyecto Educativo " + anio;
