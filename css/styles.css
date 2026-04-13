@@ -1237,6 +1237,23 @@ body {
     font-size: 13px;
   }
 
+@media (max-width: 768px) {
+  .instagram-img {
+    display: flex !important;
+    justify-content: center;
+    margin: 10px auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .instagram-img img {
+    width: 400px; 
+  }
+}
+
+
+
+
   /* ================= PC (hover menú) ================= */
 @media (min-width: 769px) {
 
