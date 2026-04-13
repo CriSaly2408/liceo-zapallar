@@ -3,21 +3,39 @@ document.addEventListener("DOMContentLoaded", () => {
   const nav = document.getElementById("menu-nav");
   if (!nav) return;
 
-  // 🔥 CONFIGURACIÓN DE AÑOS
+  // CONFIGURACIÓN DE AÑOS
+
+  //proyecto educ...
   const aniosPEI = [
     2014, 2016, 2017, 2018, 2019,
     2020, 2021, 2022, 2023, 2024, 2025
   ];
 
-  const aniosCuenta = [
-    2014, 2015, 2016, 2017, 2018,
-    2019, 2020, 2021, 2022, 2023, 2024, 2025
-  ];
-
+//reglamento
   const aniosReglamento = [
     2014, 2015, 2016, 2017, 2018,
     2019, 2020, 2021, 2022, 2023, 2024, 2025
   ];
+
+//CuentaPueblica
+  const disponibilidadDocs = {
+
+  cuenta: {
+    "2014": true,
+    "2015": true,
+    "2016": true,
+    "2017": true,
+    "2018": true,
+    "2019": true,
+    "2020": true,
+    "2021": false,
+    "2022": true,
+    "2023": false,
+    "2024": false,
+    "2025": true
+  }
+
+};
 
   // 🔥 GENERADORES
 const generarPEI = () => {
@@ -31,13 +49,17 @@ const generarPEI = () => {
 };
 
 const generarCuenta = () => {
-  return aniosCuenta.map(año => `
-    <li>
-      <a href="docs.html?tipo=cuenta&anio=${año}">
-        Gestión ${año}
-      </a>
-    </li>
-  `).join("");
+  return Object.entries(disponibilidadDocs.cuenta)
+    .filter(([anio, disponible]) => disponible)
+    .sort((a, b) => a[0] - b[0])
+    .map(([anio]) => `
+      <li>
+        <a href="docs.html?tipo=cuenta&anio=${anio}">
+          Gestión ${anio}
+        </a>
+      </li>
+    `)
+    .join("");
 };
 
 const generarReglamentos = () => {
