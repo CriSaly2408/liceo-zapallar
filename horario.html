@@ -69,6 +69,20 @@ td{
   font-weight:bold;
 }
 
+body::after {
+  content: "";
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 150px;
+  height: 150px;
+  background: url("img/marcaagua.jpg") no-repeat center;
+  background-size: contain;
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 0;
+}
+
 /* ===================================== */
 /* 📱 MODO MOBILE UNIVERSAL PRO          */
 /* ===================================== */

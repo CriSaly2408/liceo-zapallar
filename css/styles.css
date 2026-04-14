@@ -1667,6 +1667,25 @@ html, body {
 
 }
 
+body::after {
+  content: "";
+  position: fixed;
+
+  bottom: 15px;
+  right: 15px;
+
+  width: 120px;
+  height: 120px;
+
+  background: url("../img/marcaagua.png") no-repeat center;
+  background-size: contain;
+
+  opacity: 0.1;
+  pointer-events: none;
+
+  z-index: 0; 
+}
+
 /* ================================================ */
 /*    Desarrollado por Cristóbal Aliaga Guerra      */
 /*        Liceo Zapallar Curicó                     */

@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "2021": false,
     "2022": true,
     "2023": false,
-    "2024": false,
+    "2024": true,
     "2025": true
   },
 
