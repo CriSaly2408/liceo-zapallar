@@ -11,15 +11,14 @@ body {
   text-align: center;
 }
 
-/* EXCEPCIONES IMPORTANTES */
+
 .vision-bg {
   width: 100%;
   height: 600px;
   object-fit: cover;
 }
 
-/* 🔥 OCULTAR SOLO EN INDEX (forzado) */
-/* 🔥 OCULTAR SOLO EN NAVBAR (INDEX) */
+
 .pagina-index .navbar a[href*="lirmi.com"],
 .pagina-index .navbar a[href*="sistemadeadmisionescolar.cl"] {
   display: none !important;
@@ -247,7 +246,6 @@ html {
   color: #328CC1;
 }
 
-/* 🔥 quitar puntitos del navbar */
 .navbar ul,
 .navbar li {
   list-style: none !important;
@@ -495,8 +493,8 @@ html {
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 350px)); /* 🔥 límite máximo */
-  justify-content: center; /* 🔥 centra las columnas */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 350px)); 
+  justify-content: center; 
   gap: 30px;
 }
 
@@ -626,7 +624,7 @@ html {
   display: none;
 }
 
-/* 🔥 ARREGLAR VISIBILIDAD SIDEBAR */
+/* ARREGLAR VISIBILIDAD SIDEBAR */
 .menu-cursos .dropdown-menu,
 .menu-cursos .submenu {
   opacity: 1 !important;
@@ -788,7 +786,7 @@ html {
   margin-bottom: 40px;
 }
 
-/* 🔥 CONTENEDOR PRINCIPAL */
+/* CONTENEDOR PRINCIPAL */
 .contacto-container {
   display: flex;
   gap: 25px;
@@ -797,7 +795,7 @@ html {
   margin: 0 auto;     
 }
 
-/* 🔥 MAPA */
+/* MAPA */
 .mapa {
   width: 500px;       
   flex-shrink: 0;     
@@ -810,7 +808,7 @@ html {
   border-radius: 12px;
 }
 
-/* 🔥 INFO */
+/* INFO */
 .info {
   max-width: 400px;
   text-align: left;
@@ -829,7 +827,7 @@ html {
   line-height: 1.6;
 }
 
-/* 🔥 GRID TARJETAS */
+/* GRID TARJETAS */
 .info-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -878,7 +876,7 @@ html {
   grid-column: span 1; 
   min-height: 100%;
 }
-/* 📱 móvil */
+/* móvil */
 @media (max-width: 768px) {
   .contacto-container {
     flex-direction: column;
@@ -1052,7 +1050,7 @@ html {
 }
 
 
-/* 📗 SUBNIVELES (8°A, etc) */
+/*  SUBNIVELES (8°A, etc) */
 .menu-cursos .submenu > li > .toggle {
   background: #f4f7fb;
   border-left: 4px solid #4aa3ff;
@@ -1070,7 +1068,7 @@ html {
 }
 
 
-/* 📄 OPCIONES (Lista / Horario) */
+/*  OPCIONES (Lista / Horario) */
 .menu-cursos .submenu a:not(.toggle) {
   display: block;
   padding: 8px;
@@ -1386,13 +1384,13 @@ img {
     border: none !important;
   }
 
-  /*  OCULTAR TODO POR DEFECTO */
+
   .navbar .dropdown-menu,
   .navbar .submenu {
     display: none;
   }
 
-  /*  MOSTRAR CUANDO ESTÁ ACTIVO */
+
   .dropdown.activo > .dropdown-menu {
     display: block;
   }
@@ -1403,7 +1401,7 @@ img {
 
 }
 
-  /*  TODO EN BLOQUE */
+
 .navbar li {
   width: auto;
 }

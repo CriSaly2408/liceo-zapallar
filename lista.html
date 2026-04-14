@@ -60,7 +60,7 @@ th{
 td{
   padding:6px;
   border-bottom:1px solid #ccc;
-  color:black; /* 🔥 asegura que no interfiera con el rojo */
+  color:black; 
 }
 
 .numero{
@@ -70,7 +70,7 @@ td{
   font-weight:bold;
 }
 
-/* 🔥 RETIRADO (versión PRO) */
+/*  RETIRADO  */
 td .retirado{
   color: #ff2b2b !important;
   font-weight: bold;
@@ -79,7 +79,6 @@ td .retirado{
   border-radius: 6px;
 }
 
-/* 🔥 OPCIONAL: fila completa más tenue */
 .fila-retirado{
   opacity: 0.6;
 }
@@ -104,19 +103,17 @@ tr:nth-child(even){
     padding:12px;
   }
 
-  /* 🔥 TABLAS MÁS LIMPIAS */
   table{
     width:100%;
     border-collapse:collapse;
   }
 
-  /* 🔥 OCULTAR HEADER */
   table tr:first-child{
     display:none;
   }
 
   /* ===================================== */
-  /* 📋 LISTAS Y CORREOS → TARJETAS       */
+  /*  LISTAS Y CORREOS → TARJETAS       */
   /* ===================================== */
 
   table tr{
@@ -138,7 +135,6 @@ tr:nth-child(even){
     font-size:14px;
   }
 
-  /* 🔥 NUMERO BONITO */
   .numero{
     background:#0e4ea8;
     color:white;
@@ -149,7 +145,7 @@ tr:nth-child(even){
   }
 
   /* ===================================== */
-  /* 🧠 AUTO-LABELS SEGÚN TABLA           */
+  /*  AUTO-LABELS SEGÚN TABLA           */
   /* ===================================== */
 
   /* LISTA */
@@ -221,7 +217,7 @@ tr:nth-child(even){
     <h2>2026</h2>
   </div>
 
-  <!-- 🔒 SOLO LECTURA -->
+  <!--  SOLO LECTURA -->
   <div class="info">
     <input id="curso" placeholder="Curso" readonly>
     <input id="profe" placeholder="Profesor Jefe" readonly>
@@ -238,7 +234,7 @@ tr:nth-child(even){
 
 <script>
 
-// CREAR FILAS (SIN document.write)
+// CREAR FILAS 
 const tabla = document.getElementById("tabla");
 
 for(let i=1;i<=40;i++){
@@ -252,12 +248,12 @@ for(let i=1;i<=40;i++){
   tabla.appendChild(fila);
 }
 
-// ✅ PARAMETROS
+// PARAMETROS
 const params = new URLSearchParams(window.location.search);
 const curso = params.get("curso");
 const letra = params.get("letra");
 
-// 🔥 AQUÍ VAN TUS 26 LINKS CSV
+
 const linksCSV = {
 
   "7° Básico": {

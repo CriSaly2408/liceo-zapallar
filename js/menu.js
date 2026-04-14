@@ -112,7 +112,7 @@ const generarReglamentos = () => {
             </a>
           </li>
 
-          ${anexo} <!-- 🔥 AQUÍ SE INSERTA SOLO EN 2020 -->
+          ${anexo} <!-- AQUÍ SE INSERTA SOLO EN 2020 -->
 
         </ul>
       </li>
@@ -191,7 +191,7 @@ toggles.forEach(toggle => {
 
     const parent = toggle.parentElement;
 
-    // 🔥 cerrar hermanos del mismo nivel (CLAVE)
+    
     const siblings = parent.parentElement.children;
 
     Array.from(siblings).forEach(el => {
@@ -200,18 +200,18 @@ toggles.forEach(toggle => {
       }
     });
 
-    // 🔥 toggle actual
+   
     parent.classList.toggle("activo");
   });
 });
 
-// 🔒 cerrar SOLO si haces click fuera
+
 document.addEventListener("click", () => {
   document.querySelectorAll(".dropdown-liceo, .dropdown-sub-liceo")
     .forEach(el => el.classList.remove("activo"));
 });
 
-// 🔥 EVITAR que clicks dentro del menú lo cierren
+
 document.querySelectorAll(".dropdown-menu-liceo, .submenu-liceo")
   .forEach(menu => {
     menu.addEventListener("click", (e) => {

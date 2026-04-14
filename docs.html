@@ -46,13 +46,13 @@
 
 <script>
 
-// 🔥 PARAMETROS
+// PARAMETROS
 const params = new URLSearchParams(window.location.search);
 const tipo = params.get("tipo");   // pei | reglamento | cuenta
 const anio = params.get("anio");   // 2014 - 2025
 const doc  = params.get("doc");    // interno | eyp
 
-// 🔥 BASE DE DATOS (EDITA SOLO AQUÍ)
+// BASE DE DATOS (EDITA SOLO AQUÍ)
 const documentos = {
 
   // 📘 PROYECTO EDUCATIVO
@@ -69,7 +69,7 @@ const documentos = {
     "2025": "https://drive.google.com/file/d/1Dp6snQTssBw5cdMC9PbzdR2x-MGSHpqM/preview"
   },
 
-  // 📄 REGLAMENTOS
+  // REGLAMENTOS
   reglamento: {
     "2014": {
        interno: "https://drive.google.com/file/d/1Bm039lerz_kXuTY0CeYEN9gzIT9dHJG5/preview"},
@@ -107,7 +107,7 @@ const documentos = {
     }
   },
 
-  // 📊 CUENTA PUBLICA
+  // CUENTA PUBLICA
   cuenta: {
     "2014": "https://docs.google.com/presentation/d/1Kdn7c4PTVKmj9OsP0GREMEDxVIJJ4Q75/embed?start=false&loop=false&delayms=3000",
     "2015": "https://drive.google.com/file/d/1Kdn7c4PTVKmj9OsP0GREMEDxVIJJ4Q75/preview",
@@ -125,7 +125,7 @@ const documentos = {
 
 };
 
-// 🔥 OBTENER LINK
+// OBTENER LINK
 let url = "";
 
 if(tipo === "pei"){
@@ -163,6 +163,12 @@ document.getElementById("tituloHero").innerText = titulo;
 document.getElementById("titulo").innerText = titulo;
 
 </script>
+
+<!--
+Desarrollado por Cristóbal Aliaga Guerra
+Liceo Zapallar Curicó
+2026
+-->
 
 </body>
 </html>

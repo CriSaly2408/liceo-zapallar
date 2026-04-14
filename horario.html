@@ -84,19 +84,17 @@ td{
     padding:12px;
   }
 
-  /* 🔥 TABLAS MÁS LIMPIAS */
   table{
     width:100%;
     border-collapse:collapse;
   }
 
-  /* 🔥 OCULTAR HEADER */
   table tr:first-child{
     display:none;
   }
 
   /* ===================================== */
-  /* 📋 LISTAS Y CORREOS → TARJETAS       */
+  /*  LISTAS Y CORREOS → TARJETAS       */
   /* ===================================== */
 
   table tr{
@@ -118,7 +116,6 @@ td{
     font-size:14px;
   }
 
-  /* 🔥 NUMERO BONITO */
   .numero{
     background:#0e4ea8;
     color:white;
@@ -128,8 +125,8 @@ td{
     width:auto;
   }
 
-  /* ===================================== */
-  /* 🧠 AUTO-LABELS SEGÚN TABLA           */
+  /* ==================================== */
+  /*    AUTO-LABELS SEGÚN TABLA           */
   /* ===================================== */
 
   /* LISTA */
@@ -151,7 +148,7 @@ td{
   }
 
   /* ===================================== */
-  /* 🕒 HORARIOS → SCROLL HORIZONTAL      */
+  /*   HORARIOS → SCROLL HORIZONTAL      */
   /* ===================================== */
 
   .tabla-scroll{
@@ -164,7 +161,6 @@ td{
     min-width:700px;
   }
 
-  /* OPCIONAL: barra más bonita */
   .tabla-scroll::-webkit-scrollbar{
     height:6px;
   }
@@ -175,7 +171,7 @@ td{
   }
 
   /* ===================================== */
-  /* 🔷 INPUTS ARRIBA                     */
+  /*   INPUTS ARRIBA                     */
   /* ===================================== */
 
   .info{
@@ -198,7 +194,7 @@ td{
 <div class="container horario">
   <h1 id="titulo">Horario</h1>
 
-  <!-- 🔥 WRAPPER PARA SCROLL -->
+  <!-- WRAPPER PARA SCROLL -->
   <div class="tabla-scroll">
 
     <table id="tabla">
@@ -312,7 +308,7 @@ if(!curso || !letra){
 document.getElementById("titulo").innerText = curso + " " + letra;
 
 
-// 🔥 LINKS CSV
+// LINKS CSV
 const horariosCSV = {
   "7° Básico": {
     "A": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ5EymoZHN-NxIlNMWnV7GYni9yVXF2trFPJHVfFiQN6K6FqNuhg7n3NNSdEs9otA/pub?gid=396301792&output=csv",
@@ -360,7 +356,7 @@ const horariosCSV = {
 };
 
 
-// 🔥 OBTENER URL
+// OBTENER URL
 const url = horariosCSV[curso]?.[letra];
 
 console.log("URL:", url);
@@ -379,7 +375,7 @@ fetch(url)
   .then(res => res.text())
   .then(data => {
 
-    // 🔥 ARREGLAR SALTOS DE LÍNEA DENTRO DE CELDAS
+    // ARREGLAR SALTOS DE LÍNEA DENTRO DE CELDAS
     data = data.replace(/\n(?=\()/g, " ");
 
     const filas = data.split("\n");
@@ -394,7 +390,7 @@ fetch(url)
 
     filas.slice(1).forEach(fila => {
 
-      // 🔥 detectar separador automáticamente
+      // detectar separador automáticamente
       const separador = fila.includes(";") ? ";" : ",";
 
       const col = fila
@@ -403,10 +399,10 @@ fetch(url)
 
       console.log("DEBUG:", col);
 
-      // 🔥 ignorar filas basura
+      // ignorar filas basura
       if(col.length < 7) return;
 
-// 🔥 detectar recreo en cualquier columna
+// detectar recreo en cualquier columna
 const esRecreo = col.some(c => c?.toUpperCase().includes("RECREO"));
 
 if(esRecreo) return;

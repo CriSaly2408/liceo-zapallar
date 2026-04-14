@@ -70,7 +70,7 @@ document.addEventListener("click", function(e) {
 
   const parent = e.target.parentElement;
 
-  // 🔥 SOLO cerrar hermanos (no todo)
+
   const siblings = parent.parentElement.children;
 
   for (let item of siblings) {
