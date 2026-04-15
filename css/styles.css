@@ -354,7 +354,7 @@ html {
   background: #145a86;
 }
 
-/* Botón tipo sidebar (LIRMI) */
+/* Botón tipo sidebar */
 .sidebar-btn {
   display: block;
   width: 100%;
@@ -421,7 +421,6 @@ html {
 .instagram-img img {
   width: 140px;
   display: block;
-  margin: -2px;  
   border-radius: 12px;
   border: none;
   transition: all 0.25s ease;
@@ -430,6 +429,34 @@ html {
 .instagram-img img:hover {
   transform: scale(1.05);
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.sidebar-cursos a.instagram-img {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0 !important;
+  margin: 5px 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+.sidebar-cursos a.instagram-img:hover {
+  background: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.sidebar-cursos a:not(.instagram-img):hover {
+  background: #328CC1;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transform: translateX(5px);
+}
+
+.instagram-img img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
 }
 
 .lirmi-img {
@@ -459,9 +486,9 @@ html {
   width: 85%; /* ajusta si quieres */
 }
 
-/* ========================= */
-/* COMUNICADOS */
-/* ========================= */
+/* ========================================= */
+/* Contenedor de noticias y "Quienes somos" */
+/* ========================================= */
 
 /* CONTENIDO */
 .contenido-principal {
@@ -471,6 +498,37 @@ html {
   flex-direction: column;
   align-items: stretch;
   padding: 0 10px; 
+}
+
+.quienes-somos {
+  margin-bottom: 50px;
+}
+
+.quienes-somos a {
+  text-decoration: none;
+}
+
+.quienes-somos h2 {
+  text-align: center;
+  color: #0B3C5D;
+  margin-bottom: 20px;
+}
+
+.quienes-somos .card {
+  text-decoration: none; 
+  color: #0B3C5D; 
+}
+
+.quienes-somos .card h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #0B3C5D;
+  margin-top: 12px;
+}
+
+.quienes-somos .card:hover h3 {
+  color: #328CC1;
 }
 
 /* SECCIÓN */
