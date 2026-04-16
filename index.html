@@ -12,24 +12,27 @@
 </head>
 <body class="pagina-index">
 
+<!-- HEADER INSTITUCIONAL -->
+
+<header class="header-institucional">
+  <div class="header-contenido">
+    <img src="img/banner02.png" class="logo-header">
+  </div>
+</header>
+
 <!-- NAVBAR -->
 <nav class="navbar">
-  
-  <div class="nav-left">
-    <img src="img/banner02.png" alt="Logo Liceo" class="logo">
-  </div>
-
   <div class="nav-center">
-    
     <ul id="menu-nav"></ul>
   </div>
-
 </nav>
 
 
 
 <!-- HERO -->
-<header class="hero"></header>
+<header class="hero">
+  <div class="slider" id="slider"></div>
+</header>
 
 <div class="layout">
 
@@ -135,6 +138,40 @@
 <script src="js/menu.js" defer></script>
 
 <script>
+
+const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQnpSJn5CYe2KosLKP28VPvjb673XRTuMnXwL8rmAisGHoVCL8LfDanXKJXJOL2yLBZdOUSzsEAsBZh/pub?gid=0&single=true&output=csv";
+
+fetch(URL)
+  .then(res => res.text())
+  .then(data => {
+
+    const filas = data.trim().split("\n").slice(1);
+    const slider = document.getElementById("slider");
+
+    const imagenes = filas.map(f => f.replace(/"/g, "").trim());
+
+    imagenes.forEach(img => {
+      const div = document.createElement("div");
+      div.classList.add("slide");
+      div.style.backgroundImage = `url(${img})`;
+      slider.appendChild(div);
+    });
+
+    let index = 0;
+
+    setInterval(() => {
+      index++;
+      if(index >= imagenes.length) index = 0;
+
+      slider.style.transform = `translateX(-${index * 100}%)`;
+    }, 4000);
+
+  })
+  .catch(err => console.error(err));
+
+</script>
+
+<script>
 const URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTQUrU67cTk056Ep5g-mGjHJ17lwbwCg5NgBiV12reLzFX90QdLHhrIKzBJZ8ZVEv_TJlmFA_hEGUQB/pub?gid=0&single=true&output=csv";
 
 window.onload = () => {
@@ -174,6 +211,8 @@ window.onload = () => {
 
 };
 </script>
+
+
 
 <!-- FOOTER -->
 <footer class="footer">
