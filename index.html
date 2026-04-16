@@ -143,27 +143,20 @@ const URL_SLIDER = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQnpSJn5CYe2
 document.addEventListener("DOMContentLoaded", () => {
 
   const slider = document.getElementById("slider");
-
-  // Seguridad: si no existe el slider, no rompe
   if (!slider) return;
 
-  fetch(URL_SLIDER + "&t=" + new Date().getTime())
+  fetch(URL_SLIDER)
     .then(res => res.text())
     .then(data => {
 
       const filas = data.trim().split("\n").slice(1);
 
-      // Limpiar y filtrar vacíos
       const imagenes = filas
         .map(f => f.replace(/"/g, "").trim())
         .filter(f => f !== "");
 
-      if (imagenes.length === 0) {
-        console.warn("No hay imágenes en el slider");
-        return;
-      }
+      console.log("IMÁGENES:", imagenes); // 👈 DEBUG
 
-      // Crear slides
       imagenes.forEach(img => {
         const div = document.createElement("div");
         div.classList.add("slide");
@@ -171,7 +164,6 @@ document.addEventListener("DOMContentLoaded", () => {
         slider.appendChild(div);
       });
 
-      // Movimiento automático
       let index = 0;
 
       setInterval(() => {
@@ -182,7 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 4000);
 
     })
-    .catch(err => console.error("Error cargando slider:", err));
+    .catch(err => console.error("Slider error:", err));
 
 });
 </script>
