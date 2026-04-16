@@ -342,6 +342,14 @@ html {
   max-width: 1200px; /* 👈 mantiene tu estilo centrado */
   transition: transform 0.8s ease-in-out;
 }
+
+.slide {
+  min-width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px; /* 👈 como tu diseño actual */
+}
 /* ========================= */
 /* LAYOUT */
 /* ========================= */
