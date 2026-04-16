@@ -49,7 +49,7 @@ html {
   width: 100%;
   height: 70px;
 
-  background: #0B3C5D;
+  background: #799a14;
 
   display: flex;
   align-items: center;
@@ -287,7 +287,7 @@ html {
 /* LINKS */
 
 .navbar {
-  background: #0B3C5D;
+  background: linear-gradient(135deg, #0e4ea8, #c5ff19);
   padding: 10px 0;
 }
 
@@ -609,8 +609,15 @@ html {
 
 .quienes-somos h2 {
   text-align: center;
-  color: #0B3C5D;
   margin-bottom: 20px;
+
+  background: linear-gradient(135deg, #0e4ea8, #c5ff19);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* compatibilidad */
+  background-clip: text;
+  color: transparent;
 }
 
 .quienes-somos .card {
@@ -642,8 +649,15 @@ html {
 
 .comunicados h2 {
   text-align: center;
-  width: 100%;
-  color: #0B3C5D;
+  margin-bottom: 20px;
+
+  background: linear-gradient(92deg, #bfff00, #0e4ea8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* compatibilidad */
+  background-clip: text;
+  color: transparent;
 }
 
 /* CARDS CONTENEDOR */
@@ -1174,7 +1188,7 @@ html {
 
 /* 🔵 BOTÓN PRINCIPAL "CURSOS" */
 .menu-cursos > li > .toggle {
-  background: linear-gradient(135deg, #0e4ea8, #0b2c6b);
+  background: linear-gradient(135deg, #0e4ea8, #c5ff19);
   color: white;
   font-weight: 600;
   border-radius: 12px;
