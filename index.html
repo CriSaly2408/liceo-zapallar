@@ -138,7 +138,6 @@
 <script src="js/menu.js" defer></script>
 
 <script>
-  
 const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQnpSJn5CYe2KosLKP28VPvjb673XRTuMnXwL8rmAisGHoVCL8LfDanXKJXJOL2yLBZdOUSzsEAsBZh/pub?gid=0&single=true&output=csv";
 
 fetch(url)
@@ -168,50 +167,7 @@ fetch(url)
 
   })
   .catch(err => console.error(err));
-
 </script>
-
-<script>
-const URL_MODAL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTQUrU67cTk056Ep5g-mGjHJ17lwbwCg5NgBiV12reLzFX90QdLHhrIKzBJZ8ZVEv_TJlmFA_hEGUQB/pub?gid=0&single=true&output=csv";
-
-window.addEventListener("load", () => {
-
-  const modal = document.getElementById("modalUrgente");
-  const texto = document.getElementById("mensajeUrgente");
-  const cerrar = document.querySelector(".cerrar");
-  const btn = document.getElementById("btnCerrar");
-
-  modal.style.display = "none";
-
-  cerrar.onclick = () => modal.style.display = "none";
-  btn.onclick = () => modal.style.display = "none";
-
-  window.onclick = (e) => {
-    if (e.target === modal) modal.style.display = "none";
-  };
-
-  fetch(URL_MODAL + "&t=" + new Date().getTime())
-    .then(res => res.text())
-    .then(data => {
-      const filas = data.trim().split("\n");
-      if (filas.length < 2) return;
-
-      const valores = filas[1].split(",");
-      const activo = valores[0].trim();
-      const mensaje = valores.slice(1).join(",");
-
-      if (activo === "1") {
-        texto.textContent = mensaje;
-        modal.style.display = "block";
-      } else {
-        modal.style.display = "none";
-      }
-    })
-    .catch(err => console.error("ERROR:", err));
-
-});
-</script>
-
 
 
 <!-- FOOTER -->
