@@ -172,9 +172,9 @@ fetch(url)
 </script>
 
 <script>
-const URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTQUrU67cTk056Ep5g-mGjHJ17lwbwCg5NgBiV12reLzFX90QdLHhrIKzBJZ8ZVEv_TJlmFA_hEGUQB/pub?gid=0&single=true&output=csv";
+const URL_MODAL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTQUrU67cTk056Ep5g-mGjHJ17lwbwCg5NgBiV12reLzFX90QdLHhrIKzBJZ8ZVEv_TJlmFA_hEGUQB/pub?gid=0&single=true&output=csv";
 
-window.onload = () => {
+window.addEventListener("load", () => {
 
   const modal = document.getElementById("modalUrgente");
   const texto = document.getElementById("mensajeUrgente");
@@ -190,7 +190,7 @@ window.onload = () => {
     if (e.target === modal) modal.style.display = "none";
   };
 
-  fetch(URL + "&t=" + new Date().getTime())
+  fetch(URL_MODAL + "&t=" + new Date().getTime())
     .then(res => res.text())
     .then(data => {
       const filas = data.trim().split("\n");
@@ -209,7 +209,7 @@ window.onload = () => {
     })
     .catch(err => console.error("ERROR:", err));
 
-};
+});
 </script>
 
 

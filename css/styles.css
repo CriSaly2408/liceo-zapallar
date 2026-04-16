@@ -326,29 +326,28 @@ html {
   width: auto;  
 }
 
+/* CONTENEDOR HERO */
 .hero {
   width: 100%;
-  height: 350px; /* 👈 ajusta según tu banner */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 350px;
   overflow: hidden;
+  position: relative;
 }
 
+/* CONTENEDOR DEL SLIDER */
 .slider {
   display: flex;
-  height: 100%;
   width: 100%;
-  max-width: 1200px; /* 👈 mantiene tu estilo centrado */
+  height: 100%;
   transition: transform 0.8s ease-in-out;
 }
 
+/* CADA SLIDE */
 .slide {
   min-width: 100%;
   height: 100%;
   background-size: cover;
   background-position: center;
-  border-radius: 10px; /* 👈 como tu diseño actual */
 }
 /* ========================= */
 /* LAYOUT */
