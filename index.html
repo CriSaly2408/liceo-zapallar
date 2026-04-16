@@ -20,6 +20,7 @@
   </div>
 </header>
 
+
 <!-- NAVBAR -->
 <nav class="navbar">
   <div class="nav-center">
@@ -32,6 +33,7 @@
 <!-- HERO -->
 <header class="hero">
   <div class="slider" id="slider"></div>
+  <div class="slider-dots" id="slider-dots"></div>
 </header>
 
 <div class="layout">
@@ -138,45 +140,83 @@
 <script src="js/menu.js" defer></script>
 
 <script>
-const URL_SLIDER = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQnpSJn5CYe2KosLKP28VPvjb673XRTuMnXwL8rmAisGHoVCL8LfDanXKJXJOL2yLBZdOUSzsEAsBZh/pub?gid=0&single=true&output=csv";
+(function() {
 
-document.addEventListener("DOMContentLoaded", () => {
+  const URL_SLIDER = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQnpSJn5CYe2KosLKP28VPvjb673XRTuMnXwL8rmAisGHoVCL8LfDanXKJXJOL2yLBZdOUSzsEAsBZh/pub?gid=0&single=true&output=csv";
 
-  const slider = document.getElementById("slider");
-  if (!slider) return;
+  document.addEventListener("DOMContentLoaded", () => {
 
-  fetch(URL_SLIDER)
-    .then(res => res.text())
-    .then(data => {
+    const slider = document.getElementById("slider");
+    const dotsContainer = document.getElementById("slider-dots");
 
-      const filas = data.trim().split("\n").slice(1);
+    if (!slider) return;
 
-      const imagenes = filas
-        .map(f => f.replace(/"/g, "").trim())
-        .filter(f => f !== "");
+    fetch(URL_SLIDER)
+      .then(res => res.text())
+      .then(data => {
 
-      console.log("IMÁGENES:", imagenes); // 👈 DEBUG
+        const filas = data.trim().split("\n").slice(1);
 
-      imagenes.forEach(img => {
-        const div = document.createElement("div");
-        div.classList.add("slide");
-        div.style.backgroundImage = `url(${img})`;
-        slider.appendChild(div);
-      });
+        const imagenes = filas
+          .map(f => f.replace(/"/g, "").trim())
+          .filter(f => f !== "");
 
-      let index = 0;
+        if (imagenes.length === 0) return;
 
-      setInterval(() => {
-        index++;
-        if (index >= imagenes.length) index = 0;
+        // crear slides + dots
+        imagenes.forEach((img, i) => {
 
-        slider.style.transform = `translateX(-${index * 100}%)`;
-      }, 4000);
+          // slide
+          const div = document.createElement("div");
+          div.classList.add("slide");
+          div.style.backgroundImage = `url(${img})`;
+          slider.appendChild(div);
 
-    })
-    .catch(err => console.error("Slider error:", err));
+          // dot
+          const dot = document.createElement("span");
+          if (i === 0) dot.classList.add("active");
 
-});
+          dot.addEventListener("click", () => {
+            index = i;
+            actualizarSlider();
+            reiniciarIntervalo();
+          });
+
+          dotsContainer.appendChild(dot);
+        });
+
+        let index = 0;
+        let interval;
+
+        function actualizarSlider() {
+          slider.style.transform = `translateX(-${index * 100}%)`;
+
+          const dots = dotsContainer.querySelectorAll("span");
+          dots.forEach(d => d.classList.remove("active"));
+          dots[index].classList.add("active");
+        }
+
+        function iniciarIntervalo() {
+          interval = setInterval(() => {
+            index++;
+            if (index >= imagenes.length) index = 0;
+            actualizarSlider();
+          }, 15000); // ⏱ 15 segundos
+        }
+
+        function reiniciarIntervalo() {
+          clearInterval(interval);
+          iniciarIntervalo();
+        }
+
+        iniciarIntervalo();
+
+      })
+      .catch(err => console.error("Slider error:", err));
+
+  });
+
+})();
 </script>
 
 

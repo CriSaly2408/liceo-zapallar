@@ -349,6 +349,30 @@ html {
   background-size: cover;
   background-position: center;
 }
+
+.slider-dots {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  z-index: 5;
+}
+
+.slider-dots span {
+  width: 10px;
+  height: 10px;
+  background: rgba(255,255,255,0.6);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.slider-dots span.active {
+  background: white;
+  transform: scale(1.2);
+}
 /* ========================= */
 /* LAYOUT */
 /* ========================= */
