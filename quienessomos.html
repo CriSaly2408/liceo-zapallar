@@ -137,11 +137,11 @@ body::after {
 
 <script>
 
-// 🔥 OBTENER TIPO
+// OBTENER TIPO
 const params = new URLSearchParams(window.location.search);
 const tipo = params.get("tipo");
 
-// 🔥 URLs DE CADA HOJA (PON LAS TUYAS)
+// URLs DE CADA HOJA (PON LAS TUYAS)
 const urls = {
 
   docentes: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSxOWHSro-uGrQijP6JciK33A7PmOOVYZSljbWE-MqX6thFkzgN_OIcryAezZjslCaoJHp_VuobSjeA/pub?gid=0&single=true&output=csv",
@@ -150,7 +150,7 @@ const urls = {
 
 };
 
-// 🔥 VALIDAR
+// VALIDAR
 if (!urls[tipo]) {
   document.body.innerHTML = "<h2>Sección no válida</h2>";
   throw new Error("Tipo inválido");
@@ -158,14 +158,14 @@ if (!urls[tipo]) {
 
 const url = urls[tipo];
 
-// 🔥 CAMBIAR TITULO
+// CAMBIAR TITULO
 const titulo = document.getElementById("titulo");
 
 if (tipo === "docentes") titulo.innerText = "Docentes";
 if (tipo === "directivos") titulo.innerText = "Equipo Directivo";
 if (tipo === "asistentes") titulo.innerText = "Asistentes de la Educación";
 
-// 🔥 FETCH (TU MISMO SISTEMA)
+// FETCH 
 fetch(url)
   .then(res => res.text())
   .then(data => {

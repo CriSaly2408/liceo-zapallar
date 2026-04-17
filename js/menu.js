@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 };
 
-  // 🔥 GENERADORES
+  // GENERADORES
 const generarPEI = () => {
   return Object.entries(disponibilidadDocs.pei)
     .filter(([anio, disponible]) => disponible)
@@ -120,7 +120,7 @@ const generarReglamentos = () => {
   }).join("");
 };
 
-  // 🔥 NAVBAR
+  // NAVBAR
   nav.innerHTML = `
     <li><a href="index.html">Inicio</a></li>
 

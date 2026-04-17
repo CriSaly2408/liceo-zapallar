@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   contenedor.innerHTML = html;
 
-  // 🔥 TOGGLE MENÚ
+  // TOGGLE MENÚ
 document.addEventListener("click", function(e) {
 
   if (!e.target.classList.contains("toggle")) return;
