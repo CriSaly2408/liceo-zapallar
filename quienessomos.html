@@ -57,21 +57,68 @@ tr:hover{
   background:#e6eefc;
 }
 
+/* BOTÓN FOTO */
+.btn-foto{
+  margin-left:10px;
+  padding:4px 8px;
+  background:#0e4ea8;
+  color:white;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:12px;
+  position:relative;
+}
+
+/* PREVIEW */
+.preview-img{
+  position:absolute;
+  bottom:120%;
+  left:0;
+  width:180px;
+  border-radius:10px;
+  display:none;
+  box-shadow:0 5px 15px rgba(0,0,0,0.4);
+}
+
+.btn-foto:hover .preview-img{
+  display:block;
+}
+
+/* MODAL GRANDE */
+.modal-img{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.8);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+.modal-img img{
+  max-width:80%;
+  max-height:80%;
+  border-radius:15px;
+}
+
 /* MARCA AGUA */
 body::after {
-  content: "";
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 150px;
-  height: 150px;
-  background: url("img/marcaagua.jpg") no-repeat center;
-  background-size: contain;
-  opacity: 0.1;
+  content:"";
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:150px;
+  height:150px;
+  background:url("img/marcaagua.jpg") no-repeat center;
+  background-size:contain;
+  opacity:0.1;
 }
 
 /* 📱 MOBILE */
-@media (max-width: 768px){
+@media (max-width:768px){
 
   .container{
     width:100%;
@@ -120,7 +167,6 @@ body::after {
 
   <h1 id="titulo"></h1>
 
-  <!-- FOTO GRUPAL -->
   <img id="imagen" class="imagen-grupo">
 
   <table>
@@ -135,22 +181,23 @@ body::after {
 
 </div>
 
+<!-- MODAL -->
+<div id="modalImagen" class="modal-img">
+  <img id="imgGrande">
+</div>
+
 <script>
 
-// OBTENER TIPO
+// PARAM
 const params = new URLSearchParams(window.location.search);
 const tipo = params.get("tipo");
 
-// URLs DE CADA HOJA (PON LAS TUYAS)
 const urls = {
-
   docentes: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSxOWHSro-uGrQijP6JciK33A7PmOOVYZSljbWE-MqX6thFkzgN_OIcryAezZjslCaoJHp_VuobSjeA/pub?gid=0&single=true&output=csv",
   directivos: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSxOWHSro-uGrQijP6JciK33A7PmOOVYZSljbWE-MqX6thFkzgN_OIcryAezZjslCaoJHp_VuobSjeA/pub?gid=1537285125&single=true&output=csv",
   asistentes: "https://docs.google.com/spreadsheets/d/e/2PACX-1vSxOWHSro-uGrQijP6JciK33A7PmOOVYZSljbWE-MqX6thFkzgN_OIcryAezZjslCaoJHp_VuobSjeA/pub?gid=1950526140&single=true&output=csv"
-
 };
 
-// VALIDAR
 if (!urls[tipo]) {
   document.body.innerHTML = "<h2>Sección no válida</h2>";
   throw new Error("Tipo inválido");
@@ -158,14 +205,14 @@ if (!urls[tipo]) {
 
 const url = urls[tipo];
 
-// CAMBIAR TITULO
+// TITULO
 const titulo = document.getElementById("titulo");
 
 if (tipo === "docentes") titulo.innerText = "Docentes";
 if (tipo === "directivos") titulo.innerText = "Equipo Directivo";
 if (tipo === "asistentes") titulo.innerText = "Asistentes de la Educación";
 
-// FETCH 
+// FETCH
 fetch(url)
   .then(res => res.text())
   .then(data => {
@@ -183,13 +230,47 @@ fetch(url)
 
       if (col.length < 2) return;
 
+      const nombre = col[0];
+      const rol = col[1];
+      const imagen = col[2]; 
+
       const tr = document.createElement("tr");
 
       const tdNombre = document.createElement("td");
       const tdRol = document.createElement("td");
 
-      tdNombre.textContent = col[0];
-      tdRol.textContent = col[1];
+      const contenedor = document.createElement("div");
+      contenedor.style.display = "flex";
+      contenedor.style.alignItems = "center";
+
+      const spanNombre = document.createElement("span");
+      spanNombre.textContent = nombre;
+
+      contenedor.appendChild(spanNombre);
+
+      // 🔥 SOLO SI HAY IMAGEN
+      if (imagen) {
+
+        const btn = document.createElement("div");
+        btn.className = "btn-foto";
+        btn.textContent = "📷";
+
+        const preview = document.createElement("img");
+        preview.src = imagen;
+        preview.className = "preview-img";
+
+        btn.appendChild(preview);
+
+        btn.addEventListener("click", () => {
+          document.getElementById("modalImagen").style.display = "flex";
+          document.getElementById("imgGrande").src = imagen;
+        });
+
+        contenedor.appendChild(btn);
+      }
+
+      tdNombre.appendChild(contenedor);
+      tdRol.textContent = rol;
 
       tr.appendChild(tdNombre);
       tr.appendChild(tdRol);
@@ -200,6 +281,11 @@ fetch(url)
 
   })
   .catch(err => console.error("Error:", err));
+
+// CERRAR MODAL
+document.getElementById("modalImagen").addEventListener("click", () => {
+  document.getElementById("modalImagen").style.display = "none";
+});
 
 </script>
 
