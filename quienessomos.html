@@ -57,34 +57,45 @@ tr:hover{
   background:#e6eefc;
 }
 
-/* BOTÓN FOTO */
-.btn-foto{
-  margin-left:140px;
-  padding:8px 8px;
-  background:linear-gradient(135deg, #0e4ea8, #c5ff19);
-  color:white;
-  border-radius:6px;
-  cursor:pointer;
-  font-size:12px;
+/* ===== NUEVO SISTEMA BOTÓN + PREVIEW ===== */
+
+/* contenedor del botón */
+.btn-foto-container{
   position:relative;
+  display:flex;
+  align-items:center;
 }
 
-/* PREVIEW */
+/* botón imagen */
+.btn-foto-img{
+  width:57px;
+  height:40px;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.btn-foto-img:hover{
+  transform:scale(1.15);
+}
+
+/* preview flotante */
 .preview-img{
   position:absolute;
   bottom:120%;
-  left:0;
+  right:0;
   width:180px;
   border-radius:10px;
   display:none;
   box-shadow:0 5px 15px rgba(0,0,0,0.4);
+  z-index:10;
 }
 
-.btn-foto:hover .preview-img{
+/* mostrar preview */
+.btn-foto-container:hover .preview-img{
   display:block;
 }
 
-/* MODAL GRANDE */
+/* ===== MODAL GRANDE ===== */
 .modal-img{
   position:fixed;
   top:0;
@@ -104,7 +115,7 @@ tr:hover{
   border-radius:15px;
 }
 
-/* MARCA AGUA */
+/* ===== MARCA DE AGUA ===== */
 body::after {
   content:"";
   position:fixed;
@@ -115,21 +126,6 @@ body::after {
   background:url("img/marcaagua.jpg") no-repeat center;
   background-size:contain;
   opacity:0.1;
-}
-
-.btn-foto-img {
-  width: 57px;
-  height: 40px;
-  cursor: pointer;
-  margin-left: 109px;
-  background: none;
-  border: none;
-}
-
-/* opcional pro */
-.btn-foto-img:hover {
-  transform: scale(1.15);
-  transition: 0.2s;
 }
 
 /* 📱 MOBILE */
@@ -256,7 +252,6 @@ fetch(url)
 
       const contenedor = document.createElement("div");
 
-      // 🔥 AQUÍ ESTÁ LA MAGIA
       contenedor.style.display = "flex";
       contenedor.style.alignItems = "center";
       contenedor.style.justifyContent = "space-between";
@@ -269,9 +264,19 @@ fetch(url)
 
       if (imagen) {
 
-        const btn = document.createElement("img");
-        btn.src = "img/botonfoto.png"; 
-        btn.className = "btn-foto-img";
+        const btn = document.createElement("div");
+        btn.className = "btn-foto-container";
+
+        const icono = document.createElement("img");
+        icono.src = "img/botonfoto.png";
+        icono.className = "btn-foto-img";
+
+        const preview = document.createElement("img");
+        preview.src = imagen;
+        preview.className = "preview-img";
+
+        btn.appendChild(icono);
+        btn.appendChild(preview);
 
         btn.addEventListener("click", () => {
           document.getElementById("modalImagen").style.display = "flex";
