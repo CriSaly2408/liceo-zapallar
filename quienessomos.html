@@ -117,6 +117,21 @@ body::after {
   opacity:0.1;
 }
 
+.btn-foto-img {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  margin-left: 10px;
+  background: none;
+  border: none;
+}
+
+/* opcional pro */
+.btn-foto-img:hover {
+  transform: scale(1.15);
+  transition: 0.2s;
+}
+
 /* 📱 MOBILE */
 @media (max-width:768px){
 
@@ -248,26 +263,20 @@ fetch(url)
 
       contenedor.appendChild(spanNombre);
 
-      // 🔥 SOLO SI HAY IMAGEN
-      if (imagen) {
+      
+if (imagen) {
 
-        const btn = document.createElement("div");
-        btn.className = "btn-foto";
-        btn.textContent = "📷";
+  const btn = document.createElement("img");
+  btn.src = "img/botonfoto.png"; 
+  btn.className = "btn-foto-img";
 
-        const preview = document.createElement("img");
-        preview.src = imagen;
-        preview.className = "preview-img";
+  btn.addEventListener("click", () => {
+    document.getElementById("modalImagen").style.display = "flex";
+    document.getElementById("imgGrande").src = imagen;
+  });
 
-        btn.appendChild(preview);
-
-        btn.addEventListener("click", () => {
-          document.getElementById("modalImagen").style.display = "flex";
-          document.getElementById("imgGrande").src = imagen;
-        });
-
-        contenedor.appendChild(btn);
-      }
+  contenedor.appendChild(btn);
+}
 
       tdNombre.appendChild(contenedor);
       tdRol.textContent = rol;
