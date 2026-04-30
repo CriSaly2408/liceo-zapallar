@@ -636,7 +636,6 @@ html {
   color: #328CC1;
 }
 
-/* NECESARIO para posicionar el botón */
 .quienes-somos .card{
   position: relative;
 }
@@ -897,7 +896,6 @@ html {
   display: none;
 }
 
-/* ARREGLAR VISIBILIDAD SIDEBAR */
 .menu-cursos .dropdown-menu,
 .menu-cursos .submenu {
   opacity: 1 !important;

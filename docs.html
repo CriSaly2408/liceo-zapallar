@@ -48,11 +48,11 @@
 
 // PARAMETROS
 const params = new URLSearchParams(window.location.search);
-const tipo = params.get("tipo");   // pei | reglamento | cuenta
-const anio = params.get("anio");   // 2014 - 2025
-const doc  = params.get("doc");    // interno | eyp
+const tipo = params.get("tipo");   
+const anio = params.get("anio");  
+const doc  = params.get("doc");    
 
-// BASE DE DATOS (EDITA SOLO AQUÍ)
+// BASE DE DATOS 
 const documentos = {
 
   // 📘 PROYECTO EDUCATIVO
@@ -66,7 +66,8 @@ const documentos = {
     "2021": "https://drive.google.com/file/d/1L4w8TLkR1ERPozpjwpW-MG235HITE-z1/preview",
     "2022": "https://drive.google.com/file/d/15noO8KuD2Xzn6HHPiPYvd9onPEnTNdRP/preview",
     "2023": "https://drive.google.com/file/d/11IEy43jc4rrb1CEqN6D0LqKc1WPlj_gF/preview",
-    "2025": "https://drive.google.com/file/d/1Dp6snQTssBw5cdMC9PbzdR2x-MGSHpqM/preview"
+    "2025": "https://drive.google.com/file/d/1Dp6snQTssBw5cdMC9PbzdR2x-MGSHpqM/preview",
+    "2026": "https://docs.google.com/document/d/1e8QwMNWzkNWnxAvQKlCOpmjB5T5c3CiT/preview"
   },
 
   // REGLAMENTOS
@@ -129,7 +130,7 @@ const documentos = {
 
 };
 
-// OBTENER LINK
+
 let url = "";
 
 if(tipo === "pei"){

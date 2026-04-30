@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   //proyecto educ...
   const aniosPEI = [
     2014, 2016, 2017, 2018, 2019,
-    2020, 2021, 2022, 2023, 2024, 2025
+    2020, 2021, 2022, 2023, 2024, 2025, 2026
   ];
 
 //reglamento
@@ -45,7 +45,8 @@ document.addEventListener("DOMContentLoaded", () => {
     "2021": true,
     "2022": true,
     "2023": true,
-    "2025": true
+    "2025": true,
+    "2026": true,
   }
 
 };
