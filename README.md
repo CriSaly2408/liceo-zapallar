@@ -242,6 +242,218 @@ Antes de modificar el código:
 
 Esto evita errores y enlaces rotos en el sitio institucional.
 
+# Paso 2: Modificar menu.js
+
+Archivo:
+
+```text
+js/menu.js
+```
+
+Dentro de este archivo buscar el siguiente bloque:
+
+```javascript
+// CONFIGURACIÓN DE AÑOS
+
+//proyecto educ...
+const aniosPEI = [
+  2014, 2016, 2017, 2018, 2019,
+  2020, 2021, 2022, 2023, 2024, 2025, 2026
+];
+
+//reglamento
+const aniosReglamento = [
+  2014, 2015, 2016, 2017, 2018,
+  2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026
+];
+
+//CuentaPueblica
+const disponibilidadDocs = {
+
+  cuenta: {
+    "2014": true,
+    "2015": true,
+    "2016": true,
+    "2017": true,
+    "2018": true,
+    "2019": true,
+    "2020": true,
+    "2021": false,
+    "2022": true,
+    "2023": false,
+    "2024": true,
+    "2025": true
+  },
+
+  pei: {
+    "2014": true,
+    "2016": true,
+    "2017": true,
+    "2018": true,
+    "2019": true,
+    "2020": true,
+    "2021": true,
+    "2022": true,
+    "2023": true,
+    "2025": true,
+    "2026": true
+  }
+
+};
+```
+
+---
+
+## Agregar un nuevo PEI
+
+Buscar esta sección:
+
+```javascript
+const aniosPEI = [
+  2014, 2016, 2017, 2018, 2019,
+  2020, 2021, 2022, 2023, 2024, 2025, 2026
+];
+```
+
+Agregar el nuevo año al final:
+
+```javascript
+const aniosPEI = [
+  2014, 2016, 2017, 2018, 2019,
+  2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027
+];
+```
+
+Esto hará que el año aparezca en el menú de Proyecto Educativo Institucional.
+
+---
+
+## Agregar un nuevo Reglamento
+
+Buscar:
+
+```javascript
+const aniosReglamento = [
+  2014, 2015, 2016, 2017, 2018,
+  2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026
+];
+```
+
+Agregar el nuevo año:
+
+```javascript
+const aniosReglamento = [
+  2014, 2015, 2016, 2017, 2018,
+  2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027
+];
+```
+
+Esto hará que el año aparezca en el menú de Reglamentos.
+
+---
+
+## Habilitar una nueva Cuenta Pública
+
+Buscar:
+
+```javascript
+cuenta: {
+  "2014": true,
+  "2015": true,
+  "2016": true,
+  "2017": true,
+  "2018": true,
+  "2019": true,
+  "2020": true,
+  "2021": false,
+  "2022": true,
+  "2023": false,
+  "2024": true,
+  "2025": true
+},
+```
+
+Si existe una nueva Cuenta Pública, agregar una línea nueva:
+
+```javascript
+cuenta: {
+  "2014": true,
+  "2015": true,
+  "2016": true,
+  "2017": true,
+  "2018": true,
+  "2019": true,
+  "2020": true,
+  "2021": false,
+  "2022": true,
+  "2023": false,
+  "2024": true,
+  "2025": true,
+  "2026": true
+},
+```
+
+El valor `true` significa que existe un documento para ese año.
+
+El valor `false` significa que el documento no existe o no debe mostrarse.
+
+---
+
+## Habilitar un nuevo PEI
+
+Buscar:
+
+```javascript
+pei: {
+  "2014": true,
+  "2016": true,
+  "2017": true,
+  "2018": true,
+  "2019": true,
+  "2020": true,
+  "2021": true,
+  "2022": true,
+  "2023": true,
+  "2025": true,
+  "2026": true
+}
+```
+
+Agregar:
+
+```javascript
+pei: {
+  "2014": true,
+  "2016": true,
+  "2017": true,
+  "2018": true,
+  "2019": true,
+  "2020": true,
+  "2021": true,
+  "2022": true,
+  "2023": true,
+  "2025": true,
+  "2026": true,
+  "2027": true
+}
+```
+
+---
+
+# Resumen
+
+Cada vez que se agregue un nuevo año se deben realizar dos tareas:
+
+### En menu.js
+
+Agregar el nuevo año para que aparezca en los menús.
+
+### En docs.html
+
+Agregar los enlaces de los documentos correspondientes.
+
+Si se realiza solamente una de estas dos tareas, la sección no funcionará correctamente.
+
 
 # Paso 3: Modificar docs.html
 
