@@ -37,104 +37,211 @@ docs.html
 
 ---
 
-# Paso 1: Subir los documentos
+# Paso 1: Subir los documentos a Google Drive
 
-Antes de modificar el sitio:
+Antes de modificar la página web es necesario subir los documentos del nuevo año a Google Drive.
 
-1. Subir los documentos correspondientes al nuevo año a Google Drive.
-2. Verificar que tengan permisos de visualización.
-3. Obtener los enlaces de vista previa (preview).
+Ejemplos:
+
+* PEI 2027
+* Reglamento Interno 2027
+* Reglamento de Evaluación y Promoción (EYP) 2027
+* Cuenta Pública 2026 o 2027
 
 ---
 
-# Paso 2: Modificar menu.js
+## Subir el archivo
 
-Archivo:
+1. Ingresar a Google Drive.
+2. Crear una carpeta para el año correspondiente (opcional).
+3. Presionar **Nuevo → Subir archivo**.
+4. Seleccionar el documento.
+
+---
+
+## Compartir el documento
+
+Una vez subido:
+
+1. Hacer clic derecho sobre el archivo.
+2. Seleccionar **Compartir**.
+3. En "Acceso general" seleccionar:
 
 ```text
-js/menu.js
+Cualquier persona con el enlace
+```
+
+4. Permiso:
+
+```text
+Lector
+```
+
+5. Presionar **Copiar enlace**.
+
+---
+
+## Obtener el enlace para la página web
+
+Normalmente Google Drive entrega enlaces similares a este:
+
+```text
+https://drive.google.com/file/d/1ABCDEF123456789/view?usp=sharing
+```
+
+Para utilizar el documento dentro de la página web debe convertirse a formato **preview**.
+
+Ejemplo:
+
+Enlace original:
+
+```text
+https://drive.google.com/file/d/1ABCDEF123456789/view?usp=sharing
+```
+
+Debe transformarse en:
+
+```text
+https://drive.google.com/file/d/1ABCDEF123456789/preview
+```
+
+### Cómo hacerlo
+
+1. Buscar la parte:
+
+```text
+/view?usp=sharing
+```
+
+2. Reemplazarla por:
+
+```text
+/preview
+```
+
+Resultado:
+
+```text
+https://drive.google.com/file/d/1ABCDEF123456789/preview
+```
+
+Este es el enlace que debe copiarse en el código.
+
+---
+
+# Caso especial: Cuenta Pública
+
+Las Cuentas Públicas históricas de este sitio utilizan dos formatos distintos.
+
+## Formato PDF (Drive Preview)
+
+Algunos años utilizan:
+
+```javascript
+"2022": "https://drive.google.com/file/d/XXXXXXXX/preview"
+```
+
+En este caso el procedimiento es exactamente igual al descrito anteriormente.
+
+---
+
+## Formato Presentación de Google Slides
+
+Algunos años utilizan presentaciones incrustadas.
+
+Ejemplo:
+
+```javascript
+"2024": "https://docs.google.com/presentation/d/XXXXXXXX/embed?start=false&loop=false&delayms=3000"
+```
+
+o
+
+```javascript
+"2025": "https://docs.google.com/presentation/d/YYYYYYYY/embed?start=false&loop=false&delayms=3000"
 ```
 
 ---
 
-## Proyecto Educativo (PEI)
+### Cómo crear una Cuenta Pública tipo Presentación
 
-Buscar:
+1. Abrir PowerPoint.
+2. Crear la presentación.
+3. Guardarla.
 
-```javascript
-const aniosPEI = [
-  ...
-  2025, 2026
-];
+Luego:
+
+1. Abrir Google Drive.
+2. Subir el archivo PowerPoint (.pptx).
+3. Abrir el archivo desde Google Drive.
+4. Seleccionar:
+
+```text
+Abrir con → Presentaciones de Google
 ```
 
-Agregar el nuevo año:
+Google convertirá automáticamente el PowerPoint.
 
-```javascript
-const aniosPEI = [
-  ...
-  2025, 2026, 2027
-];
+---
+
+### Obtener el enlace Embed
+
+Con la presentación abierta:
+
+1. Archivo.
+2. Compartir.
+3. Publicar en la Web.
+4. Seleccionar "Insertar".
+5. Publicar.
+
+Google generará un código similar a:
+
+```html
+<iframe src="https://docs.google.com/presentation/d/XXXXXXXX/embed?start=false&loop=false&delayms=3000"></iframe>
+```
+
+Copiar únicamente la URL que aparece dentro de `src=`:
+
+```text
+https://docs.google.com/presentation/d/XXXXXXXX/embed?start=false&loop=false&delayms=3000
+```
+
+Ese será el enlace que debe agregarse en `docs.html`.
+
+---
+
+# Resumen rápido
+
+## Documentos PDF
+
+Utilizar:
+
+```text
+https://drive.google.com/file/d/ID_DEL_ARCHIVO/preview
 ```
 
 ---
 
-## Reglamentos
+## Presentaciones Cuenta Pública
 
-Buscar:
+Utilizar:
 
-```javascript
-const aniosReglamento = [
-  ...
-  2025, 2026
-];
-```
-
-Agregar:
-
-```javascript
-..., 2026, 2027
+```text
+https://docs.google.com/presentation/d/ID_DE_PRESENTACION/embed?start=false&loop=false&delayms=3000
 ```
 
 ---
 
-## Disponibilidad de documentos
+# Recomendación
 
-Buscar:
+Antes de modificar el código:
 
-```javascript
-pei: {
-  ...
-  "2026": true
-}
-```
+1. Abrir cada enlace en una pestaña nueva.
+2. Verificar que el documento se visualice correctamente.
+3. Recién después copiar el enlace a la página web.
 
-Agregar:
+Esto evita errores y enlaces rotos en el sitio institucional.
 
-```javascript
-"2027": true
-```
-
----
-
-Si existe Cuenta Pública para el nuevo año:
-
-```javascript
-cuenta: {
-  ...
-  "2025": true
-}
-```
-
-Agregar:
-
-```javascript
-"2026": true
-```
-
-(o el año correspondiente).
-
----
 
 # Paso 3: Modificar docs.html
 
