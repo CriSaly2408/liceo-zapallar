@@ -144,73 +144,177 @@ Archivo:
 docs.html
 ```
 
----
-
-## Proyecto Educativo Institucional
-
-Buscar la última entrada existente:
+Dentro de este archivo existe un bloque llamado:
 
 ```javascript
-"2026": "LINK_DOCUMENTO"
+const documentos = {
 ```
 
-Agregar:
+Más abajo encontrarás tres secciones:
 
 ```javascript
-"2027": "LINK_DOCUMENTO_2027"
+// 📘 PROYECTO EDUCATIVO
+pei: {
+```
+
+```javascript
+// REGLAMENTOS
+reglamento: {
+```
+
+```javascript
+// CUENTA PUBLICA
+cuenta: {
 ```
 
 ---
 
-## Reglamentos
+## Agregar un nuevo PEI
 
-Buscar la última entrada existente:
+Buscar un bloque similar a este:
+
+```javascript
+// 📘 PROYECTO EDUCATIVO
+pei: {
+  "2023": "https://...",
+  "2025": "https://...",
+  "2026": "https://drive.google.com/file/d/XXXXXXXX/preview"
+},
+```
+
+Para agregar el año 2027, copiar la última línea:
+
+```javascript
+"2026": "https://drive.google.com/file/d/XXXXXXXX/preview"
+```
+
+y agregar debajo:
+
+```javascript
+"2026": "https://drive.google.com/file/d/XXXXXXXX/preview",
+"2027": "https://drive.google.com/file/d/NUEVO_DOCUMENTO/preview"
+```
+
+Reemplazar el enlace por el documento correspondiente.
+
+---
+
+## Agregar nuevos Reglamentos
+
+Buscar un bloque similar a este:
+
+```javascript
+// REGLAMENTOS
+reglamento: {
+
+  ...
+
+  "2025": {
+    interno: "https://...",
+    eyp: "https://..."
+  },
+
+  "2026": {
+    interno: "https://drive.google.com/file/d/XXXXXXXX/preview",
+    eyp: "https://drive.google.com/file/d/YYYYYYYY/preview"
+  }
+
+},
+```
+
+Copiar completamente el bloque de 2026:
 
 ```javascript
 "2026": {
-  interno: "LINK_INTERNO",
-  eyp: "LINK_EYP"
+  interno: "https://drive.google.com/file/d/XXXXXXXX/preview",
+  eyp: "https://drive.google.com/file/d/YYYYYYYY/preview"
 }
 ```
 
-Copiar y agregar:
+y pegar debajo:
 
 ```javascript
 "2027": {
-  interno: "LINK_INTERNO_2027",
-  eyp: "LINK_EYP_2027"
+  interno: "NUEVO_LINK_INTERNO",
+  eyp: "NUEVO_LINK_EYP"
 }
 ```
 
-Si existe anexo:
+Luego reemplazar los enlaces.
+
+---
+
+### Si existe Anexo
+
+Algunos años tienen un documento adicional llamado "anexo".
+
+Ejemplo:
+
+```javascript
+"2020": {
+  interno: "...",
+  eyp: "...",
+  anexo: "..."
+}
+```
+
+Si el nuevo año también tiene anexo:
 
 ```javascript
 "2027": {
-  interno: "LINK_INTERNO_2027",
-  eyp: "LINK_EYP_2027",
-  anexo: "LINK_ANEXO_2027"
+  interno: "NUEVO_LINK_INTERNO",
+  eyp: "NUEVO_LINK_EYP",
+  anexo: "NUEVO_LINK_ANEXO"
 }
 ```
 
 ---
 
-## Cuenta Pública
+## Agregar una nueva Cuenta Pública
 
-Buscar la última entrada:
-
-```javascript
-"2025": "LINK_CUENTA_PUBLICA"
-```
-
-Agregar:
+Buscar un bloque similar a este:
 
 ```javascript
-"2026": "LINK_CUENTA_PUBLICA_2026"
+// CUENTA PUBLICA
+cuenta: {
+
+  ...
+
+  "2024": "https://...",
+  "2025": "https://docs.google.com/presentation/d/XXXXXXXX/embed?start=false&loop=false&delayms=3000"
+
+}
 ```
 
-(o el año correspondiente).
+Copiar la última línea:
+
+```javascript
+"2025": "https://docs.google.com/presentation/d/XXXXXXXX/embed?start=false&loop=false&delayms=3000"
+```
+
+y agregar:
+
+```javascript
+"2025": "https://docs.google.com/presentation/d/XXXXXXXX/embed?start=false&loop=false&delayms=3000",
+"2026": "https://docs.google.com/presentation/d/NUEVA_PRESENTACION/embed?start=false&loop=false&delayms=3000"
+```
+
+o el año correspondiente.
 
 ---
+
+## Regla General
+
+Para agregar un nuevo año:
+
+1. Buscar el año más reciente disponible.
+2. Copiar exactamente su estructura.
+3. Cambiar el número del año.
+4. Reemplazar los enlaces de Google Drive.
+5. Guardar y realizar Commit.
+
+En la mayoría de los casos no será necesario modificar ninguna otra parte del código.
+
 
 # Guardar cambios
 
